@@ -6,15 +6,7 @@
         xmlns:local="clr-namespace:AirlineManager.UI.SubViews"
         mc:Ignorable="d"
         Title="AirportExplorerWindow" Height="400" Width="600">
-    <DockPanel
-        xmlns:amb="clr-namespace:AirlineManager.Business;assembly=AirlineManagerBusinessLogic"
-        xmlns:amd="clr-namespace:AirlineManager.Data;assembly=AirlineManagerData">
-        <DockPanel.Resources>
-            <amd:Airport x:Key="AP"/>
-        </DockPanel.Resources>
-        <DockPanel.DataContext>
-            <Binding Source="{StaticResource }"
-        </DockPanel.DataContext>
+    <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
                 <MenuItem Header="_New" />
@@ -23,8 +15,7 @@
                 <MenuItem Header="_Explore" />
             </MenuItem>
         </Menu>
-        <ListBox ItemsSource="{Binding}">
-            
+        <ListBox>
         </ListBox>
     </DockPanel>
 </Window>
