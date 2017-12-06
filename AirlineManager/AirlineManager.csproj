@@ -105,11 +105,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AirlineManagerBusinessLogic\AirlineManagerBusinessLogic.csproj">
+    <ProjectReference Include="..\AirlineManagerBusinessLogic\AirlineManagerBusinessLogic.csproj">
       <Project>{ac15032f-a68a-4e65-8d41-99237c8f1b0c}</Project>
       <Name>AirlineManagerBusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\AirlineManagerData\AirlineManagerData.csproj">
+    <ProjectReference Include="..\AirlineManagerData\AirlineManagerData.csproj">
       <Project>{5ecc610b-52ef-467d-8aa5-ef2016380188}</Project>
       <Name>AirlineManagerData</Name>
     </ProjectReference>
