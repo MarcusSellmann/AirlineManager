@@ -14,8 +14,13 @@
             <MenuItem Header="_Airports">
                 <MenuItem Header="_Explore" />
             </MenuItem>
+            <MenuItem Header="_Aircrafts">
+                <MenuItem Header="_Explore" />
+            </MenuItem>
+            <MenuItem Header="_Routes">
+                <MenuItem Header="_Explore" />
+            </MenuItem>
         </Menu>
-        <ListBox>
-        </ListBox>
+        <ListBox DockPanel.Dock="Left" Name="lbAirports" DisplayMemberPath="Name"></ListBox>
     </DockPanel>
 </Window>

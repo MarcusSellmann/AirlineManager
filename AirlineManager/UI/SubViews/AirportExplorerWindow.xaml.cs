@@ -1,24 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using AirlineManager.Business.Databases;
+using AirlineManager.Data;
 
 namespace AirlineManager.UI.SubViews {
 	/// <summary>
 	/// Interaction logic for AirportExplorerWindow.xaml
 	/// </summary>
 	public partial class AirportExplorerWindow : Window {
+		ObservableCollection<Airport> m_airports = new ObservableCollection<Airport>();
+
 		public AirportExplorerWindow() {
 			InitializeComponent();
+
+			AirportDatabase aDb = AirportDatabase.Instance;
+			List<Airport> airports = aDb.DB;
+
+			foreach (Airport ap in airports) {
+				m_airports.Add(ap);
+			}
+
+			lbAirports.ItemsSource = m_airports;
 		}
 	}
 }
