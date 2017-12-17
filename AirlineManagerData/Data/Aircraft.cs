@@ -1,6 +1,7 @@
 ﻿namespace AirlineManager.Data {
     public class Aircraft {
-        #region Attributes
+		#region Attributes
+		AircraftManufacturer m_manufacturer;
         string m_name;
         float m_length;
         float m_width;
@@ -16,6 +17,12 @@
         #endregion
 
         #region Properties
+		public AircraftManufacturer Manufacturer {
+			get {
+				return m_manufacturer;
+			}
+		}
+
         public string Name {
             get {
                 return m_name;
@@ -89,11 +96,12 @@
 		}
         #endregion
 
-        public Aircraft(string name, float length, float width, float height, 
-                        float fuelUsagePerMinute, string image, 
+        public Aircraft(AircraftManufacturer manufacturer, string name, float length, float width, 
+						float height, float fuelUsagePerMinute, string image, 
                         long originalPrize, int travelVelocity, int range, 
                         long turnoverTime, int minimalNeededRunwayLength, Staff neededStaff) {
-            m_name = name;
+			m_manufacturer = manufacturer;
+			m_name = name;
             m_length = length;
             m_width = width;
             m_height = height;

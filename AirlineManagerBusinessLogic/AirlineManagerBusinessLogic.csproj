@@ -33,8 +33,11 @@
     <Compile Include="Business\Databases\AircraftDatabase.cs" />
     <Compile Include="Business\Databases\AircraftInstanceDatabase.cs" />
     <Compile Include="Business\Databases\AirportDatabase.cs" />
+    <Compile Include="Business\ExceptionHandling\IncorrectInputUIException.cs" />
     <Compile Include="Business\FlightDemandCalculator.cs" />
+    <Compile Include="Business\MainGameController.cs" />
     <Compile Include="Business\RandomCostsCalculator.cs" />
+    <Compile Include="Business\SavegameHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

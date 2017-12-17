@@ -1,0 +1,34 @@
+﻿<Window x:Class="AirlineManager.UI.Windows.RouteExplorerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AirlineManager.UI.Windows"
+        xmlns:mui="clr-namespace:Mapsui.UI.Wpf;assembly=Mapsui.UI.Wpf"
+        mc:Ignorable="d"
+        Title="RouteExplorerWindow" Height="300" Width="300">
+    <DockPanel Background="{StaticResource AmWindowBackground}">
+        <DataGrid 
+            Name="dgRoutes" 
+            AutoGenerateColumns="False" 
+            ItemsSource="{Binding }" 
+            Background="{StaticResource AmWindowBackground}"
+            DockPanel.Dock="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ICAO" IsReadOnly="True" Binding="{Binding CodeICAO.Code}" />
+                <DataGridTextColumn Header="IATA" IsReadOnly="True" Binding="{Binding CodeIATA}" />
+                <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="City" IsReadOnly="True" Binding="{Binding City}" />
+                <DataGridTextColumn Header="Country" IsReadOnly="True" Binding="{Binding CodeICAO.Country}" />
+                <DataGridTextColumn Header="Max runway length" IsReadOnly="True" Binding="{Binding MaximalRunwayLength}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <mui:MapControl 
+            Name="RoutesMapControl"
+            DockPanel.Dock="Bottom" />
+        <StackPanel Orientation="Horizontal">
+            <Button>Add</Button>
+            <Button>Remove</Button>
+        </StackPanel>
+    </DockPanel>
+</Window>

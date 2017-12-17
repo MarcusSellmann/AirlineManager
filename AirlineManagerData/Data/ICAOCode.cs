@@ -7,7 +7,7 @@
         #region Properties
         public string Code {
             get {
-                return m_code.ToString();
+                return new string(m_code);
             }
 
             private set {

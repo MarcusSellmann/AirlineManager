@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="AirlineManager.UI.Pages.MenuControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AirlineManager.UI.Pages"
+             mc:Ignorable="d">
+    
+    <Menu DockPanel.Dock="Top">
+        <MenuItem Header="_File">
+            <MenuItem Header="_New" />
+            <MenuItem Header="_Open" />
+            <MenuItem Header="_Save" />
+        </MenuItem>
+        <MenuItem Header="_Airports">
+            <MenuItem Header="_Overview" />
+            <MenuItem Header="_List" />
+        </MenuItem>
+        <MenuItem Header="_Aircrafts">
+            <MenuItem Header="_Overview" />
+            <MenuItem Header="_Buy" />
+            <MenuItem Header="_Lease" />
+        </MenuItem>
+        <MenuItem Header="_Routes">
+            <MenuItem Header="_Overview" />
+            <MenuItem Header="_Create" />
+        </MenuItem>
+    </Menu>
+</UserControl>

@@ -2,8 +2,14 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:AirlineManager"
-             StartupUri="UI/SubViews/AirportExplorerWindow.xaml">
+             StartupUri="UI/Windows/AirportExplorerWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <!-- Colors -->
+            <Color x:Key="AmWindowBackgroundColor">#2d2d30</Color>
+            
+            <!-- Colors brushes -->
+            <SolidColorBrush x:Key="AmWindowBackground" Color="{StaticResource AmWindowBackgroundColor}" />
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

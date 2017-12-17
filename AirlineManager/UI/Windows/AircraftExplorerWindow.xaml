@@ -1,0 +1,27 @@
+﻿<Window x:Class="AirlineManager.UI.Windows.AircraftExplorerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AirlineManager.UI.Windows"
+        mc:Ignorable="d"
+        Title="Aircraft Explorer" Height="300" Width="300"
+        Background="{StaticResource AmWindowBackground}">
+    <DockPanel Background="{StaticResource AmWindowBackground}">
+        <DataGrid Name="dgAircrafts" AutoGenerateColumns="False" DockPanel.Dock="Bottom" Background="{StaticResource AmWindowBackground}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Manufacturer" IsReadOnly="True" Binding="{Binding Manufacturer}" />
+                <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Length" IsReadOnly="True" Binding="{Binding Length, StringFormat=\{0:N2\}}" />
+                <DataGridTextColumn Header="Width" IsReadOnly="True" Binding="{Binding Width, StringFormat=\{0:N2\}}" />
+                <DataGridTextColumn Header="Height" IsReadOnly="True" Binding="{Binding Height, StringFormat=\{0:N2\}}" />
+                <DataGridTextColumn Header="Fuel / Min." IsReadOnly="True" Binding="{Binding FuelUsagePerMinute, StringFormat=\{0:N2\}}" />
+                <DataGridTextColumn Header="Orig. prize" IsReadOnly="True" Binding="{Binding OriginalPrize, StringFormat=\{0:N0\}}" />
+                <DataGridTextColumn Header="Velocity" IsReadOnly="True" Binding="{Binding TravelVelocity}" />
+                <DataGridTextColumn Header="Range" IsReadOnly="True" Binding="{Binding Range, StringFormat=\{0:N0\}}" />
+                <DataGridTextColumn Header="Turnover time" IsReadOnly="True" Binding="{Binding TurnoverTime, StringFormat=d}" />
+                <DataGridTextColumn Header="Min. RW length" IsReadOnly="True" Binding="{Binding MinimalNeededRunwayLength, StringFormat=\{0:N0\}}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>
