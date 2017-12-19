@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AirlineManager.Data;
 
 namespace AirlineManagerDataTest {
@@ -17,10 +18,9 @@ namespace AirlineManagerDataTest {
 		}
 
 		[TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
 		public void TestPlayerCreationWithEmptyName() {
 			Player p = new Player("");
-
-			Assert.Fail();
 		}
 	}
 }
