@@ -131,6 +131,12 @@ namespace AirlineManager.Data {
 				return m_assignedAircraft != null;
 			}
 		}
+
+		public int NumberOperatedFlights {
+			get {
+				return m_operatedFlights.Count;
+			}
+		}
 		#endregion
 
 		public Route(RouteType routeType, string routeNumber, Airport origin, Airport destination, 
