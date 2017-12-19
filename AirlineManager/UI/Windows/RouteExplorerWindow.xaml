@@ -6,29 +6,28 @@
         xmlns:local="clr-namespace:AirlineManager.UI.Windows"
         xmlns:mui="clr-namespace:Mapsui.UI.Wpf;assembly=Mapsui.UI.Wpf"
         mc:Ignorable="d"
-        Title="RouteExplorerWindow" Height="300" Width="300">
+        Title="RouteExplorerWindow" Height="300" Width="600">
     <DockPanel Background="{StaticResource AmWindowBackground}">
         <DataGrid 
             Name="dgRoutes" 
             AutoGenerateColumns="False" 
-            ItemsSource="{Binding }" 
+            ItemsSource="{Binding m_routes}"
             Background="{StaticResource AmWindowBackground}"
             DockPanel.Dock="Top">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ICAO" IsReadOnly="True" Binding="{Binding CodeICAO.Code}" />
-                <DataGridTextColumn Header="IATA" IsReadOnly="True" Binding="{Binding CodeIATA}" />
-                <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="City" IsReadOnly="True" Binding="{Binding City}" />
-                <DataGridTextColumn Header="Country" IsReadOnly="True" Binding="{Binding CodeICAO.Country}" />
-                <DataGridTextColumn Header="Max runway length" IsReadOnly="True" Binding="{Binding MaximalRunwayLength}" />
+                <DataGridTextColumn Header="Route" IsReadOnly="True" Binding="{Binding RouteNumber}" />
+                <DataGridTextColumn Header="Origin" IsReadOnly="True" Binding="{Binding Origin.CodeICAO}" />
+                <DataGridTextColumn Header="Destination" IsReadOnly="True" Binding="{Binding Destination.CodeICAO}" />
+                <DataGridTextColumn Header="Aircraft" IsReadOnly="True" Binding="{Binding AssignedAircraft}" />
+                <DataGridTextColumn Header="Distance" IsReadOnly="True" Binding="{Binding Distance}" />
             </DataGrid.Columns>
         </DataGrid>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" >
+            <Button x:Name="btnAdd" MinWidth="80" KeyUp="btnAdd_KeyUp">Add</Button>
+            <Button x:Name="btnRemove" MinWidth="80" KeyUp="btnRemove_KeyUp">Remove</Button>
+        </StackPanel>
         <mui:MapControl 
             Name="RoutesMapControl"
             DockPanel.Dock="Bottom" />
-        <StackPanel Orientation="Horizontal">
-            <Button>Add</Button>
-            <Button>Remove</Button>
-        </StackPanel>
     </DockPanel>
 </Window>
