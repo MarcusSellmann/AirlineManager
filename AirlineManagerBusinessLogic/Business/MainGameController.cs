@@ -45,11 +45,13 @@ namespace AirlineManager.Business {
 			get {
 				List<Route> result = new List<Route>();
 
-				foreach (Route r in m_currentAirline.RouteNetwork) {
-					if (r.IsAircraftAssigned) {
-						result.Add(r);
-					}
-				}
+                if (m_currentAirline != null) {
+                    foreach (Route r in m_currentAirline.RouteNetwork) {
+                        if (r.IsAircraftAssigned) {
+                            result.Add(r);
+                        }
+                    }
+                }
 
 				return result;
 			}
