@@ -57,7 +57,7 @@ namespace AirlineManager.Data {
 			return m_demandPerClass[ClassType.Economy] == 0 &&
 				   m_demandPerClass[ClassType.Business] == 0 &&
 				   m_demandPerClass[ClassType.First] == 0 &&
-				   m_demandPerClass[ClassType.First] > 0;
+				   m_demandPerClass[ClassType.Cargo] > 0;
 		}
 
 		override
