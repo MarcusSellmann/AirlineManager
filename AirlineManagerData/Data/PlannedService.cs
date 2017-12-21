@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AirlineManager.Data {
 	public class PlannedService {
@@ -54,6 +50,11 @@ namespace AirlineManager.Data {
 			m_startTime = startTime;
 			m_duration = duration;
 			m_costs = costs;
+		}
+
+		override
+		public string ToString() {
+			return StartTime.ToString();
 		}
 	}
 }

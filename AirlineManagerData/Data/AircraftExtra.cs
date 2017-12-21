@@ -43,5 +43,10 @@
             m_extraType = extraType;
             m_installationDuration = installationDuration;
         }
-    }
+
+		override
+		public string ToString() {
+			return ExtraType.ToString();
+		}
+	}
 }

@@ -58,5 +58,10 @@ namespace AirlineManager.Data {
 
 			return total;
 		}
+
+		override
+		public string ToString() {
+			return ClassLayout[ClassType.Economy] + " | " + ClassLayout[ClassType.Business] + " | " + ClassLayout[ClassType.First] + " | " + ClassLayout[ClassType.Cargo];
+		}
 	}
 }

@@ -114,5 +114,10 @@
 			m_minimalNeededRunwayLength = minimalNeededRunwayLength;
 			m_neededStaff = neededStaff;
         }
+
+		override
+		public string ToString() {
+			return Manufacturer.ToString() + " " + Name;
+		}
     }
 }

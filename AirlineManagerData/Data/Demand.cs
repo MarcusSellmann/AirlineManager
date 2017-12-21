@@ -59,5 +59,10 @@ namespace AirlineManager.Data {
 				   m_demandPerClass[ClassType.First] == 0 &&
 				   m_demandPerClass[ClassType.First] > 0;
 		}
+
+		override
+		public string ToString() {
+            return DemandPerClass[ClassType.Economy] + " | " + DemandPerClass[ClassType.Business] + " | " + DemandPerClass[ClassType.First] + " | " + DemandPerClass[ClassType.Cargo];
+		}
 	}
 }

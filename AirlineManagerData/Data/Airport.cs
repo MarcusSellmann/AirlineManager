@@ -70,5 +70,10 @@
 			m_coordLat = coordLat;
 			m_coordLong = coordLong;
 		}
+
+		override
+		public string ToString() {
+			return Name;
+		}
 	}
 }

@@ -157,5 +157,10 @@ namespace AirlineManager.Data {
 
 			return false;
 		}
-    }
+
+		override
+		public string ToString() {
+			return Type.ToString() + " (" + Registration + ")";
+		}
+	}
 }

@@ -124,5 +124,10 @@ namespace AirlineManager.Data {
 
 			return false;
 		}
-    }
+
+		override
+		public string ToString() {
+			return Name;
+		}
+	}
 }

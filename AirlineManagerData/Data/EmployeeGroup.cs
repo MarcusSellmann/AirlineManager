@@ -44,6 +44,11 @@
 			m_loanPerEmployee = loanPerEmployee;
 		}
 
+		override
+		public string ToString() {
+			return GroupDepartment.ToString();
+		}
+
 		private void updateMotivation() {
 			// TODO: Implement motivation
 		}

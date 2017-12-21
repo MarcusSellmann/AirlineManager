@@ -70,5 +70,10 @@ namespace AirlineManager.Data {
 		public bool DecrementEmployee(Department department) {
 			return RemoveEmployees(department, 1);
 		}
+
+		override
+		public string ToString() {
+			return EmployeeArrangement[Department.Pilot] + " | " + EmployeeArrangement[Department.FlightCrew] + " | " + EmployeeArrangement[Department.GroundCrew] + " | " + EmployeeArrangement[Department.CheckinCrew] + " | " + EmployeeArrangement[Department.CleaningCrew] + " | " + EmployeeArrangement[Department.Technicians];
+		}
 	}
 }

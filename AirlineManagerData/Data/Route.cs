@@ -148,5 +148,10 @@ namespace AirlineManager.Data {
 			m_assignedAircraft = assignedAircraft;
 			m_ticketPrizePerClass = ticketPrizePerClass;
 		}
+
+		override
+		public string ToString() {
+			return RouteNumber;
+		}
 	}
 }

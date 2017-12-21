@@ -844,5 +844,10 @@
                 m_code[i] = code[i];
             }
         }
+
+		override
+		public string ToString() {
+			return Code;
+		}
     }
 }

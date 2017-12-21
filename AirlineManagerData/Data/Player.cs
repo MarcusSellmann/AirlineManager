@@ -75,5 +75,10 @@
             OperatedFlights = 0;
             TotalDistanceFlown = 0;
         }
+
+		override
+		public string ToString() {
+			return Name;
+		}
     }
 }
