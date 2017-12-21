@@ -2,7 +2,7 @@
     public enum AircraftExtras {
         WiFi,
         Entertainment,
-        AdditionalFuelTank,
+        CenterFuelTank,
         PremiumInterior
     }
 }

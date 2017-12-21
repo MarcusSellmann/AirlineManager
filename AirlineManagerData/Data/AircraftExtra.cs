@@ -24,7 +24,7 @@
                     case AircraftExtras.PremiumInterior:
                         return 1000000;
 
-                    case AircraftExtras.AdditionalFuelTank:
+                    case AircraftExtras.CenterFuelTank:
                         return 500000;
 
                     default:
