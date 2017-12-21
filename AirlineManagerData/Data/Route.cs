@@ -69,15 +69,9 @@ namespace AirlineManager.Data {
 			}
 		}
 
-		public int Distance {
+		public double Distance {
 			get {
-				/* 
-				Calculate the distance can possibly done by the MapsUI package.
-				Having the separation intended in mind, it is not possible to include MapsUI in the data package.
-
-				TODO: Make a descision.
-				*/
-				return 0;
+				return Origin.Coordinate.GetDistanceTo(Destination.Coordinate);
 			}
 		}
 

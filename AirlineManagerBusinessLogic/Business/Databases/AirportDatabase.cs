@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Device.Location;
 using AirlineManager.Data;
 
 namespace AirlineManager.Business.Databases {
@@ -41,11 +42,17 @@ namespace AirlineManager.Business.Databases {
 			ICAOCode iKLAX = new ICAOCode("KLAX");
 			ICAOCode iKATL = new ICAOCode("KATL");
 
-			Airport aEDDT = new Airport(iEDDT, "TXL", "Berlin-Tegel", "Berlin", 3023, 52.559686, 13.287711);
-			Airport aEDDF = new Airport(iEDDF, "FRA", "Frankfurt am Main", "Frankfurt am Main", 4000, 50.033333, 8.570556);
-			Airport aKJFK = new Airport(iKJFK, "JFK", "John F. Kennedy International Airport", "New York", 4423, 40.63975, -73.778925);
-			Airport aKLAX = new Airport(iKLAX, "LAX", "Los Angeles International Airport", "Los Angeles", 3685, 33.942536, -118.408075);
-			Airport aKATL = new Airport(iKATL, "ATL", "Hartsfield–Jackson Atlanta International Airport", "Atlanta", 3624, 33.639167, -84.427778);
+			GeoCoordinate gcEDDT = new GeoCoordinate(52.559686, 13.287711);
+			GeoCoordinate gcEDDF = new GeoCoordinate(50.033333, 8.570556);
+			GeoCoordinate gcKJFK = new GeoCoordinate(40.63975, -73.778925);
+			GeoCoordinate gcKLAX = new GeoCoordinate(33.942536, -118.408075);
+			GeoCoordinate gcKATL = new GeoCoordinate(33.639167, -84.427778);
+
+			Airport aEDDT = new Airport(iEDDT, "TXL", "Berlin-Tegel", "Berlin", 3023, gcEDDT);
+			Airport aEDDF = new Airport(iEDDF, "FRA", "Frankfurt am Main", "Frankfurt am Main", 4000, gcEDDF);
+			Airport aKJFK = new Airport(iKJFK, "JFK", "John F. Kennedy International Airport", "New York", 4423, gcKJFK);
+			Airport aKLAX = new Airport(iKLAX, "LAX", "Los Angeles International Airport", "Los Angeles", 3685, gcKLAX);
+			Airport aKATL = new Airport(iKATL, "ATL", "Hartsfield–Jackson Atlanta International Airport", "Atlanta", 3624, gcKATL);
 
             m_db.Add(aEDDT);
 			m_db.Add(aEDDF);

@@ -4,9 +4,9 @@ using System.Windows;
 using System.Windows.Controls;
 using AirlineManager.Business.Databases;
 using AirlineManager.Data;
-using BruTile.Predefined;
 using Mapsui.Layers;
 using Mapsui.Projection;
+using Mapsui.Utilities;
 
 namespace AirlineManager.UI.SubViews {
 	/// <summary>
@@ -29,13 +29,13 @@ namespace AirlineManager.UI.SubViews {
 			dgAirports.ItemsSource = m_airports;
 
 			m_map = AirportsMapControl.Map;
-            m_map.Layers.Add(new TileLayer(KnownTileSources.Create()));
+            m_map.Layers.Add(OpenStreetMap.CreateTileLayer());
 		}
 
 		private void dgAirports_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			Airport ap = m_airports[(sender as DataGrid).SelectedIndex];
 			
-			var sphericalMercatorCoordinate = SphericalMercator.FromLonLat(ap.CoordLong, ap.CoordLat);
+			var sphericalMercatorCoordinate = SphericalMercator.FromLonLat(ap.Coordinate.Longitude, ap.Coordinate.Latitude);
 			m_map.NavigateTo(sphericalMercatorCoordinate);
 			m_map.NavigateTo(m_map.Resolutions[12]);
 		}
