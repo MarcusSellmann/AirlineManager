@@ -10,7 +10,7 @@ namespace AirlineManager.Business.Databases {
 		#endregion
 
 		#region Properties
-		public AircraftInstanceDatabase Instance {
+		public static AircraftInstanceDatabase Instance {
 			get {
 				if (m_instance == null) {
 					m_instance = new AircraftInstanceDatabase();
