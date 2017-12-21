@@ -28,6 +28,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Device" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\Databases\AircraftDatabase.cs" />
