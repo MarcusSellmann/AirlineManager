@@ -1,8 +1,3 @@
-AirlineManager/AirlineManager/bin/
-AirlineManager/AirlineManager/obj/
-AirlineManagerBusinessLogic/obj/
-AirlineManagerData/obj/
-AirlineManager/bin/
-AirlineManager/obj/
+*/bin/
+*/obj/
 packages/
-AirlineManagerDataTest/obj/
