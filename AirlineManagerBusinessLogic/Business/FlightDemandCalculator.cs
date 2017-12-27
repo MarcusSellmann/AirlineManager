@@ -3,11 +3,11 @@
 namespace AirlineManager.Business {
 	public class FlightDemandCalculator {
 		#region Attributes
-		FlightDemandCalculator m_instance = null;
+		static FlightDemandCalculator m_instance = null;
 		#endregion
 
 		#region Properties
-		public FlightDemandCalculator Instance {
+		public static FlightDemandCalculator Instance {
 			get {
 				if (m_instance == null) {
 					m_instance = new FlightDemandCalculator();
@@ -18,7 +18,7 @@ namespace AirlineManager.Business {
 		}
 		#endregion
 
-		private FlightDemandCalculator() {
+		FlightDemandCalculator() {
 
 		}
 

@@ -3,12 +3,12 @@
 namespace AirlineManager.Business {
 	public class RandomCostsCalculator {
 		#region Attributes
-		RandomCostsCalculator m_instance = null;
+		static RandomCostsCalculator m_instance = null;
 		long m_currentFuelPrize;
 		#endregion
 
 		#region Properties
-		public RandomCostsCalculator Instance {
+		public static RandomCostsCalculator Instance {
 			get {
 				if (m_instance == null) {
 					m_instance = new RandomCostsCalculator();
@@ -25,7 +25,7 @@ namespace AirlineManager.Business {
 		}
 		#endregion
 
-		private RandomCostsCalculator() {
+		RandomCostsCalculator() {
 			m_currentFuelPrize = 0;
         }
 
