@@ -28,7 +28,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Device" />
+    <Reference Include="GeoCoordinatePortable">
+      <HintPath>packages\GeoCoordinate.1.1.0\lib\portable-net45+wp80+win+wpa81\GeoCoordinatePortable.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Airport.cs" />
@@ -55,6 +57,9 @@
     <Compile Include="Data\ICAOCode.cs" />
     <Compile Include="Data\AircraftInstance.cs" />
     <Compile Include="Data\AircraftExtra.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

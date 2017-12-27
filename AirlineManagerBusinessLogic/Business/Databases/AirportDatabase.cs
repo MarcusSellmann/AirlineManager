@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Device.Location;
+using GeoCoordinatePortable;
 using AirlineManager.Data;
 
 namespace AirlineManager.Business.Databases {
@@ -34,7 +34,7 @@ namespace AirlineManager.Business.Databases {
 		}
 		#endregion
 
-		private AirportDatabase() {
+		AirportDatabase() {
 			// TODO: Extend database by reading from file.
 			ICAOCode iEDDT = new ICAOCode("EDDT");
 			ICAOCode iEDDF = new ICAOCode("EDDF");
