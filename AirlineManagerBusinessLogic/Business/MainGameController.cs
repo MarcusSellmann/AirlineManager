@@ -85,6 +85,10 @@ namespace AirlineManager.Business {
 			CurrentPlayer = new Player(playerName);
 		}
 
+		public bool IsPlayerExisting() {
+			return m_currentPlayer != null;
+		}
+
 		public void CreateAirline(string name, string airlineCode) {
 			if (CurrentPlayer == null) {
 				throw new IncorrectInputUIException(null, "There is currently no player defined!", "Define a player first.");
@@ -99,6 +103,10 @@ namespace AirlineManager.Business {
 			}
 
 			CurrentAirline = new Airline(CurrentPlayer, name, airlineCode, new List<AircraftInstance>(), new List<EmployeeGroup>());
+		}
+
+		public bool IsAirlineExisting() {
+			return m_currentAirline != null;
 		}
 
 		public void SaveGame() {
