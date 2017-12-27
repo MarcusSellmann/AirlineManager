@@ -33,7 +33,7 @@ namespace AirlineManager.Business.Databases {
 		}
 		#endregion
 
-		private AircraftInstanceDatabase() {
+		AircraftInstanceDatabase() {
 			AircraftDatabase Aircrafts = AircraftDatabase.Instance;
 			AirportDatabase Airports = AirportDatabase.Instance;
 

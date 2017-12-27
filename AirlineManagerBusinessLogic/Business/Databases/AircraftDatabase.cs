@@ -33,7 +33,7 @@ namespace AirlineManager.Business.Databases {
 		}
 		#endregion
 
-		private AircraftDatabase() {
+		AircraftDatabase() {
 			Staff sA320 = new Staff(2, 4, 3, 2, 4, 2);
 			Staff sB738 = new Staff(2, 4, 3, 2, 4, 2);
 
