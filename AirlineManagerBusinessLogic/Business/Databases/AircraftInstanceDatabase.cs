@@ -41,9 +41,12 @@ namespace AirlineManager.Business.Databases {
 			InteriorLayout lA322_2 = new InteriorLayout(120, 15, 5, 15);
 			InteriorLayout lB738 = new InteriorLayout(150, 10, 10, 17);
 
-			AircraftInstance iA322_1 = new AircraftInstance(Aircrafts.DB[0], "D-FAZT", new DateTime(2014,1,20).Ticks, Airports.DB[0], lA322_1);
-			AircraftInstance iA322_2 = new AircraftInstance(Aircrafts.DB[0], "D-ATBG", new DateTime(2016, 3, 5).Ticks, Airports.DB[1], lA322_2);
-			AircraftInstance iB738 = new AircraftInstance(Aircrafts.DB[1], "D-BQIT", new DateTime(2015, 10, 18).Ticks, Airports.DB[2], lB738);
+            Engine eA322 = new Engine(Data.Enumerations.EngineManufacturer.CFM, "56", 111);
+            Engine eB738 = new Engine(Data.Enumerations.EngineManufacturer.CFM, "56-7B", 117);
+
+            AircraftInstance iA322_1 = new AircraftInstance(Aircrafts.DB[0], "D-FAZT", new DateTime(2014,1,20).Ticks, Airports.DB[0], lA322_1, eA322);
+            AircraftInstance iA322_2 = new AircraftInstance(Aircrafts.DB[0], "D-ATBG", new DateTime(2016, 3, 5).Ticks, Airports.DB[1], lA322_2, eA322);
+            AircraftInstance iB738 = new AircraftInstance(Aircrafts.DB[1], "D-BQIT", new DateTime(2015, 10, 18).Ticks, Airports.DB[2], lB738, eB738);
 
 			m_db.Add(iA322_1);
 			m_db.Add(iA322_2);

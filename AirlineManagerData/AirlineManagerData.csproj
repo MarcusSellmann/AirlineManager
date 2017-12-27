@@ -57,6 +57,8 @@
     <Compile Include="Data\ICAOCode.cs" />
     <Compile Include="Data\AircraftInstance.cs" />
     <Compile Include="Data\AircraftExtra.cs" />
+    <Compile Include="Data\Enumerations\EngineManufacturer.cs" />
+    <Compile Include="Data\Engine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

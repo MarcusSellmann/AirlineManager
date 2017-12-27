@@ -12,6 +12,7 @@ namespace AirlineManager.Data {
 		Airport m_currentLocation;
 		InteriorLayout m_interior;
 		List<PlannedService> m_services = new List<PlannedService>();
+        Engine m_installedEngine;
         #endregion
 
         #region Properties
@@ -80,6 +81,12 @@ namespace AirlineManager.Data {
 				return m_distanceFlown > 0;
 			}
 		}
+
+        public Engine InstalledEngine {
+            get {
+                return m_installedEngine;
+            }
+        }
         #endregion
 
 		/// <summary>
@@ -92,7 +99,7 @@ namespace AirlineManager.Data {
 		/// <param name="layout"></param>
 		public AircraftInstance(Aircraft type, string registration, 
 								long commissioning, Airport currentLocation, 
-								InteriorLayout layout) {
+                                InteriorLayout layout, Engine installendEngine) {
 			m_distanceFlown = 0;
 			m_registration = registration;
 			m_commissioning = commissioning;
@@ -100,6 +107,7 @@ namespace AirlineManager.Data {
 			m_type = type;
 			m_currentLocation = currentLocation;
 			m_interior = layout;
+            m_installedEngine = installendEngine;
 		}
 
 		/// <summary>
@@ -117,7 +125,8 @@ namespace AirlineManager.Data {
                                 string registration, long commissioning,
                                 long currentValue, 
 								Dictionary<AircraftExtras,AircraftExtra> installedExtras, 
-								Airport currentLocation, InteriorLayout layout) {
+								Airport currentLocation, InteriorLayout layout,
+                                Engine installendEngine) {
             m_distanceFlown = distanceFlown;
             m_registration = registration;
             m_commissioning = commissioning;
@@ -126,6 +135,7 @@ namespace AirlineManager.Data {
 			m_installedExtras = installedExtras;
 			m_currentLocation = currentLocation;
 			m_interior = layout;
+            m_installedEngine = installendEngine;
         }
 
         public void updateCurrentValue() {

@@ -1,4 +1,6 @@
-﻿namespace AirlineManager.Data {
+﻿using System.Collections.Generic;
+
+namespace AirlineManager.Data {
     public class Aircraft {
 		#region Attributes
 		AircraftManufacturer m_manufacturer;
@@ -14,6 +16,8 @@
         long m_turnoverTime;
 		int m_minimalNeededRunwayLength;
 		Staff m_neededStaff;
+        List<Engine> m_availableEngines;
+        int m_numberOfEngines;
         #endregion
 
         #region Properties
@@ -94,12 +98,25 @@
 				return m_neededStaff;
 			}
 		}
+
+        public List<Engine> AvailableEngines {
+            get {
+                return m_availableEngines;
+            }
+        }
+
+        public int NumberOfEngines {
+            get {
+                return m_numberOfEngines;
+            }
+        }
         #endregion
 
         public Aircraft(AircraftManufacturer manufacturer, string name, float length, float width, 
 						float height, float fuelUsagePerMinute, string image, 
                         long originalPrize, int travelVelocity, int range, 
-                        long turnoverTime, int minimalNeededRunwayLength, Staff neededStaff) {
+                        long turnoverTime, int minimalNeededRunwayLength, Staff neededStaff,
+                        List<Engine> availableEngines, int numberOfEngines) {
 			m_manufacturer = manufacturer;
 			m_name = name;
             m_length = length;
@@ -113,6 +130,8 @@
             m_turnoverTime = turnoverTime;
 			m_minimalNeededRunwayLength = minimalNeededRunwayLength;
 			m_neededStaff = neededStaff;
+            m_availableEngines = availableEngines;
+            m_numberOfEngines = numberOfEngines;
         }
 
 		override
