@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Timers;
+using AirlineManager.Business.Generators;
 using AirlineManager.Data;
 
 namespace AirlineManager.Business.Databases {
 	public class AircraftInstanceDatabase {
 		#region Attributes
 		static AircraftInstanceDatabase m_instance = null;
-		List<AircraftInstance> m_db = new List<AircraftInstance>();
+		List<UsedAircraftInstanceContainer> m_usedAircraftList = new List<UsedAircraftInstanceContainer>();
+		Timer m_dbUpdateTimer = null;
 		#endregion
 
 		#region Properties
@@ -20,37 +23,74 @@ namespace AirlineManager.Business.Databases {
 			}
 		}
 
-		public AircraftInstance Random {
+		public List<UsedAircraftInstanceContainer> UsedAircrafts {
 			get {
-				return m_db[new Random().Next(0, m_db.Count - 1)];
+				return m_usedAircraftList;
+			}
+
+			set {
+				if (m_usedAircraftList.Count == 0) {
+					m_usedAircraftList = value;
+				}
 			}
 		}
 
-		public List<AircraftInstance> DB {
+		public int NumberOfUsedAircraftsAvailable {
 			get {
-				return m_db;
+				return m_usedAircraftList.Count;
 			}
 		}
 		#endregion
 
 		AircraftInstanceDatabase() {
-			AircraftDatabase Aircrafts = AircraftDatabase.Instance;
-			AirportDatabase Airports = AirportDatabase.Instance;
+			CreateNewUsedAirplanes(GlobalConstants.USED_AIRCRAFT_MARKET_INITIAL_INSTANCE_AMOUNT);
 
-			InteriorLayout lA322_1 = new InteriorLayout(100, 20, 10, 5);
-			InteriorLayout lA322_2 = new InteriorLayout(120, 15, 5, 15);
-			InteriorLayout lB738 = new InteriorLayout(150, 10, 10, 17);
+			m_dbUpdateTimer = new Timer();
+			m_dbUpdateTimer.Interval = TimeSpan.FromMinutes(GlobalConstants.USED_AIRCRAFT_MARKET_UPDATE_INTERVAL_MINUTES).Ticks;
 
-            Engine eA322 = new Engine(Data.Enumerations.EngineManufacturer.CFM, "56", 111);
-            Engine eB738 = new Engine(Data.Enumerations.EngineManufacturer.CFM, "56-7B", 117);
+            m_dbUpdateTimer.Elapsed += UpdateDatabase;
+            m_dbUpdateTimer.Start();
 
-            AircraftInstance iA322_1 = new AircraftInstance(Aircrafts.DB[0], "D-FAZT", new DateTime(2014,1,20).Ticks, Airports.DB[0], lA322_1, eA322);
-            AircraftInstance iA322_2 = new AircraftInstance(Aircrafts.DB[0], "D-ATBG", new DateTime(2016, 3, 5).Ticks, Airports.DB[1], lA322_2, eA322);
-            AircraftInstance iB738 = new AircraftInstance(Aircrafts.DB[1], "D-BQIT", new DateTime(2015, 10, 18).Ticks, Airports.DB[2], lB738, eB738);
+        }
 
-			m_db.Add(iA322_1);
-			m_db.Add(iA322_2);
-			m_db.Add(iB738);
+		private void UpdateDatabase(object sender, ElapsedEventArgs e) {
+			CreateNewUsedAirplanes(CleanupDatabaseIfNeeded());
+		}
+
+		private int CleanupDatabaseIfNeeded() {
+			int airplanesRemoved = 0;
+
+			foreach (UsedAircraftInstanceContainer ac in m_usedAircraftList) {
+				if (ac.AvailableTill <= DateTime.Now) {
+					m_usedAircraftList.Remove(ac);
+					++airplanesRemoved;
+				}
+			}
+
+			return airplanesRemoved;
+		}
+
+		private void CreateNewUsedAirplanes(int amount) {
+			List<AircraftInstance> aircrafts = AircraftInstanceGenerator.Instance.CreateAircraftInstances(amount);
+
+			Random rnd;
+
+			foreach (AircraftInstance aci in aircrafts) {
+                rnd = new Random((int)DateTime.Now.Ticks);
+                bool succ = false;
+                DateTime dateDiff = DateTime.Now;
+
+                do {
+                    try {
+                        dateDiff = new DateTime(rnd.Next(0, 5), rnd.Next(0, 12), rnd.Next(0, 30));
+                        succ = true;
+                    } catch (Exception) {
+                        succ = false;
+                    }
+                } while (!succ);
+                
+                m_usedAircraftList.Add(new UsedAircraftInstanceContainer(aci, DateTime.Now.AddTicks(dateDiff.Ticks)));
+			}
 		}
 	}
 }

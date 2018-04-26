@@ -1,0 +1,97 @@
+﻿<Page x:Class="AirlineManager.UI.Pages.AircraftsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="AircraftsPage">
+    <DockPanel Background="{StaticResource AmWindowBackground}">
+        <ListView Name="lvAircrafts" 
+                  DockPanel.Dock="Bottom" 
+                  Background="{StaticResource AmWindowBackground}" 
+                  Style="{StaticResource DefaultListViewStyle}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Manufacturer">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Manufacturer}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Name">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Length">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Length, StringFormat=\{0:N2\}}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Width">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Width, StringFormat=\{0:N2\}}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Height">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Height, StringFormat=\{0:N2\}}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Fuel / Min.">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding FuelUsagePerMinute, StringFormat=\{0:N2\}}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Orig. prize">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding OriginalPrize, StringFormat=\{0:N0\}}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Velocity">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TravelVelocity, StringFormat=\{0:0\} km/h}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Range">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Range, StringFormat=\{0:N0\} km}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Min. RW length">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding MinimalNeededRunwayLength, StringFormat=\{0:N0\} m}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Turnover time">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TurnoverTime, StringFormat=HH:mm:ss}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </DockPanel>
+</Page>

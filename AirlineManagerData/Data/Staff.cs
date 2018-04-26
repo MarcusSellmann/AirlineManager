@@ -1,23 +1,21 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace AirlineManager.Data {
+	[DataContract]
 	public class Staff {
-		#region Attributes
-		Dictionary<Department, int> m_employeeArrangement = new Dictionary<Department, int>();
-		#endregion
+        #region Attributes
+        #endregion
 
-		#region Properties
-		public Dictionary<Department, int> EmployeeArrangement {
-			get {
-				return m_employeeArrangement;
-			}
-		}
+        #region Properties
+        [DataMember]
+        public Dictionary<Department, int> EmployeeArrangement { get; private set; }
 
 		public int TotalNeededStaff {
 			get {
 				int total = 0;
 
-				foreach (KeyValuePair<Department, int> dep in m_employeeArrangement) {
+				foreach (KeyValuePair<Department, int> dep in EmployeeArrangement) {
 					total += dep.Value;
 				}
 
@@ -26,36 +24,30 @@ namespace AirlineManager.Data {
 		}
 		#endregion
 
-		public Staff() {
-			m_employeeArrangement[Department.Pilot] = 0;
-			m_employeeArrangement[Department.FlightCrew] = 0;
-			m_employeeArrangement[Department.GroundCrew] = 0;
-			m_employeeArrangement[Department.CheckinCrew] = 0;
-			m_employeeArrangement[Department.CleaningCrew] = 0;
-			m_employeeArrangement[Department.Technicians] = 0;
-		}
+		public Staff() : this(0, 0, 0, 0, 0, 0) {}
 
 		public Staff(int pilots, int flightCrew, int groundCrew, int checkinCrew, int cleaningCrew, int technicians) {
-			m_employeeArrangement[Department.Pilot] = pilots;
-			m_employeeArrangement[Department.FlightCrew] = flightCrew;
-			m_employeeArrangement[Department.GroundCrew] = groundCrew;
-			m_employeeArrangement[Department.CheckinCrew] = checkinCrew;
-			m_employeeArrangement[Department.CleaningCrew] = cleaningCrew;
-			m_employeeArrangement[Department.Technicians] = technicians;
+            EmployeeArrangement = new Dictionary<Department, int>();
+			EmployeeArrangement[Department.Pilot] = pilots;
+			EmployeeArrangement[Department.FlightCrew] = flightCrew;
+			EmployeeArrangement[Department.GroundCrew] = groundCrew;
+			EmployeeArrangement[Department.CheckinCrew] = checkinCrew;
+			EmployeeArrangement[Department.CleaningCrew] = cleaningCrew;
+			EmployeeArrangement[Department.Technicians] = technicians;
 		}
 
 		public void AddEmployees(Department department, int amount) {
-			if (m_employeeArrangement.ContainsKey(department)) {
-				m_employeeArrangement[department] += amount;
+			if (EmployeeArrangement.ContainsKey(department)) {
+				EmployeeArrangement[department] += amount;
 			} else {
-				m_employeeArrangement[department] = amount;
+				EmployeeArrangement[department] = amount;
 			}
 		}
 
 		public bool RemoveEmployees(Department department, int amount) {
-			if (m_employeeArrangement.ContainsKey(department)) {
-				if (m_employeeArrangement[department] >= amount) {
-					m_employeeArrangement[department] -= amount;
+			if (EmployeeArrangement.ContainsKey(department)) {
+				if (EmployeeArrangement[department] >= amount) {
+					EmployeeArrangement[department] -= amount;
 					return true;
                 }
 			}

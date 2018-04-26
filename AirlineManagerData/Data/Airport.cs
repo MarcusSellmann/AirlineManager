@@ -1,68 +1,57 @@
-﻿using GeoCoordinatePortable;
+﻿using System.Runtime.Serialization;
+using GeoCoordinatePortable;
 
 namespace AirlineManager.Data {
+	[DataContract]
 	public class Airport {
 		#region Attributes
-		ICAOCode m_codeICAO;
-		string m_codeIATA;
-		string m_name;
-		string m_city;
-		int m_maximalRunwayLength;
-		GeoCoordinate m_coord;
-		#endregion
+        #endregion
 
-		#region Properties
-		public ICAOCode CodeICAO {
-			get {
-				return m_codeICAO;
-			}
-		}
+        #region Properties
+        [DataMember]
+        public ICAOCode CodeICAO { get; private set; }
 
-		public string CodeIATA {
-			get {
-				return m_codeIATA;
-			}
-		}
+        [DataMember]
+        public string CodeIATA { get; private set; }
 
-		public string Name {
-			get {
-				return m_name;
-			}
-		}
+        [DataMember]
+        public string Name { get; private set; }
 
-		public string City {
-			get {
-				return m_city;
-			}
-		}
+        [DataMember]
+        public string City { get; private set; }
 
-		public int MaximalRunwayLength {
-			get {
-				return m_maximalRunwayLength;
-			}
-		}
+        [DataMember]
+        public int MaximalRunwayLength { get; private set; }
 
-		public GeoCoordinate Coordinate {
-			get {
-				return m_coord;
-			}
-		}
+		public GeoCoordinate Coordinate { get; private set; }
 
-		public string Country {
+        [DataMember]
+        GeoCoordinateSerializable CoordinateS {
+            get {
+                return new GeoCoordinateSerializable(Coordinate);
+            }
+
+            set {
+                Coordinate = value.GetGeoCoordinate();
+            }
+        }
+
+        public string Country {
 			get {
-				return m_codeICAO.Country;
+				return CodeICAO.Country;
 			}
 		}
 		#endregion
 
 		public Airport(ICAOCode codeICAO, string codeIATA, string name, string city,
 					   int maximalRunwayLength, GeoCoordinate coord) {
-			m_codeICAO = codeICAO;
-			m_codeIATA = codeIATA;
-			m_name = name;
-			m_city = city;
-			m_maximalRunwayLength = maximalRunwayLength;
-			m_coord = coord;
+			CodeICAO = codeICAO;
+			CodeIATA = codeIATA;
+			Name = name;
+			City = city;
+			MaximalRunwayLength = maximalRunwayLength;
+			Coordinate = coord;
+            CoordinateS = new GeoCoordinateSerializable(coord);
 		}
 
 		override

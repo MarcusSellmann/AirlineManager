@@ -1,37 +1,32 @@
-﻿using AirlineManager.Data.Enumerations;
+﻿using System.Runtime.Serialization;
+using AirlineManager.Data.Enumerations;
 
 namespace AirlineManager.Data {
-    public class Engine {
+	[DataContract]
+	public class Engine {
         #region Attributes
-        EngineManufacturer m_manufacturer;
-        string m_name;
-        float m_thrust;
         #endregion
 
         #region Properties
-        public EngineManufacturer Manufacturer {
-            get {
-                return m_manufacturer;
-            }
-        }
+        [DataMember]
+        public EngineManufacturer Manufacturer { get; private set; }
 
-        public string Name {
-            get {
-                return m_name;
-            }
-        }
+        [DataMember]
+        public string Name { get; private set; }
 
-        public float Thrust {
-            get {
-                return m_thrust;
-            }
-        }
+        [DataMember]
+        public float Thrust { get; private set; }
         #endregion
 
         public Engine(EngineManufacturer manufacturer, string name, float thrust) {
-            m_manufacturer = manufacturer;
-            m_name = name;
-            m_thrust = thrust;
+            Manufacturer = manufacturer;
+            Name = name;
+            Thrust = thrust;
+        }
+
+        override
+        public string ToString() {
+            return Manufacturer + " " + Name;
         }
     }
 }

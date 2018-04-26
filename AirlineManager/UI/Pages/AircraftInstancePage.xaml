@@ -1,0 +1,87 @@
+﻿<Page x:Class="AirlineManager.UI.Pages.AircraftInstancePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="AircraftInstancePage">
+
+    <Grid Background="{StaticResource AmWindowBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <ListView Name="lvAircraftInstances" 
+                  Grid.Row="0" 
+                  Background="{StaticResource AmWindowBackground}" 
+                  Style="{StaticResource DefaultListViewStyle}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Registration">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Registration}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Distance flown">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DistanceFlown, StringFormat=\{0:0\} km}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Init Op">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding InitialOperation, StringFormat=dd.MM.yyyy}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Type">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Type}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Current location">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding CurrentLocation}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Interior">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Interior}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Is used">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding IsUsed}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Installed engine">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding InstalledEngine}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Name="btnAddNewAircraftInstance" 
+                Click="btnAddNewAircraftInstance_Click" 
+                Grid.Row="1"
+                Margin="10">
+            <TextBlock>Add new instance</TextBlock>
+        </Button>
+    </Grid>
+</Page>

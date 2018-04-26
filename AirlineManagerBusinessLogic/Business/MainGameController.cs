@@ -1,121 +1,128 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AirlineManager.Business.ExceptionHandling;
 using AirlineManager.Data;
+using AirlineManager.Business.Databases;
 
 namespace AirlineManager.Business {
-	public class MainGameController {
-		#region Attributes
-		static MainGameController m_instance = null;
-		Player m_currentPlayer = null;
-		Airline m_currentAirline = null;
-		#endregion
+    public static class GlobalConstants {
+        public const int USED_AIRCRAFT_MARKET_INITIAL_INSTANCE_AMOUNT = 20;
+        public const int USED_AIRCRAFT_MARKET_UPDATE_INTERVAL_MINUTES = 1;
+        public const int USED_AIRCRAFT_MARKET_START_YEAR_FOR_INITIAL_OPERATION = 1970;
+        public const int USED_AIRCRAFT_MARKET_MAXIMUM_DISTANCE_FLOWN = 200000;
+    }
 
-		#region Properties
-		public static MainGameController Instance {
-			get {
-				if (m_instance == null) {
-					m_instance = new MainGameController();
-				}
+    [Serializable()]
+    public class MainGameController {
+        #region Attributes
+        static MainGameController m_instance = null;
+        #endregion
 
-				return m_instance;
-			}
-		}
+        #region Properties
+        public static MainGameController Instance {
+            get {
+                if (m_instance == null) {
+                    m_instance = new MainGameController();
+                }
 
-		public Player CurrentPlayer {
-			get {
-				return m_currentPlayer;
-			}
+                return m_instance;
+            }
 
-			set {
-				m_currentPlayer = value;
-			}
-		}
+            set {
+                m_instance = value;
+            }
+        }
 
-		public Airline CurrentAirline {
-			get {
-				return m_currentAirline;
-			}
+        public Player CurrentPlayer { get; set; }
 
-			set {
-				m_currentAirline = value;
-			}
-		}
+        public Airline CurrentAirline { get; set; }
 
-		public List<Route> OperatedRoutes {
-			get {
-				List<Route> result = new List<Route>();
+        public List<Route> OperatedRoutes {
+            get {
+                return CurrentAirline.FlightSchedule.RoutesForScheduledFlights;
+            }
+        }
 
-                if (m_currentAirline != null) {
-                    foreach (Route r in m_currentAirline.RouteNetwork) {
-                        if (r.IsAircraftAssigned) {
-                            result.Add(r);
-                        }
+        public List<Route> UnoperatedRoutes {
+            get {
+                List<Route> result = new List<Route>();
+                result.AddRange(CurrentAirline.RouteNetwork);
+
+                foreach (Route r in OperatedRoutes) {
+                    if (result.Contains(r)) {
+                        result.Remove(r);
                     }
                 }
 
-				return result;
-			}
-		}
+                return result;
+            }
+        }
+        #endregion
 
-		public List<Route> UnoperatedRoutes {
-			get {
-				List<Route> result = new List<Route>();
+        MainGameController() {
+        }
 
-				foreach (Route r in m_currentAirline.RouteNetwork) {
-					if (!r.IsAircraftAssigned) {
-						result.Add(r);
-					}
-				}
+        #region UI method calls
+        public void CreatePlayer(string playerName) {
+            if (playerName.Length == 0) {
+                throw new IncorrectInputUIException(null, "There is no name for your player account defined!", "Please choose a name for your account.");
+            }
 
-				return result;
-			}
-		}
-		#endregion
+            CurrentPlayer = new Player(playerName);
+        }
 
-		MainGameController() {
-			
-		}
+        public bool IsPlayerExisting() {
+            return CurrentPlayer != null;
+        }
 
-		#region UIMethodCalls
-		public void CreatePlayer(string playerName) {
-			if (playerName.Length == 0) {
-				throw new IncorrectInputUIException(null, "There is no name for your player account defined!", "Please choose a name for your account.");
-			}
-			
-			CurrentPlayer = new Player(playerName);
-		}
+        public void CreateAirline(string name, string airlineCode) {
+            if (CurrentPlayer == null) {
+                throw new IncorrectInputUIException(null, "There is currently no player defined!", "Define a player first.");
+            }
 
-		public bool IsPlayerExisting() {
-			return m_currentPlayer != null;
-		}
+            if (name.Length == 0) {
+                throw new IncorrectInputUIException(null, "There is no name for your airline defined!", "Please choose a name for your airline.");
+            }
 
-		public void CreateAirline(string name, string airlineCode) {
-			if (CurrentPlayer == null) {
-				throw new IncorrectInputUIException(null, "There is currently no player defined!", "Define a player first.");
-			}
+            if (airlineCode.Length == 0) {
+                throw new IncorrectInputUIException(null, "There is no code for your airline defined!", "Please choose a code for your airline.");
+            }
 
-			if (name.Length == 0) {
-				throw new IncorrectInputUIException(null, "There is no name for your airline defined!", "Please choose a name for your airline.");
-			}
+            CurrentAirline = new Airline(CurrentPlayer, name, airlineCode, new List<AircraftInstance>(), new List<EmployeeGroup>());
+        }
 
-			if (airlineCode.Length == 0) {
-				throw new IncorrectInputUIException(null, "There is no code for your airline defined!", "Please choose a code for your airline.");
-			}
+        public bool IsAirlineExisting() {
+            return CurrentAirline != null;
+        }
 
-			CurrentAirline = new Airline(CurrentPlayer, name, airlineCode, new List<AircraftInstance>(), new List<EmployeeGroup>());
-		}
+        public bool IsRouteExisting(string routeNumber) {
+            foreach (Route r in CurrentAirline.RouteNetwork) {
+                if (r.RouteNumber.Equals(routeNumber)) {
+                    return true;
+                }
+            }
 
-		public bool IsAirlineExisting() {
-			return m_currentAirline != null;
-		}
+            return false;
+        }
 
-		public void SaveGame() {
-			SavegameHandler.SaveGame();
-		}
+        public bool BuyAircraft(UsedAircraftInstanceContainer ai) {
+            if (ai.AvailableTill > DateTime.Now && CurrentAirline.BuyAircraft(ai.Aircraft)) {
+                AircraftInstanceDatabase.Instance.UsedAircrafts.Remove(ai);
+                return true;
+            }
 
-		public void LoadGame() {
-			SavegameHandler.LoadGame();
-		}
-		#endregion
-	}
+            return false;
+        }
+
+        #region Savegame handler
+        public void SaveGame() {
+            SavegameHandler.SaveGame(this);
+        }
+
+        public void LoadGame() {
+            SavegameHandler.LoadGame();
+        }
+        #endregion
+        #endregion
+    }
 }

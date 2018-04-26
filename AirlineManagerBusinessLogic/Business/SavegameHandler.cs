@@ -4,18 +4,23 @@ using System.Text;
 
 namespace AirlineManager.Business {
 	public class SavegameHandler {
-		const string SAVEGAME_SUBPATH = "\\AirlineManager\\Savegames\\";
+		const string SAVEGAME_SUBPATH = @"\AirlineManager\Savegames\";
 		const string SAVEGAME_FILENAME = "save";
 		const string SAVEGAME_FILE_EXTENSION = ".dat";
 
-		#region Attributes
-		#endregion
+        #region Attributes
+        #endregion
 
-		#region Properties
-		public static string FullSavegamePath {
+        #region Properties
+        public static string FullSavegameFolderPath {
+            get {
+                return String.Concat(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), SAVEGAME_SUBPATH);
+            }
+        }
+
+        public static string FullSavegamePath {
 			get {
-				string currUserDocPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-				return currUserDocPath + SAVEGAME_SUBPATH + SAVEGAME_FILENAME + SAVEGAME_FILE_EXTENSION;
+				return String.Concat(FullSavegameFolderPath, SAVEGAME_FILENAME, SAVEGAME_FILE_EXTENSION);
 			}
 		}
 
@@ -26,25 +31,23 @@ namespace AirlineManager.Business {
 		}
 		#endregion
 
-		public static void SaveGame() {
-			// TODO: Adapt this example to the real purpose!
+		public static void SaveGame(MainGameController mgc) {
+            if (!Directory.Exists(FullSavegameFolderPath)) {
+                Directory.CreateDirectory(FullSavegameFolderPath);
+            }
+			
 			using (FileStream fs = File.Create(FullSavegamePath)) {
-				byte[] info = new UTF8Encoding(true).GetBytes("This is some text in the file.");
-				fs.Write(info, 0, info.Length);
+				byte[] info = BinarySerializer.Serialize(mgc);
+                fs.Write(info, 0, info.Length);
 			}
 		}
 
 		public static bool LoadGame() {
 			if (DoesSavegameExists) {
-				// TODO: Adapt this example to the real purpose!
-				using (StreamReader sr = File.OpenText(FullSavegamePath)) {
-					string s = "";
-					while ((s = sr.ReadLine()) != null) {
-						Console.WriteLine(s);
-					}
-				}
+                byte[] sg = File.ReadAllBytes(FullSavegamePath);
+                MainGameController.Instance = BinarySerializer.Deserialize<MainGameController>(sg);
 
-				return true;
+                return true;
 			}
 
 			return false;

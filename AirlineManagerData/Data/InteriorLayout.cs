@@ -1,60 +1,54 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace AirlineManager.Data {
+	[DataContract]
 	public class InteriorLayout : IAircraftInteriorLayout {
-		#region Attributes
-		Dictionary<ClassType, int> m_classLayout = new Dictionary<ClassType, int>();
+        #region Attributes
+        #endregion
+
+        #region Properties
+        [DataMember]
+        public Dictionary<ClassType, int> ClassLayout { get; private set; }
 		#endregion
 
-		#region Properties
-		public Dictionary<ClassType, int> ClassLayout {
-			get {
-				return m_classLayout;
-			}
-		}
-		#endregion
-
-		public InteriorLayout() {
-			m_classLayout[ClassType.Economy] = 0;
-			m_classLayout[ClassType.Business] = 0;
-			m_classLayout[ClassType.First] = 0;
-			m_classLayout[ClassType.Cargo] = 0;
-		}
+		public InteriorLayout() : this(0, 0, 0, 0) {}
 
 		public InteriorLayout(int economy, int business, int first, int cargo) {
-			m_classLayout[ClassType.Economy] = economy;
-			m_classLayout[ClassType.Business] = business;
-			m_classLayout[ClassType.First] = first;
-			m_classLayout[ClassType.Cargo] = cargo;
+            ClassLayout = new Dictionary<ClassType, int>();
+			ClassLayout[ClassType.Economy] = economy;
+			ClassLayout[ClassType.Business] = business;
+			ClassLayout[ClassType.First] = first;
+			ClassLayout[ClassType.Cargo] = cargo;
 		}
 
 		public bool HasCargo() {
-			return m_classLayout[ClassType.Cargo] > 0;
+			return ClassLayout[ClassType.Cargo] > 0;
 		}
 
 		public bool HasPax() {
-			return m_classLayout[ClassType.Economy] > 0 || 
-				   m_classLayout[ClassType.Business] > 0 || 
-				   m_classLayout[ClassType.First] > 0;
+			return ClassLayout[ClassType.Economy] > 0 || 
+				   ClassLayout[ClassType.Business] > 0 || 
+				   ClassLayout[ClassType.First] > 0;
 		}
 
 		public bool IsCargoOnly() {
-			return m_classLayout[ClassType.Economy] == 0 && 
-				   m_classLayout[ClassType.Business] == 0 && 
-				   m_classLayout[ClassType.First] == 0 &&
-				   m_classLayout[ClassType.First] > 0;
+			return ClassLayout[ClassType.Economy] == 0 && 
+				   ClassLayout[ClassType.Business] == 0 && 
+				   ClassLayout[ClassType.First] == 0 &&
+				   ClassLayout[ClassType.First] > 0;
 		}
 
 		public int PaxInClass(ClassType classType) {
-			return m_classLayout[classType];
+			return ClassLayout[classType];
         }
 
 		public int SumTotalPax() {
 			int total = 0;
 
-			total += m_classLayout[ClassType.Economy];
-			total += m_classLayout[ClassType.Business];
-			total += m_classLayout[ClassType.First];
+			total += ClassLayout[ClassType.Economy];
+			total += ClassLayout[ClassType.Business];
+			total += ClassLayout[ClassType.First];
 
 			return total;
 		}

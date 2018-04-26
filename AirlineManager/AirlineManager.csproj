@@ -51,6 +51,14 @@
     <Reference Include="GeoCoordinatePortable, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GeoCoordinate.1.1.0\lib\portable-net45+wp80+win+wpa81\GeoCoordinatePortable.dll</HintPath>
     </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Mapsui, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Mapsui.1.1.3\lib\net45\Mapsui.dll</HintPath>
       <Private>True</Private>
@@ -102,32 +110,158 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="UI\Pages\MenuControl.xaml.cs">
-      <DependentUpon>MenuControl.xaml</DependentUpon>
+    <Compile Include="UI\Control\AmGridViewColumnUserControl.xaml.cs">
+      <DependentUpon>AmGridViewColumnUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Windows\AirportExplorerWindow.xaml.cs">
-      <DependentUpon>AirportExplorerWindow.xaml</DependentUpon>
+    <Compile Include="UI\Control\DashboardGraphUserControl.xaml.cs">
+      <DependentUpon>DashboardGraphUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Windows\LoadingWindow.xaml.cs">
+    <Compile Include="UI\Control\DashboardInfoTileUserControl.xaml.cs">
+      <DependentUpon>DashboardInfoTileUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Interfaces\IPopoverWindowCreatorCallback.cs" />
+    <Compile Include="UI\Pages\AircraftInstancePage.xaml.cs">
+      <DependentUpon>AircraftInstancePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Pages\AircraftMarketPage.xaml.cs">
+      <DependentUpon>AircraftMarketPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Pages\Subpages\FlightScheduleFlightCreationComplexSubpage.xaml.cs">
+		<DependentUpon>FlightScheduleFlightCreationComplexSubpage.xaml</DependentUpon>
+	</Compile>
+    <Compile Include="UI\Pages\Subpages\FlightScheduleFlightCreationOnceSubpage.xaml.cs">
+		<DependentUpon>FlightScheduleFlightCreationOnceSubpage.xaml</DependentUpon>
+	</Compile>
+    <Compile Include="UI\Pages\FlightSchedulePage.xaml.cs">
+      <DependentUpon>FlightSchedulePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Pages\AircraftsPage.xaml.cs">
+      <DependentUpon>AircraftsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Pages\AirportsPage.xaml.cs">
+      <DependentUpon>AirportsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Pages\DashboardPage.xaml.cs">
+      <DependentUpon>DashboardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Pages\GameMenuPage.xaml.cs">
+      <DependentUpon>GameMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Pages\FlightScheduleFlightCreationPage.xaml.cs">
+      <DependentUpon>FlightScheduleFlightCreationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Pages\RouteCreationPage.xaml.cs">
+      <DependentUpon>RouteCreationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Pages\RoutesPage.xaml.cs">
+      <DependentUpon>RoutesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Windows\MainMenuWindow.xaml.cs">
+      <DependentUpon>MainMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Windows\Popover\AirlineCreationWindow.xaml.cs">
+      <DependentUpon>AirlineCreationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Windows\Popover\LoadingWindow.xaml.cs">
       <DependentUpon>LoadingWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Windows\PlayerCreationWindow.xaml.cs">
+    <Compile Include="UI\Windows\Popover\PlayerCreationWindow.xaml.cs">
       <DependentUpon>PlayerCreationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Windows\RouteExplorerWindow.xaml.cs">
-      <DependentUpon>RouteExplorerWindow.xaml</DependentUpon>
-    </Compile>
-    <Page Include="UI\Windows\AircraftExplorerWindow.xaml">
+    <Compile Include="UI\Windows\Popover\PopoverBaseWindow.cs" />
+    <Page Include="UI\Control\AmGridViewColumnUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Windows\LoadingWindow.xaml">
+    <Page Include="UI\Control\DashboardInfoTileUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Control\DashboardGraphUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Pages\AircraftInstancePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Pages\AircraftMarketPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Pages\Subpages\FlightScheduleFlightCreationComplexSubpage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Pages\Subpages\FlightScheduleFlightCreationOnceSubpage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Pages\FlightSchedulePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Pages\AircraftsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Pages\AirportsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Pages\DashboardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Pages\GameMenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Pages\FlightScheduleFlightCreationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Pages\RouteCreationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Pages\RoutesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Windows\MainMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Windows\Popover\AirlineCreationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Windows\Popover\LoadingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -139,26 +273,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UI\Windows\AircraftExplorerWindow.xaml.cs">
-      <DependentUpon>AircraftExplorerWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UI\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UI\Pages\MenuControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Windows\AirportExplorerWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Windows\PlayerCreationWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Windows\RouteExplorerWindow.xaml">
+    <Page Include="UI\Windows\Popover\PlayerCreationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -201,8 +320,560 @@
       <Name>AirlineManagerData</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="UI\Control\" />
+    <Resource Include="res\138198-business-collection\atm-2.png" />
+    <Resource Include="res\138198-business-collection\atm.png" />
+    <Resource Include="res\138198-business-collection\bag-1.png" />
+    <Resource Include="res\138198-business-collection\bag-2.png" />
+    <Resource Include="res\138198-business-collection\bag-3.png" />
+    <Resource Include="res\138198-business-collection\bag-4.png" />
+    <Resource Include="res\138198-business-collection\bag-5.png" />
+    <Resource Include="res\138198-business-collection\bag-6.png" />
+    <Resource Include="res\138198-business-collection\bag.png" />
+    <Resource Include="res\138198-business-collection\bank.png" />
+    <Resource Include="res\138198-business-collection\barbershop.png" />
+    <Resource Include="res\138198-business-collection\barcode-1.png" />
+    <Resource Include="res\138198-business-collection\barcode.png" />
+    <Resource Include="res\138198-business-collection\basket-1.png" />
+    <Resource Include="res\138198-business-collection\basket-2.png" />
+    <Resource Include="res\138198-business-collection\basket.png" />
+    <Resource Include="res\138198-business-collection\box-1.png" />
+    <Resource Include="res\138198-business-collection\box-2.png" />
+    <Resource Include="res\138198-business-collection\box-3.png" />
+    <Resource Include="res\138198-business-collection\box.png" />
+    <Resource Include="res\138198-business-collection\briefcase-1.png" />
+    <Resource Include="res\138198-business-collection\briefcase.png" />
+    <Resource Include="res\138198-business-collection\calculator.png" />
+    <Resource Include="res\138198-business-collection\cart-1.png" />
+    <Resource Include="res\138198-business-collection\cart-10.png" />
+    <Resource Include="res\138198-business-collection\cart-11.png" />
+    <Resource Include="res\138198-business-collection\cart-12.png" />
+    <Resource Include="res\138198-business-collection\cart-13.png" />
+    <Resource Include="res\138198-business-collection\cart-14.png" />
+    <Resource Include="res\138198-business-collection\cart-15.png" />
+    <Resource Include="res\138198-business-collection\cart-16.png" />
+    <Resource Include="res\138198-business-collection\cart-17.png" />
+    <Resource Include="res\138198-business-collection\cart-2.png" />
+    <Resource Include="res\138198-business-collection\cart-3.png" />
+    <Resource Include="res\138198-business-collection\cart-4.png" />
+    <Resource Include="res\138198-business-collection\cart-5.png" />
+    <Resource Include="res\138198-business-collection\cart-6.png" />
+    <Resource Include="res\138198-business-collection\cart-7.png" />
+    <Resource Include="res\138198-business-collection\cart-8.png" />
+    <Resource Include="res\138198-business-collection\cart-9.png" />
+    <Resource Include="res\138198-business-collection\cart.png" />
+    <Resource Include="res\138198-business-collection\cashier-1.png" />
+    <Resource Include="res\138198-business-collection\cashier.png" />
+    <Resource Include="res\138198-business-collection\change.png" />
+    <Resource Include="res\138198-business-collection\check.png" />
+    <Resource Include="res\138198-business-collection\coin-1.png" />
+    <Resource Include="res\138198-business-collection\coin-10.png" />
+    <Resource Include="res\138198-business-collection\coin-2.png" />
+    <Resource Include="res\138198-business-collection\coin-3.png" />
+    <Resource Include="res\138198-business-collection\coin-4.png" />
+    <Resource Include="res\138198-business-collection\coin-5.png" />
+    <Resource Include="res\138198-business-collection\coin-6.png" />
+    <Resource Include="res\138198-business-collection\coin-7.png" />
+    <Resource Include="res\138198-business-collection\coin-8.png" />
+    <Resource Include="res\138198-business-collection\coin-9.png" />
+    <Resource Include="res\138198-business-collection\coin.png" />
+    <Resource Include="res\138198-business-collection\coins-1.png" />
+    <Resource Include="res\138198-business-collection\coins.png" />
+    <Resource Include="res\138198-business-collection\crate-1.png" />
+    <Resource Include="res\138198-business-collection\crate-2.png" />
+    <Resource Include="res\138198-business-collection\crate-3.png" />
+    <Resource Include="res\138198-business-collection\crate-4.png" />
+    <Resource Include="res\138198-business-collection\crate-5.png" />
+    <Resource Include="res\138198-business-collection\crate.png" />
+    <Resource Include="res\138198-business-collection\credit-card-1.png" />
+    <Resource Include="res\138198-business-collection\credit-card-2.png" />
+    <Resource Include="res\138198-business-collection\credit-card-3.png" />
+    <Resource Include="res\138198-business-collection\credit-card-4.png" />
+    <Resource Include="res\138198-business-collection\credit-card-5.png" />
+    <Resource Include="res\138198-business-collection\credit-card-6.png" />
+    <Resource Include="res\138198-business-collection\credit-card.png" />
+    <Resource Include="res\138198-business-collection\delivery-cart-1.png" />
+    <Resource Include="res\138198-business-collection\delivery-cart.png" />
+    <Resource Include="res\138198-business-collection\diagram-1.png" />
+    <Resource Include="res\138198-business-collection\diagram-2.png" />
+    <Resource Include="res\138198-business-collection\diagram-3.png" />
+    <Resource Include="res\138198-business-collection\diagram.png" />
+    <Resource Include="res\138198-business-collection\folder-1.png" />
+    <Resource Include="res\138198-business-collection\folder.png" />
+    <Resource Include="res\138198-business-collection\get-money.png" />
+    <Resource Include="res\138198-business-collection\graph-1.png" />
+    <Resource Include="res\138198-business-collection\graph-2.png" />
+    <Resource Include="res\138198-business-collection\graph-3.png" />
+    <Resource Include="res\138198-business-collection\graph-4.png" />
+    <Resource Include="res\138198-business-collection\graph-5.png" />
+    <Resource Include="res\138198-business-collection\graph-6.png" />
+    <Resource Include="res\138198-business-collection\graph-7.png" />
+    <Resource Include="res\138198-business-collection\graph-8.png" />
+    <Resource Include="res\138198-business-collection\graph.png" />
+    <Resource Include="res\138198-business-collection\grocery-1.png" />
+    <Resource Include="res\138198-business-collection\grocery.png" />
+    <Resource Include="res\138198-business-collection\insert-coin.png" />
+    <Resource Include="res\138198-business-collection\investment.png" />
+    <Resource Include="res\138198-business-collection\justice-scale.png" />
+    <Resource Include="res\138198-business-collection\justice.png" />
+    <Resource Include="res\138198-business-collection\megaphone.png" />
+    <Resource Include="res\138198-business-collection\money.png" />
+    <Resource Include="res\138198-business-collection\notes-1.png" />
+    <Resource Include="res\138198-business-collection\notes-2.png" />
+    <Resource Include="res\138198-business-collection\notes.png" />
+    <Resource Include="res\138198-business-collection\open.png" />
+    <Resource Include="res\138198-business-collection\pack.png" />
+    <Resource Include="res\138198-business-collection\pie-chart-1.png" />
+    <Resource Include="res\138198-business-collection\pie-chart-2.png" />
+    <Resource Include="res\138198-business-collection\pie-chart-3.png" />
+    <Resource Include="res\138198-business-collection\pie-chart-4.png" />
+    <Resource Include="res\138198-business-collection\pie-chart-5.png" />
+    <Resource Include="res\138198-business-collection\pie-chart-6.png" />
+    <Resource Include="res\138198-business-collection\pie-chart.png" />
+    <Resource Include="res\138198-business-collection\piggy-bank-1.png" />
+    <Resource Include="res\138198-business-collection\piggy-bank.png" />
+    <Resource Include="res\138198-business-collection\point-of-service.png" />
+    <Resource Include="res\138198-business-collection\poor.png" />
+    <Resource Include="res\138198-business-collection\presentation-1.png" />
+    <Resource Include="res\138198-business-collection\presentation-10.png" />
+    <Resource Include="res\138198-business-collection\presentation-11.png" />
+    <Resource Include="res\138198-business-collection\presentation-12.png" />
+    <Resource Include="res\138198-business-collection\presentation-13.png" />
+    <Resource Include="res\138198-business-collection\presentation-14.png" />
+    <Resource Include="res\138198-business-collection\presentation-15.png" />
+    <Resource Include="res\138198-business-collection\presentation-16.png" />
+    <Resource Include="res\138198-business-collection\presentation-17.png" />
+    <Resource Include="res\138198-business-collection\presentation-18.png" />
+    <Resource Include="res\138198-business-collection\presentation-19.png" />
+    <Resource Include="res\138198-business-collection\presentation-2.png" />
+    <Resource Include="res\138198-business-collection\presentation-3.png" />
+    <Resource Include="res\138198-business-collection\presentation-4.png" />
+    <Resource Include="res\138198-business-collection\presentation-5.png" />
+    <Resource Include="res\138198-business-collection\presentation-6.png" />
+    <Resource Include="res\138198-business-collection\presentation-7.png" />
+    <Resource Include="res\138198-business-collection\presentation-8.png" />
+    <Resource Include="res\138198-business-collection\presentation-9.png" />
+    <Resource Include="res\138198-business-collection\presentation.png" />
+    <Resource Include="res\138198-business-collection\price-tag-1.png" />
+    <Resource Include="res\138198-business-collection\price-tag-2.png" />
+    <Resource Include="res\138198-business-collection\price-tag-3.png" />
+    <Resource Include="res\138198-business-collection\price-tag-4.png" />
+    <Resource Include="res\138198-business-collection\price-tag-5.png" />
+    <Resource Include="res\138198-business-collection\price-tag-6.png" />
+    <Resource Include="res\138198-business-collection\price-tag-7.png" />
+    <Resource Include="res\138198-business-collection\price-tag-8.png" />
+    <Resource Include="res\138198-business-collection\price-tag-9.png" />
+    <Resource Include="res\138198-business-collection\price-tag.png" />
+    <Resource Include="res\138198-business-collection\receipt.png" />
+    <Resource Include="res\138198-business-collection\record.png" />
+    <Resource Include="res\138198-business-collection\rewind-time.png" />
+    <Resource Include="res\138198-business-collection\rich.png" />
+    <Resource Include="res\138198-business-collection\safebox-1.png" />
+    <Resource Include="res\138198-business-collection\safebox-2.png" />
+    <Resource Include="res\138198-business-collection\safebox-3.png" />
+    <Resource Include="res\138198-business-collection\safebox-4.png" />
+    <Resource Include="res\138198-business-collection\safebox.png" />
+    <Resource Include="res\138198-business-collection\stamp-1.png" />
+    <Resource Include="res\138198-business-collection\stamp.png" />
+    <Resource Include="res\138198-business-collection\stand.png" />
+    <Resource Include="res\138198-business-collection\store-1.png" />
+    <Resource Include="res\138198-business-collection\store-2.png" />
+    <Resource Include="res\138198-business-collection\store-3.png" />
+    <Resource Include="res\138198-business-collection\store.png" />
+    <Resource Include="res\138198-business-collection\strongbox.png" />
+    <Resource Include="res\138198-business-collection\suitcase-1.png" />
+    <Resource Include="res\138198-business-collection\suitcase-2.png" />
+    <Resource Include="res\138198-business-collection\suitcase.png" />
+    <Resource Include="res\138198-business-collection\time-is-money.png" />
+    <Resource Include="res\138198-business-collection\time-passing.png" />
+    <Resource Include="res\138198-business-collection\wallet-1.png" />
+    <Resource Include="res\138198-business-collection\wallet-2.png" />
+    <Resource Include="res\138198-business-collection\wallet.png" />
+    <Resource Include="res\138198-business-collection\yen.png" />
+    <Resource Include="res\148705-essential-collection\add-1.png" />
+    <Resource Include="res\148705-essential-collection\add-2.png" />
+    <Resource Include="res\148705-essential-collection\add-3.png" />
+    <Resource Include="res\148705-essential-collection\add.png" />
+    <Resource Include="res\148705-essential-collection\agenda.png" />
+    <Resource Include="res\148705-essential-collection\alarm-1.png" />
+    <Resource Include="res\148705-essential-collection\alarm-clock-1.png" />
+    <Resource Include="res\148705-essential-collection\alarm-clock.png" />
+    <Resource Include="res\148705-essential-collection\alarm.png" />
+    <Resource Include="res\148705-essential-collection\albums.png" />
+    <Resource Include="res\148705-essential-collection\app.png" />
+    <Resource Include="res\148705-essential-collection\archive-1.png" />
+    <Resource Include="res\148705-essential-collection\archive-2.png" />
+    <Resource Include="res\148705-essential-collection\archive-3.png" />
+    <Resource Include="res\148705-essential-collection\archive.png" />
+    <Resource Include="res\148705-essential-collection\attachment.png" />
+    <Resource Include="res\148705-essential-collection\back.png" />
+    <Resource Include="res\148705-essential-collection\battery-1.png" />
+    <Resource Include="res\148705-essential-collection\battery-2.png" />
+    <Resource Include="res\148705-essential-collection\battery-3.png" />
+    <Resource Include="res\148705-essential-collection\battery-4.png" />
+    <Resource Include="res\148705-essential-collection\battery-5.png" />
+    <Resource Include="res\148705-essential-collection\battery-6.png" />
+    <Resource Include="res\148705-essential-collection\battery-7.png" />
+    <Resource Include="res\148705-essential-collection\battery-8.png" />
+    <Resource Include="res\148705-essential-collection\battery-9.png" />
+    <Resource Include="res\148705-essential-collection\battery.png" />
+    <Resource Include="res\148705-essential-collection\binoculars.png" />
+    <Resource Include="res\148705-essential-collection\blueprint.png" />
+    <Resource Include="res\148705-essential-collection\bluetooth-1.png" />
+    <Resource Include="res\148705-essential-collection\bluetooth.png" />
+    <Resource Include="res\148705-essential-collection\bookmark-1.png" />
+    <Resource Include="res\148705-essential-collection\bookmark.png" />
+    <Resource Include="res\148705-essential-collection\briefcase.png" />
+    <Resource Include="res\148705-essential-collection\broken-link.png" />
+    <Resource Include="res\148705-essential-collection\calculator-1.png" />
+    <Resource Include="res\148705-essential-collection\calculator.png" />
+    <Resource Include="res\148705-essential-collection\calendar-1.png" />
+    <Resource Include="res\148705-essential-collection\calendar-2.png" />
+    <Resource Include="res\148705-essential-collection\calendar-3.png" />
+    <Resource Include="res\148705-essential-collection\calendar-4.png" />
+    <Resource Include="res\148705-essential-collection\calendar-5.png" />
+    <Resource Include="res\148705-essential-collection\calendar-6.png" />
+    <Resource Include="res\148705-essential-collection\calendar-7.png" />
+    <Resource Include="res\148705-essential-collection\calendar.png" />
+    <Resource Include="res\148705-essential-collection\checked-1.png" />
+    <Resource Include="res\148705-essential-collection\checked.png" />
+    <Resource Include="res\148705-essential-collection\clock-1.png" />
+    <Resource Include="res\148705-essential-collection\clock.png" />
+    <Resource Include="res\148705-essential-collection\close.png" />
+    <Resource Include="res\148705-essential-collection\cloud-computing-1.png" />
+    <Resource Include="res\148705-essential-collection\cloud-computing-2.png" />
+    <Resource Include="res\148705-essential-collection\cloud-computing-3.png" />
+    <Resource Include="res\148705-essential-collection\cloud-computing-4.png" />
+    <Resource Include="res\148705-essential-collection\cloud-computing-5.png" />
+    <Resource Include="res\148705-essential-collection\cloud-computing.png" />
+    <Resource Include="res\148705-essential-collection\cloud.png" />
+    <Resource Include="res\148705-essential-collection\command.png" />
+    <Resource Include="res\148705-essential-collection\compact-disc-1.png" />
+    <Resource Include="res\148705-essential-collection\compact-disc-2.png" />
+    <Resource Include="res\148705-essential-collection\compact-disc.png" />
+    <Resource Include="res\148705-essential-collection\compass.png" />
+    <Resource Include="res\148705-essential-collection\compose.png" />
+    <Resource Include="res\148705-essential-collection\controls-1.png" />
+    <Resource Include="res\148705-essential-collection\controls-2.png" />
+    <Resource Include="res\148705-essential-collection\controls-3.png" />
+    <Resource Include="res\148705-essential-collection\controls-4.png" />
+    <Resource Include="res\148705-essential-collection\controls-5.png" />
+    <Resource Include="res\148705-essential-collection\controls-6.png" />
+    <Resource Include="res\148705-essential-collection\controls-7.png" />
+    <Resource Include="res\148705-essential-collection\controls-8.png" />
+    <Resource Include="res\148705-essential-collection\controls-9.png" />
+    <Resource Include="res\148705-essential-collection\controls.png" />
+    <Resource Include="res\148705-essential-collection\database-1.png" />
+    <Resource Include="res\148705-essential-collection\database-2.png" />
+    <Resource Include="res\148705-essential-collection\database-3.png" />
+    <Resource Include="res\148705-essential-collection\database.png" />
+    <Resource Include="res\148705-essential-collection\diamond.png" />
+    <Resource Include="res\148705-essential-collection\diploma.png" />
+    <Resource Include="res\148705-essential-collection\dislike-1.png" />
+    <Resource Include="res\148705-essential-collection\dislike.png" />
+    <Resource Include="res\148705-essential-collection\divide-1.png" />
+    <Resource Include="res\148705-essential-collection\divide.png" />
+    <Resource Include="res\148705-essential-collection\division.png" />
+    <Resource Include="res\148705-essential-collection\document.png" />
+    <Resource Include="res\148705-essential-collection\download.png" />
+    <Resource Include="res\148705-essential-collection\edit-1.png" />
+    <Resource Include="res\148705-essential-collection\edit.png" />
+    <Resource Include="res\148705-essential-collection\eject-1.png" />
+    <Resource Include="res\148705-essential-collection\eject.png" />
+    <Resource Include="res\148705-essential-collection\equal-1.png" />
+    <Resource Include="res\148705-essential-collection\equal-2.png" />
+    <Resource Include="res\148705-essential-collection\equal.png" />
+    <Resource Include="res\148705-essential-collection\error.png" />
+    <Resource Include="res\148705-essential-collection\exit-1.png" />
+    <Resource Include="res\148705-essential-collection\exit-2.png" />
+    <Resource Include="res\148705-essential-collection\exit.png" />
+    <Resource Include="res\148705-essential-collection\eyeglasses.png" />
+    <Resource Include="res\148705-essential-collection\fast-forward-1.png" />
+    <Resource Include="res\148705-essential-collection\fast-forward.png" />
+    <Resource Include="res\148705-essential-collection\fax.png" />
+    <Resource Include="res\148705-essential-collection\file-1.png" />
+    <Resource Include="res\148705-essential-collection\file-2.png" />
+    <Resource Include="res\148705-essential-collection\file.png" />
+    <Resource Include="res\148705-essential-collection\film.png" />
+    <Resource Include="res\148705-essential-collection\fingerprint.png" />
+    <Resource Include="res\148705-essential-collection\flag-1.png" />
+    <Resource Include="res\148705-essential-collection\flag-2.png" />
+    <Resource Include="res\148705-essential-collection\flag-3.png" />
+    <Resource Include="res\148705-essential-collection\flag-4.png" />
+    <Resource Include="res\148705-essential-collection\flag.png" />
+    <Resource Include="res\148705-essential-collection\focus.png" />
+    <Resource Include="res\148705-essential-collection\folder-1.png" />
+    <Resource Include="res\148705-essential-collection\folder-10.png" />
+    <Resource Include="res\148705-essential-collection\folder-11.png" />
+    <Resource Include="res\148705-essential-collection\folder-12.png" />
+    <Resource Include="res\148705-essential-collection\folder-13.png" />
+    <Resource Include="res\148705-essential-collection\folder-14.png" />
+    <Resource Include="res\148705-essential-collection\folder-15.png" />
+    <Resource Include="res\148705-essential-collection\folder-16.png" />
+    <Resource Include="res\148705-essential-collection\folder-17.png" />
+    <Resource Include="res\148705-essential-collection\folder-18.png" />
+    <Resource Include="res\148705-essential-collection\folder-19.png" />
+    <Resource Include="res\148705-essential-collection\folder-2.png" />
+    <Resource Include="res\148705-essential-collection\folder-3.png" />
+    <Resource Include="res\148705-essential-collection\folder-4.png" />
+    <Resource Include="res\148705-essential-collection\folder-5.png" />
+    <Resource Include="res\148705-essential-collection\folder-6.png" />
+    <Resource Include="res\148705-essential-collection\folder-7.png" />
+    <Resource Include="res\148705-essential-collection\folder-8.png" />
+    <Resource Include="res\148705-essential-collection\folder-9.png" />
+    <Resource Include="res\148705-essential-collection\folder.png" />
+    <Resource Include="res\148705-essential-collection\forbidden.png" />
+    <Resource Include="res\148705-essential-collection\funnel.png" />
+    <Resource Include="res\148705-essential-collection\garbage-1.png" />
+    <Resource Include="res\148705-essential-collection\garbage-2.png" />
+    <Resource Include="res\148705-essential-collection\garbage.png" />
+    <Resource Include="res\148705-essential-collection\gift.png" />
+    <Resource Include="res\148705-essential-collection\help.png" />
+    <Resource Include="res\148705-essential-collection\hide.png" />
+    <Resource Include="res\148705-essential-collection\hold.png" />
+    <Resource Include="res\148705-essential-collection\home-1.png" />
+    <Resource Include="res\148705-essential-collection\home-2.png" />
+    <Resource Include="res\148705-essential-collection\home.png" />
+    <Resource Include="res\148705-essential-collection\hourglass-1.png" />
+    <Resource Include="res\148705-essential-collection\hourglass-2.png" />
+    <Resource Include="res\148705-essential-collection\hourglass-3.png" />
+    <Resource Include="res\148705-essential-collection\hourglass.png" />
+    <Resource Include="res\148705-essential-collection\house.png" />
+    <Resource Include="res\148705-essential-collection\id-card-1.png" />
+    <Resource Include="res\148705-essential-collection\id-card-2.png" />
+    <Resource Include="res\148705-essential-collection\id-card-3.png" />
+    <Resource Include="res\148705-essential-collection\id-card-4.png" />
+    <Resource Include="res\148705-essential-collection\id-card-5.png" />
+    <Resource Include="res\148705-essential-collection\id-card.png" />
+    <Resource Include="res\148705-essential-collection\idea.png" />
+    <Resource Include="res\148705-essential-collection\incoming.png" />
+    <Resource Include="res\148705-essential-collection\infinity.png" />
+    <Resource Include="res\148705-essential-collection\info.png" />
+    <Resource Include="res\148705-essential-collection\internet.png" />
+    <Resource Include="res\148705-essential-collection\key.png" />
+    <Resource Include="res\148705-essential-collection\lamp.png" />
+    <Resource Include="res\148705-essential-collection\layers-1.png" />
+    <Resource Include="res\148705-essential-collection\layers.png" />
+    <Resource Include="res\148705-essential-collection\like-1.png" />
+    <Resource Include="res\148705-essential-collection\like-2.png" />
+    <Resource Include="res\148705-essential-collection\like.png" />
+    <Resource Include="res\148705-essential-collection\link.png" />
+    <Resource Include="res\148705-essential-collection\list-1.png" />
+    <Resource Include="res\148705-essential-collection\list.png" />
+    <Resource Include="res\148705-essential-collection\lock-1.png" />
+    <Resource Include="res\148705-essential-collection\lock.png" />
+    <Resource Include="res\148705-essential-collection\locked-1.png" />
+    <Resource Include="res\148705-essential-collection\locked-2.png" />
+    <Resource Include="res\148705-essential-collection\locked-3.png" />
+    <Resource Include="res\148705-essential-collection\locked-4.png" />
+    <Resource Include="res\148705-essential-collection\locked-5.png" />
+    <Resource Include="res\148705-essential-collection\locked-6.png" />
+    <Resource Include="res\148705-essential-collection\locked.png" />
+    <Resource Include="res\148705-essential-collection\login.png" />
+    <Resource Include="res\148705-essential-collection\magic-wand.png" />
+    <Resource Include="res\148705-essential-collection\magnet-1.png" />
+    <Resource Include="res\148705-essential-collection\magnet-2.png" />
+    <Resource Include="res\148705-essential-collection\magnet.png" />
+    <Resource Include="res\148705-essential-collection\map-1.png" />
+    <Resource Include="res\148705-essential-collection\map-2.png" />
+    <Resource Include="res\148705-essential-collection\map-location.png" />
+    <Resource Include="res\148705-essential-collection\map.png" />
+    <Resource Include="res\148705-essential-collection\megaphone-1.png" />
+    <Resource Include="res\148705-essential-collection\megaphone.png" />
+    <Resource Include="res\148705-essential-collection\menu-1.png" />
+    <Resource Include="res\148705-essential-collection\menu-2.png" />
+    <Resource Include="res\148705-essential-collection\menu-3.png" />
+    <Resource Include="res\148705-essential-collection\menu-4.png" />
+    <Resource Include="res\148705-essential-collection\menu.png" />
+    <Resource Include="res\148705-essential-collection\microphone-1.png" />
+    <Resource Include="res\148705-essential-collection\microphone.png" />
+    <Resource Include="res\148705-essential-collection\minus-1.png" />
+    <Resource Include="res\148705-essential-collection\minus.png" />
+    <Resource Include="res\148705-essential-collection\more-1.png" />
+    <Resource Include="res\148705-essential-collection\more-2.png" />
+    <Resource Include="res\148705-essential-collection\more.png" />
+    <Resource Include="res\148705-essential-collection\multiply-1.png" />
+    <Resource Include="res\148705-essential-collection\multiply.png" />
+    <Resource Include="res\148705-essential-collection\music-player-1.png" />
+    <Resource Include="res\148705-essential-collection\music-player-2.png" />
+    <Resource Include="res\148705-essential-collection\music-player-3.png" />
+    <Resource Include="res\148705-essential-collection\music-player.png" />
+    <Resource Include="res\148705-essential-collection\mute.png" />
+    <Resource Include="res\148705-essential-collection\muted.png" />
+    <Resource Include="res\148705-essential-collection\navigation-1.png" />
+    <Resource Include="res\148705-essential-collection\navigation.png" />
+    <Resource Include="res\148705-essential-collection\network.png" />
+    <Resource Include="res\148705-essential-collection\newspaper.png" />
+    <Resource Include="res\148705-essential-collection\next.png" />
+    <Resource Include="res\148705-essential-collection\note.png" />
+    <Resource Include="res\148705-essential-collection\notebook-1.png" />
+    <Resource Include="res\148705-essential-collection\notebook-2.png" />
+    <Resource Include="res\148705-essential-collection\notebook-3.png" />
+    <Resource Include="res\148705-essential-collection\notebook-4.png" />
+    <Resource Include="res\148705-essential-collection\notebook-5.png" />
+    <Resource Include="res\148705-essential-collection\notebook.png" />
+    <Resource Include="res\148705-essential-collection\notepad-1.png" />
+    <Resource Include="res\148705-essential-collection\notepad-2.png" />
+    <Resource Include="res\148705-essential-collection\notepad.png" />
+    <Resource Include="res\148705-essential-collection\notification.png" />
+    <Resource Include="res\148705-essential-collection\paper-plane-1.png" />
+    <Resource Include="res\148705-essential-collection\paper-plane.png" />
+    <Resource Include="res\148705-essential-collection\pause-1.png" />
+    <Resource Include="res\148705-essential-collection\pause.png" />
+    <Resource Include="res\148705-essential-collection\percent-1.png" />
+    <Resource Include="res\148705-essential-collection\percent.png" />
+    <Resource Include="res\148705-essential-collection\perspective.png" />
+    <Resource Include="res\148705-essential-collection\photo-camera-1.png" />
+    <Resource Include="res\148705-essential-collection\photo-camera.png" />
+    <Resource Include="res\148705-essential-collection\photos.png" />
+    <Resource Include="res\148705-essential-collection\picture-1.png" />
+    <Resource Include="res\148705-essential-collection\picture-2.png" />
+    <Resource Include="res\148705-essential-collection\picture.png" />
+    <Resource Include="res\148705-essential-collection\pin.png" />
+    <Resource Include="res\148705-essential-collection\placeholder-1.png" />
+    <Resource Include="res\148705-essential-collection\placeholder-2.png" />
+    <Resource Include="res\148705-essential-collection\placeholder-3.png" />
+    <Resource Include="res\148705-essential-collection\placeholder.png" />
+    <Resource Include="res\148705-essential-collection\placeholders.png" />
+    <Resource Include="res\148705-essential-collection\play-button-1.png" />
+    <Resource Include="res\148705-essential-collection\play-button.png" />
+    <Resource Include="res\148705-essential-collection\plus.png" />
+    <Resource Include="res\148705-essential-collection\power.png" />
+    <Resource Include="res\148705-essential-collection\previous.png" />
+    <Resource Include="res\148705-essential-collection\price-tag.png" />
+    <Resource Include="res\148705-essential-collection\print.png" />
+    <Resource Include="res\148705-essential-collection\push-pin.png" />
+    <Resource Include="res\148705-essential-collection\radar.png" />
+    <Resource Include="res\148705-essential-collection\reading.png" />
+    <Resource Include="res\148705-essential-collection\record.png" />
+    <Resource Include="res\148705-essential-collection\repeat-1.png" />
+    <Resource Include="res\148705-essential-collection\repeat.png" />
+    <Resource Include="res\148705-essential-collection\restart.png" />
+    <Resource Include="res\148705-essential-collection\resume.png" />
+    <Resource Include="res\148705-essential-collection\rewind-1.png" />
+    <Resource Include="res\148705-essential-collection\rewind.png" />
+    <Resource Include="res\148705-essential-collection\route.png" />
+    <Resource Include="res\148705-essential-collection\save.png" />
+    <Resource Include="res\148705-essential-collection\search-1.png" />
+    <Resource Include="res\148705-essential-collection\search.png" />
+    <Resource Include="res\148705-essential-collection\send.png" />
+    <Resource Include="res\148705-essential-collection\server-1.png" />
+    <Resource Include="res\148705-essential-collection\server-2.png" />
+    <Resource Include="res\148705-essential-collection\server-3.png" />
+    <Resource Include="res\148705-essential-collection\server.png" />
+    <Resource Include="res\148705-essential-collection\settings-1.png" />
+    <Resource Include="res\148705-essential-collection\settings-2.png" />
+    <Resource Include="res\148705-essential-collection\settings-3.png" />
+    <Resource Include="res\148705-essential-collection\settings-4.png" />
+    <Resource Include="res\148705-essential-collection\settings-5.png" />
+    <Resource Include="res\148705-essential-collection\settings-6.png" />
+    <Resource Include="res\148705-essential-collection\settings-7.png" />
+    <Resource Include="res\148705-essential-collection\settings-8.png" />
+    <Resource Include="res\148705-essential-collection\settings-9.png" />
+    <Resource Include="res\148705-essential-collection\settings.png" />
+    <Resource Include="res\148705-essential-collection\share-1.png" />
+    <Resource Include="res\148705-essential-collection\share-2.png" />
+    <Resource Include="res\148705-essential-collection\share.png" />
+    <Resource Include="res\148705-essential-collection\shuffle-1.png" />
+    <Resource Include="res\148705-essential-collection\shuffle.png" />
+    <Resource Include="res\148705-essential-collection\shutdown.png" />
+    <Resource Include="res\148705-essential-collection\sign-1.png" />
+    <Resource Include="res\148705-essential-collection\sign.png" />
+    <Resource Include="res\148705-essential-collection\skip.png" />
+    <Resource Include="res\148705-essential-collection\smartphone-1.png" />
+    <Resource Include="res\148705-essential-collection\smartphone-10.png" />
+    <Resource Include="res\148705-essential-collection\smartphone-11.png" />
+    <Resource Include="res\148705-essential-collection\smartphone-2.png" />
+    <Resource Include="res\148705-essential-collection\smartphone-3.png" />
+    <Resource Include="res\148705-essential-collection\smartphone-4.png" />
+    <Resource Include="res\148705-essential-collection\smartphone-5.png" />
+    <Resource Include="res\148705-essential-collection\smartphone-6.png" />
+    <Resource Include="res\148705-essential-collection\smartphone-7.png" />
+    <Resource Include="res\148705-essential-collection\smartphone-8.png" />
+    <Resource Include="res\148705-essential-collection\smartphone-9.png" />
+    <Resource Include="res\148705-essential-collection\smartphone.png" />
+    <Resource Include="res\148705-essential-collection\speaker-1.png" />
+    <Resource Include="res\148705-essential-collection\speaker-2.png" />
+    <Resource Include="res\148705-essential-collection\speaker-3.png" />
+    <Resource Include="res\148705-essential-collection\speaker-4.png" />
+    <Resource Include="res\148705-essential-collection\speaker-5.png" />
+    <Resource Include="res\148705-essential-collection\speaker-6.png" />
+    <Resource Include="res\148705-essential-collection\speaker-7.png" />
+    <Resource Include="res\148705-essential-collection\speaker-8.png" />
+    <Resource Include="res\148705-essential-collection\speaker.png" />
+    <Resource Include="res\148705-essential-collection\spotlight.png" />
+    <Resource Include="res\148705-essential-collection\star-1.png" />
+    <Resource Include="res\148705-essential-collection\star.png" />
+    <Resource Include="res\148705-essential-collection\stop-1.png" />
+    <Resource Include="res\148705-essential-collection\stop.png" />
+    <Resource Include="res\148705-essential-collection\stopwatch-1.png" />
+    <Resource Include="res\148705-essential-collection\stopwatch-2.png" />
+    <Resource Include="res\148705-essential-collection\stopwatch-3.png" />
+    <Resource Include="res\148705-essential-collection\stopwatch-4.png" />
+    <Resource Include="res\148705-essential-collection\stopwatch.png" />
+    <Resource Include="res\148705-essential-collection\street-1.png" />
+    <Resource Include="res\148705-essential-collection\street.png" />
+    <Resource Include="res\148705-essential-collection\substract-1.png" />
+    <Resource Include="res\148705-essential-collection\substract.png" />
+    <Resource Include="res\148705-essential-collection\success.png" />
+    <Resource Include="res\148705-essential-collection\switch-1.png" />
+    <Resource Include="res\148705-essential-collection\switch-2.png" />
+    <Resource Include="res\148705-essential-collection\switch-3.png" />
+    <Resource Include="res\148705-essential-collection\switch-4.png" />
+    <Resource Include="res\148705-essential-collection\switch-5.png" />
+    <Resource Include="res\148705-essential-collection\switch-6.png" />
+    <Resource Include="res\148705-essential-collection\switch-7.png" />
+    <Resource Include="res\148705-essential-collection\switch.png" />
+    <Resource Include="res\148705-essential-collection\tabs-1.png" />
+    <Resource Include="res\148705-essential-collection\tabs.png" />
+    <Resource Include="res\148705-essential-collection\target.png" />
+    <Resource Include="res\148705-essential-collection\television-1.png" />
+    <Resource Include="res\148705-essential-collection\television.png" />
+    <Resource Include="res\148705-essential-collection\time.png" />
+    <Resource Include="res\148705-essential-collection\trash.png" />
+    <Resource Include="res\148705-essential-collection\umbrella.png" />
+    <Resource Include="res\148705-essential-collection\unlink.png" />
+    <Resource Include="res\148705-essential-collection\unlocked-1.png" />
+    <Resource Include="res\148705-essential-collection\unlocked-2.png" />
+    <Resource Include="res\148705-essential-collection\unlocked.png" />
+    <Resource Include="res\148705-essential-collection\upload.png" />
+    <Resource Include="res\148705-essential-collection\user-1.png" />
+    <Resource Include="res\148705-essential-collection\user-2.png" />
+    <Resource Include="res\148705-essential-collection\user-3.png" />
+    <Resource Include="res\148705-essential-collection\user-4.png" />
+    <Resource Include="res\148705-essential-collection\user-5.png" />
+    <Resource Include="res\148705-essential-collection\user-6.png" />
+    <Resource Include="res\148705-essential-collection\user-7.png" />
+    <Resource Include="res\148705-essential-collection\user.png" />
+    <Resource Include="res\148705-essential-collection\users-1.png" />
+    <Resource Include="res\148705-essential-collection\users.png" />
+    <Resource Include="res\148705-essential-collection\video-camera-1.png" />
+    <Resource Include="res\148705-essential-collection\video-camera.png" />
+    <Resource Include="res\148705-essential-collection\video-player-1.png" />
+    <Resource Include="res\148705-essential-collection\video-player-2.png" />
+    <Resource Include="res\148705-essential-collection\video-player.png" />
+    <Resource Include="res\148705-essential-collection\view-1.png" />
+    <Resource Include="res\148705-essential-collection\view-2.png" />
+    <Resource Include="res\148705-essential-collection\view.png" />
+    <Resource Include="res\148705-essential-collection\volume-control-1.png" />
+    <Resource Include="res\148705-essential-collection\volume-control.png" />
+    <Resource Include="res\148705-essential-collection\warning.png" />
+    <Resource Include="res\148705-essential-collection\wifi-1.png" />
+    <Resource Include="res\148705-essential-collection\wifi.png" />
+    <Resource Include="res\148705-essential-collection\windows-1.png" />
+    <Resource Include="res\148705-essential-collection\windows-2.png" />
+    <Resource Include="res\148705-essential-collection\windows-3.png" />
+    <Resource Include="res\148705-essential-collection\windows-4.png" />
+    <Resource Include="res\148705-essential-collection\windows.png" />
+    <Resource Include="res\148705-essential-collection\wireless-internet.png" />
+    <Resource Include="res\148705-essential-collection\worldwide-1.png" />
+    <Resource Include="res\148705-essential-collection\worldwide.png" />
+    <Resource Include="res\148705-essential-collection\zoom-in.png" />
+    <Resource Include="res\148705-essential-collection\zoom-out.png" />
+    <Resource Include="res\138198-business-collection\atm-1.png" />
+    <Resource Include="res\my-icons-collection\png\001-travel.png" />
+    <Resource Include="res\my-icons-collection\png\002-building.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SkiaSharp.1.59.2\build\net45\SkiaSharp.targets" Condition="Exists('..\packages\SkiaSharp.1.59.2\build\net45\SkiaSharp.targets')" />

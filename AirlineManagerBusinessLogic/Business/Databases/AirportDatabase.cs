@@ -7,7 +7,6 @@ namespace AirlineManager.Business.Databases {
 	public class AirportDatabase {
 		#region Attributes
 		static AirportDatabase m_instance = null;
-		List<Airport> m_db = new List<Airport>();
 		#endregion
 
 		#region Properties
@@ -23,15 +22,11 @@ namespace AirlineManager.Business.Databases {
 
 		public Airport Random {
 			get {
-                return m_db[new Random().Next(0, m_db.Count - 1)];
+                return DB[new Random().Next(0, DB.Count - 1)];
 			}
 		}
 
-		public List<Airport> DB {
-			get {
-				return m_db;
-			}
-		}
+		public List<Airport> DB { get; private set; }
 		#endregion
 
 		AirportDatabase() {
@@ -54,11 +49,11 @@ namespace AirlineManager.Business.Databases {
 			Airport aKLAX = new Airport(iKLAX, "LAX", "Los Angeles International Airport", "Los Angeles", 3685, gcKLAX);
 			Airport aKATL = new Airport(iKATL, "ATL", "Hartsfield–Jackson Atlanta International Airport", "Atlanta", 3624, gcKATL);
 
-            m_db.Add(aEDDT);
-			m_db.Add(aEDDF);
-			m_db.Add(aKJFK);
-			m_db.Add(aKLAX);
-			m_db.Add(aKATL);
+            DB.Add(aEDDT);
+			DB.Add(aEDDF);
+			DB.Add(aKJFK);
+			DB.Add(aKLAX);
+			DB.Add(aKATL);
 		}
 	}
 }

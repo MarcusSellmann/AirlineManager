@@ -1,6 +1,10 @@
-﻿namespace AirlineManager.Data {
-    public class ICAOCode {
+﻿using System.Runtime.Serialization;
+
+namespace AirlineManager.Data {
+	[DataContract]
+	public class ICAOCode {
         #region Attributes
+        [DataMember]
         char[] m_code = new char[4];
         #endregion
 

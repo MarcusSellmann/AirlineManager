@@ -1,5 +1,8 @@
-﻿namespace AirlineManager.Data {
-    public enum Department {
+﻿using System;
+
+namespace AirlineManager.Data {
+	[Serializable()]
+	public enum Department {
         Pilot,
         FlightCrew,
         GroundCrew,

@@ -1,0 +1,68 @@
+﻿<Page x:Class="AirlineManager.UI.Pages.DashboardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:uc="clr-namespace:AirlineManager.UI.Control"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="Dashboard"
+      Background="{StaticResource AmWindowBackground}">
+
+    <Page.Resources>
+        <Style x:Key="TileElement" TargetType="uc:DashboardInfoTileUserControl">
+            <Setter Property="MinWidth" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" />
+            <Setter Property="MinHeight" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" />
+            <Setter Property="Width" Value="125" />
+        </Style>
+    </Page.Resources>
+    
+    <StackPanel Orientation="Vertical">
+        <Label Content="Dashboard" Foreground="{StaticResource AmDefaultTextColor}" />
+        <uc:DashboardGraphUserControl x:Name="FuelCostsUc" Width="300"/>
+        <Grid HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            
+            <uc:DashboardInfoTileUserControl 
+                Grid.Column="0" Grid.Row="0"
+                x:Name="AmountMoneyUc" 
+                Style="{StaticResource TileElement}" 
+                Background="AliceBlue" />
+            <uc:DashboardInfoTileUserControl 
+                Grid.Column="1" Grid.Row="0"
+                x:Name="ReputationUc" 
+                Style="{StaticResource TileElement}" 
+                Background="Brown" 
+                Foreground="White" />
+            <uc:DashboardInfoTileUserControl 
+                Grid.Column="0" Grid.Row="1"
+                x:Name="NumberOfAircraftsUc" 
+                Style="{StaticResource TileElement}" 
+                Background="Green" />
+            <uc:DashboardInfoTileUserControl 
+                Grid.Column="1" Grid.Row="1"
+                x:Name="NumberOfRoutesUc" 
+                Style="{StaticResource TileElement}" 
+                Background="Violet" 
+                Foreground="White" />
+            <uc:DashboardInfoTileUserControl 
+                Grid.Column="2" Grid.Row="0"
+                x:Name="NumberOfUsedAircraftsUc" 
+                Style="{StaticResource TileElement}" 
+                Background="BlanchedAlmond" />
+            <uc:DashboardInfoTileUserControl
+                Grid.Column="2" Grid.Row="1"
+                x:Name="NumberOfScheduledFlightsUc"
+                Style="{StaticResource TileElement}"
+                Background="DodgerBlue" />
+        </Grid>
+    </StackPanel>
+</Page>

@@ -1,23 +1,19 @@
-﻿namespace AirlineManager.Data {
+﻿using System.Runtime.Serialization;
+
+namespace AirlineManager.Data {
+	[DataContract]
 	public class EmployeeGroup {
-		#region Attributes
-		Department m_groupDepartment;
-		int m_numberOfEmployees;
-		long m_loanPerEmployee;
-		#endregion
+        #region Attributes
+        [DataMember]
+        long m_loanPerEmployee;
+        #endregion
 
-		#region Properties
-		public Department GroupDepartment {
-			get {
-				return m_groupDepartment;
-			}
-		}
+        #region Properties
+        [DataMember]
+        public Department GroupDepartment { get; private set; }
 
-		public int NumberOfEmployees {
-			get {
-				return m_numberOfEmployees;
-            }
-		}
+        [DataMember]
+        public int NumberOfEmployees { get; private set; }
 
 		public long LoanPerEmployee {
 			get {
@@ -33,14 +29,14 @@
 
 		public long TotalLoan {
 			get {
-				return m_numberOfEmployees * m_loanPerEmployee;
+				return NumberOfEmployees * m_loanPerEmployee;
 			}
 		}
 		#endregion
 
 		public EmployeeGroup(Department department, int numberOfEmployees, int loanPerEmployee) {
-			m_groupDepartment = department;
-			m_numberOfEmployees = numberOfEmployees;
+			GroupDepartment = department;
+			NumberOfEmployees = numberOfEmployees;
 			m_loanPerEmployee = loanPerEmployee;
 		}
 

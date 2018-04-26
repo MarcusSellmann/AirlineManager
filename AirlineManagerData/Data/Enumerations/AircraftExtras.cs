@@ -1,5 +1,8 @@
-﻿namespace AirlineManager.Data {
-    public enum AircraftExtras {
+﻿using System;
+
+namespace AirlineManager.Data {
+	[Serializable()]
+	public enum AircraftExtras {
         WiFi,
         Entertainment,
         CenterFuelTank,

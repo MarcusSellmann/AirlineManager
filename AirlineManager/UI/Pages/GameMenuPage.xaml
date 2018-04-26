@@ -1,0 +1,33 @@
+﻿<Page x:Class="AirlineManager.UI.Pages.GameMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="GameMenuPage"
+      Background="{StaticResource AmWindowBackground}">
+
+    <Page.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="10 10 10 0" />
+            <Setter Property="Padding" Value="10" />
+        </Style>
+    </Page.Resources>
+    <WrapPanel HorizontalAlignment="Center" 
+               VerticalAlignment="Center" 
+               Orientation="Vertical">
+        <Button x:Name="btnSaveGame" 
+                Content="Save game" 
+                Click="btnSaveGame_Click" 
+                Style="{StaticResource ButtonStyle}" />
+        <Button x:Name="btnLoadGame" 
+                Content="Load game" 
+                Click="btnLoadGame_Click"
+                Style="{StaticResource ButtonStyle}" />
+        <Button x:Name="btnExitGame" 
+                Content="Exit game" 
+                Click="btnExitGame_Click"
+                Style="{StaticResource ButtonStyle}" />
+    </WrapPanel>
+</Page>

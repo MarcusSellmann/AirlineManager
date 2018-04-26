@@ -1,137 +1,88 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace AirlineManager.Data {
-    public class Aircraft {
+	[DataContract]
+	public class Aircraft {
 		#region Attributes
-		AircraftManufacturer m_manufacturer;
-        string m_name;
-        float m_length;
-        float m_width;
-        float m_height;
-        float m_fuelUsagePerMinute;
-        string m_image;
-        long m_originalPrize;
-        int m_travelVelocity;
-        int m_range;
-        long m_turnoverTime;
-		int m_minimalNeededRunwayLength;
-		Staff m_neededStaff;
-        List<Engine> m_availableEngines;
-        int m_numberOfEngines;
         #endregion
 
         #region Properties
-		public AircraftManufacturer Manufacturer {
-			get {
-				return m_manufacturer;
-			}
-		}
+        [DataMember]
+		public AircraftManufacturer Manufacturer { get; private set; }
 
-        public string Name {
-            get {
-                return m_name;
-            }
-        }
+        [DataMember]
+        public string Name { get; private set; }
 
-        public float Length {
-            get {
-                return m_length;
-            }
-        }
+        [DataMember]
+        public float Length { get; private set; }
 
-        public float Width {
-            get {
-                return m_width;
-            }
-        }
+        [DataMember]
+        public float Width { get; private set; }
 
-        public float Height {
-            get {
-                return m_height;
-            }
-        }
+        [DataMember]
+        public float Height { get; private set; }
 
-        public float FuelUsagePerMinute {
-            get {
-                return m_fuelUsagePerMinute;
-            }
-        }
+        [DataMember]
+        public float FuelUsagePerMinute { get; private set; }
 
-        public string Image {
-            get {
-                return m_image;
-            }
-        }
+        [DataMember]
+        public string Image { get; private set; }
 
-        public long OriginalPrize {
-            get {
-                return m_originalPrize;
-            }
-        }
+        [DataMember]
+        public long OriginalPrize { get; private set; }
 
-        public int TravelVelocity {
-            get {
-                return m_travelVelocity;
-            }
-        }
+        [DataMember]
+        public int TravelVelocity { get; private set; }
 
-        public int Range {
-            get {
-                return m_range;
-            }
-        }
+        [DataMember]
+        public int Range { get; private set; }
 
-        public long TurnoverTime {
-            get {
-                return m_turnoverTime;
-            }
-        }
+        [DataMember]
+        public long TurnoverTime { get; private set; }
 
-		public int MinimalNeededRunwayLength {
-			get {
-				return m_minimalNeededRunwayLength;
-			}
-		}
+        [DataMember]
+        public int MinimalNeededRunwayLength { get; private set; }
 
-		public Staff NeededStaff {
-			get {
-				return m_neededStaff;
-			}
-		}
+        [DataMember]
+        public Staff NeededStaff { get; private set; }
 
-        public List<Engine> AvailableEngines {
-            get {
-                return m_availableEngines;
-            }
-        }
+        [DataMember]
+        public List<Engine> AvailableEngines { get; private set; }
 
-        public int NumberOfEngines {
-            get {
-                return m_numberOfEngines;
-            }
-        }
+        [DataMember]
+        public int NumberOfEngines { get; private set; }
+
+        [DataMember]
+        public int MaxNumberOfEconomySeats { get; private set; }
         #endregion
 
         public Aircraft(AircraftManufacturer manufacturer, string name, float length, float width, 
 						float height, float fuelUsagePerMinute, string image, 
                         long originalPrize, int travelVelocity, int range, 
                         long turnoverTime, int minimalNeededRunwayLength, Staff neededStaff,
-                        List<Engine> availableEngines, int numberOfEngines) {
-			m_manufacturer = manufacturer;
-			m_name = name;
-            m_length = length;
-            m_width = width;
-            m_height = height;
-            m_fuelUsagePerMinute = fuelUsagePerMinute;
-            m_image = image;
-            m_originalPrize = originalPrize;
-            m_travelVelocity = travelVelocity;
-            m_range = range;
-            m_turnoverTime = turnoverTime;
-			m_minimalNeededRunwayLength = minimalNeededRunwayLength;
-			m_neededStaff = neededStaff;
-            m_availableEngines = availableEngines;
-            m_numberOfEngines = numberOfEngines;
+                        List<Engine> availableEngines, int numberOfEngines, int maxEconomySeating) {
+			Manufacturer = manufacturer;
+			Name = name;
+            Length = length;
+            Width = width;
+            Height = height;
+            FuelUsagePerMinute = fuelUsagePerMinute;
+            Image = image;
+            OriginalPrize = originalPrize;
+            TravelVelocity = travelVelocity;
+            Range = range;
+            TurnoverTime = turnoverTime;
+			MinimalNeededRunwayLength = minimalNeededRunwayLength;
+			NeededStaff = neededStaff;
+            NumberOfEngines = numberOfEngines;
+            MaxNumberOfEconomySeats = maxEconomySeating;
+
+            AvailableEngines = new List<Engine>();
+
+            if (availableEngines != null) {
+                AvailableEngines.AddRange(availableEngines);
+            }
         }
 
 		override

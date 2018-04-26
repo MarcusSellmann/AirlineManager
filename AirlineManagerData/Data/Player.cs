@@ -1,23 +1,25 @@
-﻿namespace AirlineManager.Data {
-    public class Player {
+﻿using System.Runtime.Serialization;
+
+namespace AirlineManager.Data {
+	[DataContract]
+	public class Player {
         #region Attributes
-        string m_name;
+        [DataMember]
         uint m_carriedPax;
+
+        [DataMember]
         uint m_carriedCargo;
+
+        [DataMember]
         uint m_operatedFlights;
+
+        [DataMember]
         uint m_totalDistanceFlown;
         #endregion
 
         #region Properties
-        public string Name {
-            get {
-                return m_name;
-            }
-
-            private set {
-                m_name = value;
-            }
-        }
+        [DataMember]
+        public string Name { get; private set; }
 
         public uint CarriedPax {
             get {

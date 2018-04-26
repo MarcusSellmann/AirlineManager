@@ -1,51 +1,44 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace AirlineManager.Data {
-    public class Airline {
-        const long MONEY_AT_GAME_START = 1000000L;
+	[DataContract]
+	public class Airline {
+        const long MONEY_AT_GAME_START = 10000000L;
         const int REPUTATION_AT_GAME_START = 75;
 
         #region Attributes
-        Player m_ownership;
-        string m_name;
-        string m_airlineCode;
+        [DataMember]
         long m_money;
+
+        [DataMember]
         int m_reputation;
-		List<AircraftInstance> m_ownedAircrafts = new List<AircraftInstance>();
-		List<EmployeeGroup> m_staff = new List<EmployeeGroup>();
-		List<Route> m_routeNetwork = new List<Route>();
         #endregion
 
         #region Properties
-        public Player Ownership {
-            get {
-                return m_ownership;
-            }
+        [DataMember]
+        public Player Ownership { get; private set; }
 
-            private set {
-                m_ownership = value;
-            }
-        }
+        [DataMember]
+        public string Name { get; private set; }
 
-        public string Name {
-            get {
-                return m_name;
-            }
+        [DataMember]
+        public string AirlineCode { get; private set; }
 
-            private set {
-                m_name = value;
-            }
-        }
+        [DataMember]
+        public List<AircraftInstance> OwnedAircrafts { get; private set; }
 
-        public string AirlineCode {
-            get {
-                return m_airlineCode;
-            }
+        [DataMember]
+        public List<EmployeeGroup> Staff { get; private set; }
 
-            private set {
-                m_airlineCode = value;
-            }
-        }
+        [DataMember]
+        public List<Route> RouteNetwork { get; private set; }
+
+        [DataMember]
+        public FlightSchedule FlightSchedule { get; private set; }
+
+        [DataMember]
+        public FlightHistory FlightHistory { get; private set; }
 
         public long Money {
             get {
@@ -71,34 +64,27 @@ namespace AirlineManager.Data {
             }
         }
 
-		public List<AircraftInstance> OwnedAircrafts {
-			get {
-				return m_ownedAircrafts;
-			}
-		}
+        public List<AircraftInstance> UnassignedAircrafts
+        {
+            get
+            {
+                List<AircraftInstance> ais = new List<AircraftInstance>();
 
-		public List<EmployeeGroup> Staff {
-			get {
-				return m_staff;
-			}
-		}
+                foreach (AircraftInstance ai in OwnedAircrafts)
+                {
+                    if (ai.AssignedFlight == null)
+                    {
+                        ais.Add(ai);
+                    }
+                }
 
-		public List<Route> RouteNetwork {
-			get {
-				return m_routeNetwork;
-			}
-		}
+                return ais;
+            }
+        }
 		#endregion
 
-		public Airline(Player currPlayer, string name, string airlineCode, List<AircraftInstance> ownedAircrafts, List<EmployeeGroup> staff) {
-            Ownership = currPlayer;
-            Name = name;
-            AirlineCode = airlineCode;
-            Money = MONEY_AT_GAME_START;
-            Reputation = REPUTATION_AT_GAME_START;
-			m_ownedAircrafts = ownedAircrafts;
-			m_staff = staff;
-        }
+		public Airline(Player currPlayer, string name, string airlineCode, List<AircraftInstance> ownedAircrafts, List<EmployeeGroup> staff) :
+            this(currPlayer, name, airlineCode, MONEY_AT_GAME_START, REPUTATION_AT_GAME_START, ownedAircrafts, staff, null) {}
 
 		public Airline(Player currPlayer, string name, string airlineCode, long money, int reputation, 
 					   List<AircraftInstance> ownedAircrafts, List<EmployeeGroup> staff, List<Route> routeNetwork) {
@@ -107,25 +93,54 @@ namespace AirlineManager.Data {
 			AirlineCode = airlineCode;
 			Money = money;
 			Reputation = reputation;
-			m_ownedAircrafts = ownedAircrafts;
-			m_staff = staff;
-			m_routeNetwork = routeNetwork;
+
+            OwnedAircrafts = new List<AircraftInstance>();
+
+            if (ownedAircrafts != null) {
+                OwnedAircrafts.AddRange(ownedAircrafts);
+            }
+
+            Staff = new List<EmployeeGroup>();
+
+            if (staff != null) {
+                Staff.AddRange(staff);
+            }
+
+			RouteNetwork = new List<Route>();
+
+            if (routeNetwork != null) {
+                RouteNetwork.AddRange(routeNetwork);
+            }
+
+            FlightSchedule = new FlightSchedule();
+            FlightHistory = new FlightHistory();
         }
 
 		public void AddRoute(Route route) {
-			m_routeNetwork.Add(route);
+			RouteNetwork.Add(route);
 		}
 
 		public bool RemoveRoute(Route route) {
-			if (m_routeNetwork.Contains(route)) {
-				m_routeNetwork.Remove(route);
+			if (RouteNetwork.Contains(route)) {
+				RouteNetwork.Remove(route);
 				return true;
 			}
 
 			return false;
 		}
 
-		override
+        public bool BuyAircraft(AircraftInstance aircraftInstance) {
+            if (aircraftInstance.CurrentValue > m_money) {
+                return false;
+            }
+
+            m_money -= aircraftInstance.CurrentValue;
+            OwnedAircrafts.Add(aircraftInstance);
+
+            return true;
+        }
+        
+        override
 		public string ToString() {
 			return Name;
 		}

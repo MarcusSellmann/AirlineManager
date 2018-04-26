@@ -1,5 +1,8 @@
-﻿namespace AirlineManager.Data {
-    public enum ServiceLevel {
+﻿using System;
+
+namespace AirlineManager.Data {
+	[Serializable()]
+	public enum ServiceLevel {
         A,
         B,
         C,

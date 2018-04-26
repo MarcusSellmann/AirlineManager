@@ -1,5 +1,8 @@
-﻿namespace AirlineManager.Data {
-    public enum ClassType {
+﻿using System;
+
+namespace AirlineManager.Data {
+	[Serializable()]
+	public enum ClassType {
         Economy,
         Business,
         First,

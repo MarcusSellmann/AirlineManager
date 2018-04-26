@@ -1,27 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace AirlineManager.Data {
-    public class AircraftInstance {
+	[DataContract]
+	public class AircraftInstance {
         #region Attributes
-        float m_distanceFlown;
+        [DataMember]
         string m_registration;
-        long m_commissioning;
-        long m_currentValue;
-        Aircraft m_type;
-        Dictionary<AircraftExtras, AircraftExtra> m_installedExtras = new Dictionary<AircraftExtras, AircraftExtra>();
-		Airport m_currentLocation;
-		InteriorLayout m_interior;
-		List<PlannedService> m_services = new List<PlannedService>();
-        Engine m_installedEngine;
         #endregion
 
         #region Properties
-        public float DistanceFlown {
-            get {
-                return m_distanceFlown;
-            }
-        }
+        [DataMember]
+        public float DistanceFlown { get; private set; }
 
+        [DataMember]
         public string Registration {
             get {
                 return m_registration;
@@ -34,81 +27,65 @@ namespace AirlineManager.Data {
             }
         }
 
-        public long Commissioning {
+        [DataMember]
+        public DateTime InitialOperation { get; private set; }
+
+        [DataMember]
+        public long CurrentValue { get; private set; }
+
+        [DataMember]
+        public Aircraft Type { get; private set; }
+
+        [DataMember]
+        public Dictionary<AircraftExtras, AircraftExtra> InstalledExtras { get; private set; }
+
+        [DataMember]
+        public Airport CurrentLocation { get; private set; }
+
+        [DataMember]
+        public Flight AssignedFlight { get; set; }
+
+        [DataMember]
+        public InteriorLayout Interior { get; private set; }
+
+        [DataMember]
+        public List<PlannedService> Services { get; private set; }
+
+        [DataMember]
+        public Engine InstalledEngine { get; private set; }
+
+        public bool IsUsed {
             get {
-                return m_commissioning;
+                return DistanceFlown > 0;
             }
         }
 
-        public long CurrentValue {
+        public double AgeInDays {
             get {
-                return m_currentValue;
+                return (DateTime.Now - InitialOperation).Duration().TotalDays;
             }
         }
 
-        public Aircraft Type {
+        public double AgeInYears {
             get {
-                return m_type;
-            }
-        }
-
-		public Dictionary<AircraftExtras, AircraftExtra> InstalledExtras {
-			get {
-				return m_installedExtras;
-			}
-		}
-
-		public Airport CurrentLocation {
-			get {
-				return m_currentLocation;
-			}
-		}
-
-		public InteriorLayout Interior {
-			get {
-				return m_interior;
-			}
-		}
-
-		public List<PlannedService> Services {
-			get {
-				return m_services;
-            }
-		}
-
-		public bool IsUsed {
-			get {
-				return m_distanceFlown > 0;
-			}
-		}
-
-        public Engine InstalledEngine {
-            get {
-                return m_installedEngine;
+                return AgeInDays / 365.0;
             }
         }
         #endregion
 
-		/// <summary>
-		/// New aircraft.
-		/// </summary>
-		/// <param name="type"></param>
-		/// <param name="registration"></param>
-		/// <param name="commissioning"></param>
-		/// <param name="currentLocation"></param>
-		/// <param name="layout"></param>
-		public AircraftInstance(Aircraft type, string registration, 
-								long commissioning, Airport currentLocation, 
-                                InteriorLayout layout, Engine installendEngine) {
-			m_distanceFlown = 0;
-			m_registration = registration;
-			m_commissioning = commissioning;
-			m_currentValue = m_commissioning;
-			m_type = type;
-			m_currentLocation = currentLocation;
-			m_interior = layout;
-            m_installedEngine = installendEngine;
-		}
+        /// <summary>
+        /// New aircraft.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="registration"></param>
+        /// <param name="commissioning"></param>
+        /// <param name="currentLocation"></param>
+        /// <param name="layout"></param>
+        public AircraftInstance(Aircraft type, string registration, 
+								DateTime commissioning, Airport currentLocation, 
+                                InteriorLayout layout, Engine installendEngine) : 
+            this(type, 0, registration, commissioning, type.OriginalPrize, null, 
+                 currentLocation, layout, installendEngine) {}
 
 		/// <summary>
 		/// Used aircraft.
@@ -122,20 +99,29 @@ namespace AirlineManager.Data {
 		/// <param name="currentLocation"></param>
 		/// <param name="layout"></param>
         public AircraftInstance(Aircraft type, float distanceFlown, 
-                                string registration, long commissioning,
+                                string registration, DateTime commissioning,
                                 long currentValue, 
 								Dictionary<AircraftExtras,AircraftExtra> installedExtras, 
 								Airport currentLocation, InteriorLayout layout,
                                 Engine installendEngine) {
-            m_distanceFlown = distanceFlown;
+            Type = type;
+            DistanceFlown = distanceFlown;
             m_registration = registration;
-            m_commissioning = commissioning;
-            m_currentValue = currentValue;
-            m_type = type;
-			m_installedExtras = installedExtras;
-			m_currentLocation = currentLocation;
-			m_interior = layout;
-            m_installedEngine = installendEngine;
+            InitialOperation = commissioning;
+            CurrentValue = currentValue;
+			CurrentLocation = currentLocation;
+			Interior = layout;
+            InstalledEngine = installendEngine;
+
+            InstalledExtras = new Dictionary<AircraftExtras, AircraftExtra>();
+
+            if (installedExtras != null) {
+                foreach (KeyValuePair<AircraftExtras, AircraftExtra> ie in installedExtras) {
+                    InstalledExtras[ie.Key] = ie.Value;
+                }
+            }
+
+            Services = new List<PlannedService>();
         }
 
         public void updateCurrentValue() {
@@ -143,12 +129,12 @@ namespace AirlineManager.Data {
         }
 
         public bool IsExtraInstalled(AircraftExtras extraType) {
-            return m_installedExtras[extraType] != null;
+            return InstalledExtras[extraType] != null;
         }
 
 		public bool Arrived(Airport destination) {
 			if (destination != null) {
-				m_currentLocation = destination;
+                CurrentLocation = destination;
 				return true;
 			}
 
@@ -156,12 +142,12 @@ namespace AirlineManager.Data {
 		}
 
 		public void PlanService(PlannedService service) {
-			m_services.Add(service);
+			Services.Add(service);
 		}
 
 		public bool AbortService(PlannedService service) {
-			if (m_services.Contains(service) && !service.Running) {
-				m_services.Remove(service);
+			if (Services.Contains(service) && !service.Running) {
+				Services.Remove(service);
 				return true;
 			}
 

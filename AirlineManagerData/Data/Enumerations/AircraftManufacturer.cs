@@ -1,5 +1,8 @@
-﻿namespace AirlineManager.Data {
-    public enum AircraftManufacturer {
+﻿using System;
+
+namespace AirlineManager.Data {
+	[Serializable()]
+	public enum AircraftManufacturer {
         Aerospatiale,
         Airbus,
         Antonov,

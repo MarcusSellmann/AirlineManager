@@ -1,20 +1,21 @@
-﻿namespace AirlineManager.Data {
+﻿using System.Runtime.Serialization;
+
+namespace AirlineManager.Data {
+    [DataContract]
     public class AircraftExtra {
         #region Attributes
-        long m_installationDuration;
-        AircraftExtras m_extraType;
         #endregion
 
         #region Properties
-        public long InstallationDuration {
-            get {
-                return m_installationDuration;
-            }
-        }
+        [DataMember]
+        public long InstallationDuration { get; private set; }
+
+        [DataMember]
+        public AircraftExtras ExtraType { get; private set; }
 
         public long ExtraPrize {
             get {
-                switch (m_extraType) {
+                switch (ExtraType) {
                     case AircraftExtras.WiFi:
                         return 750000;
 
@@ -32,16 +33,10 @@
                 }
             }
         }
-
-        public AircraftExtras ExtraType {
-            get {
-                return m_extraType;
-            }
-        }
         #endregion
         public AircraftExtra(AircraftExtras extraType, long installationDuration) {
-            m_extraType = extraType;
-            m_installationDuration = installationDuration;
+            ExtraType = extraType;
+            InstallationDuration = installationDuration;
         }
 
 		override

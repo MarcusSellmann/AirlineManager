@@ -1,35 +1,25 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace AirlineManager.Data {
+	[DataContract]
 	public class PlannedService {
-		#region Attributes
-		long m_startTime;
-		long m_duration;
-		long m_costs;
-		#endregion
+        #region Attributes
+        #endregion
 
-		#region Properties
-		public long StartTime {
-			get {
-				return m_startTime;
-			}
-		}
+        #region Properties
+        [DataMember]
+        public long StartTime { get; private set; }
 
-		public long Duration {
-			get {
-				return m_duration;
-			}
-		}
+        [DataMember]
+        public long Duration { get; private set; }
 
-		public long EndTime {
+        [DataMember]
+        public long Costs { get; private set; }
+
+        public long EndTime {
 			get {
 				return StartTime + Duration;
-			}
-		}
-
-		public long Costs {
-			get {
-				return m_costs;
 			}
 		}
 
@@ -47,9 +37,9 @@ namespace AirlineManager.Data {
 		#endregion
 
 		public PlannedService(long startTime, long duration, long costs) {
-			m_startTime = startTime;
-			m_duration = duration;
-			m_costs = costs;
+			StartTime = startTime;
+			Duration = duration;
+			Costs = costs;
 		}
 
 		override

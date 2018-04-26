@@ -27,17 +27,28 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="GeoCoordinatePortable">
-      <HintPath>packages\GeoCoordinate.1.1.0\lib\portable-net45+wp80+win+wpa81\GeoCoordinatePortable.dll</HintPath>
+    <Reference Include="SimplexNoise">
+      <HintPath>lib\SimplexNoise\SimplexNoise.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
+    <Reference Include="GeoCoordinatePortable, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\GeoCoordinate.1.1.0\lib\portable-net45+wp80+win+wpa81\GeoCoordinatePortable.dll</HintPath>
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\BinarySerializer.cs" />
     <Compile Include="Business\Databases\AircraftDatabase.cs" />
     <Compile Include="Business\Databases\AircraftInstanceDatabase.cs" />
     <Compile Include="Business\Databases\AirportDatabase.cs" />
     <Compile Include="Business\ExceptionHandling\IncorrectInputUIException.cs" />
-    <Compile Include="Business\FlightDemandCalculator.cs" />
+    <Compile Include="Business\FlightScheduler.cs" />
+    <Compile Include="Business\Generators\AircraftInstanceGenerator.cs" />
+    <!--<Compile Include="Business\Generators\FlightDemandGenerator.cs" />-->
+    <Compile Include="Business\Generators\InteriorLayoutGenerator.cs" />
     <Compile Include="Business\MainGameController.cs" />
     <Compile Include="Business\RandomCostsCalculator.cs" />
     <Compile Include="Business\SavegameHandler.cs" />
