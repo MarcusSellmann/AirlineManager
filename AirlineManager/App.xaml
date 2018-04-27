@@ -7,9 +7,11 @@
         <ResourceDictionary>
             <!-- Colors -->
             <Color x:Key="AmWindowBackgroundColor">#2d2d30</Color>
+            <Color x:Key="AmSlideInWindowBackgroundColor">#424247</Color>
             
             <!-- Colors brushes -->
             <SolidColorBrush x:Key="AmWindowBackground" Color="{StaticResource AmWindowBackgroundColor}" />
+            <SolidColorBrush x:Key="AmSlideInWindowBackground" Color="{StaticResource AmSlideInWindowBackgroundColor}" />
             <SolidColorBrush x:Key="AmDefaultTextColor" Color="White" />
             <SolidColorBrush x:Key="AmListViewColumnItemTextColor" Color="White" />
 
