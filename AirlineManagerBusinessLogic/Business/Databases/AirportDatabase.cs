@@ -30,6 +30,8 @@ namespace AirlineManager.Business.Databases {
 		#endregion
 
 		AirportDatabase() {
+            DB = new List<Airport>();
+
 			// TODO: Extend database by reading from file.
 			ICAOCode iEDDT = new ICAOCode("EDDT");
 			ICAOCode iEDDF = new ICAOCode("EDDF");
