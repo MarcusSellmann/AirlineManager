@@ -48,8 +48,8 @@
       <HintPath>..\packages\ConcurrentHashSet.1.0.2\lib\netstandard1.0\ConcurrentCollections.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="GeoCoordinatePortable, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GeoCoordinate.1.1.0\lib\portable-net45+wp80+win+wpa81\GeoCoordinatePortable.dll</HintPath>
+    <Reference Include="GeoCoordinate.NetCore, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeoCoordinate.NetCore.1.0.0.1\lib\netstandard1.6\GeoCoordinate.NetCore.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
@@ -151,11 +151,11 @@
       <DependentUpon>AircraftMarketPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Pages\Subpages\FlightScheduleFlightCreationComplexSubpage.xaml.cs">
-		<DependentUpon>FlightScheduleFlightCreationComplexSubpage.xaml</DependentUpon>
-	</Compile>
+      <DependentUpon>FlightScheduleFlightCreationComplexSubpage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Pages\Subpages\FlightScheduleFlightCreationOnceSubpage.xaml.cs">
-		<DependentUpon>FlightScheduleFlightCreationOnceSubpage.xaml</DependentUpon>
-	</Compile>
+      <DependentUpon>FlightScheduleFlightCreationOnceSubpage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Pages\FlightSchedulePage.xaml.cs">
       <DependentUpon>FlightSchedulePage.xaml</DependentUpon>
     </Compile>
