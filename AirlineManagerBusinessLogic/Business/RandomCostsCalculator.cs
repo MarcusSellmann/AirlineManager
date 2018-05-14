@@ -117,12 +117,8 @@ namespace AirlineManager.Business {
 			float[] fc = Noise.Calc1D(m_fuelCosts.Length, 0.05f);
 			
 			for (int i = 0; i < m_fuelCosts.Length; ++i) {
-				if (i > 0) {
-					m_fuelCosts[i] = new FuelPrize(DateTime.Now + TimeSpan.FromMinutes(FUEL_COST_RECALC_INTERVAL_MINUTE), fc[i]);
-                } else {
-					m_fuelCosts[i] = new FuelPrize(DateTime.Now, fc[i]);
-				}
-			}
+                m_fuelCosts[i] = new FuelPrize(DateTime.Now + TimeSpan.FromMinutes(FUEL_COST_RECALC_INTERVAL_MINUTE * i), fc[i]);
+            }
 		}
 		
 		#region Timer methods
