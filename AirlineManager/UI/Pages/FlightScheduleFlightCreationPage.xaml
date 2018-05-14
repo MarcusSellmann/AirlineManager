@@ -36,7 +36,7 @@
             Foreground="{StaticResource AmDefaultTextColor}" 
             HorizontalAlignment="Center"
             VerticalAlignment="Center">
-            <TextBlock>Routes</TextBlock>
+            <TextBlock TextDecorations="Underline" FontWeight="Bold" >Routes</TextBlock>
         </Label>
         <ListView
             Name="lvRoutes" 
@@ -78,7 +78,7 @@
             Foreground="{StaticResource AmDefaultTextColor}"
             HorizontalAlignment="Center"
             VerticalAlignment="Center">
-            <TextBlock>Aircrafts</TextBlock>
+            <TextBlock TextDecorations="Underline" FontWeight="Bold">Aircrafts</TextBlock>
         </Label>
         <ListView
             Name="lvAircrafts" 
@@ -115,7 +115,9 @@
             </ListView.View>
         </ListView>
         <StackPanel Grid.Column="0" Grid.Row="2" Margin="10 0 10 0">
-            <Label Foreground="{StaticResource AmDefaultTextColor}">Flight frequency</Label>
+            <Label Foreground="{StaticResource AmDefaultTextColor}">
+                <TextBlock TextDecorations="Underline" FontWeight="Bold">Flight frequency</TextBlock>
+            </Label>
             <RadioButton Name="rbFlightFrequencyOnce" 
                          GroupName="rbGroupFlightFrequency" 
                          Checked="rbFlightFrequencyOnce_Checked" 
