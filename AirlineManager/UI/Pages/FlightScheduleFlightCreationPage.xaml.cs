@@ -32,6 +32,8 @@ namespace AirlineManager.UI.Pages
             }
 
             InitializeComponent();
+            lvRoutes.ItemsSource = m_routes;
+            lvAircrafts.ItemsSource = m_aircrafts;
 
             _flightFrequency = new Frame();
             //_flightFrequency.Navigate(new FlightScheduleFlightCreationOnceSubpage());

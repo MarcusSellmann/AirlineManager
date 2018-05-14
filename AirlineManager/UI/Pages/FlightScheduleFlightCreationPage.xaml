@@ -41,10 +41,24 @@
             Style="{StaticResource DefaultListViewStyle}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Route">
+                    <GridViewColumn Header="Route" Width="Auto">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding RouteNumber}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Origin" Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Origin}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Destination" Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Destination}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -62,10 +76,24 @@
             Style="{StaticResource DefaultListViewStyle}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Route">
+                    <GridViewColumn Header="Reg." Width="Auto">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Registration}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Current location" Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding CurrentLocation}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="A/C Type" Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Type}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
