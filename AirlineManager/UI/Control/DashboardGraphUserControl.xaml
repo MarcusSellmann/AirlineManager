@@ -34,7 +34,11 @@
         <Label Tag="{Binding DiagrammTitle}" Style="{StaticResource DiagrammTitleContainer}">
             <TextBlock Style="{StaticResource DiagrammTitle}" Text="{Binding Path=Tag, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Label}}}" />
         </Label>
-        <lvc:CartesianChart Series="{Binding Collection}" LegendLocation="Bottom" Style="{DynamicResource DashboardSquareDiagram}">
+        <lvc:CartesianChart 
+            Series="{Binding Collection}" 
+            LegendLocation="Bottom" 
+            Style="{DynamicResource DashboardSquareDiagram}"
+            DataTooltip="{x:Null}">
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Title="{Binding TitleXAxis}" LabelFormatter="{Binding FormatterXAxis}" />
             </lvc:CartesianChart.AxisX>

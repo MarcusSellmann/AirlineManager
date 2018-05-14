@@ -27,13 +27,11 @@ namespace AirlineManager.UI.Pages {
 
 			m_fuelCostsUc = FuelCostsUc;
 			m_fuelCostsUc.DiagrammTitle = "Fuel prize";
-			m_fuelCostsUc.FormatterXAxis = value => new DateTime((long)value).ToString("t");
+			m_fuelCostsUc.FormatterXAxis = value => new DateTime((long)value).ToString("dd.MM.yyyy HH:mm");
 			m_fuelCostsUc.ShowLegend = false;
 			m_fuelCostsUc.Collection = new SeriesCollection {
-				new LineSeries {
-					Values = new ChartValues<DateTimePoint>(fuelPrizes) {
-						new DateTimePoint()
-					}
+                new LineSeries {
+					Values = new ChartValues<DateTimePoint>(fuelPrizes)
 				}
 			};
 
