@@ -30,7 +30,14 @@
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" Content="Routes" Foreground="{StaticResource AmDefaultTextColor}" />
+        <Label 
+            Grid.Column="0" 
+            Grid.Row="0" 
+            Foreground="{StaticResource AmDefaultTextColor}" 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <TextBlock>Routes</TextBlock>
+        </Label>
         <ListView
             Name="lvRoutes" 
             ItemsSource="{Binding m_routes}"
@@ -65,7 +72,14 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label Grid.Column="1" Grid.Row="0" Content="Aircrafts" Foreground="{StaticResource AmDefaultTextColor}" />
+        <Label 
+            Grid.Column="1" 
+            Grid.Row="0" 
+            Foreground="{StaticResource AmDefaultTextColor}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <TextBlock>Aircrafts</TextBlock>
+        </Label>
         <ListView
             Name="lvAircrafts" 
             ItemsSource="{Binding m_aircrafts}"

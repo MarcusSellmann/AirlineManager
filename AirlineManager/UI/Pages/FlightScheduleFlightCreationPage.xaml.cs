@@ -35,17 +35,16 @@ namespace AirlineManager.UI.Pages
             lvRoutes.ItemsSource = m_routes;
             lvAircrafts.ItemsSource = m_aircrafts;
 
-            _flightFrequency = new Frame();
-            //_flightFrequency.Navigate(new FlightScheduleFlightCreationOnceSubpage());
+            _flightFrequency.Navigate(new FlightScheduleFlightCreationOnceSubpage());
             btnCreateFlight.IsEnabled = false;
         }
 
         private void lvRoutes_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-
+            UpdateCreateButtonStatus();
         }
 
         private void lvAircrafts_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-
+            UpdateCreateButtonStatus();
         }
 
         private void btnCreateFlight_Click(object sender, RoutedEventArgs e) {
