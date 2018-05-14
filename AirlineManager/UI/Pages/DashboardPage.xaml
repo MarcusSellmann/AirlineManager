@@ -19,7 +19,7 @@
     
     <StackPanel Orientation="Vertical">
         <Label Content="Dashboard" Foreground="{StaticResource AmDefaultTextColor}" />
-        <uc:DashboardGraphUserControl x:Name="FuelCostsUc" Width="300"/>
+        <uc:DashboardGraphUserControl x:Name="FuelCostsUc" />
         <Grid HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />

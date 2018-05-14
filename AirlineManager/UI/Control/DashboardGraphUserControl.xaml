@@ -17,8 +17,6 @@
                     <Setter Property="LegendLocation" Value="None"/>
                 </DataTrigger>
             </Style.Triggers>
-            <Setter Property="MinWidth" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" />
-            <Setter Property="MinHeight" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" />
         </Style>
         <Style TargetType="Label" x:Key="DiagrammTitleContainer">
             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -27,6 +25,7 @@
             <Setter Property="FontSize" Value="15" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="TextDecorations" Value="Underline" />
+            <Setter Property="Foreground" Value="{StaticResource AmDefaultTextColor}" />
         </Style>
     </UserControl.Resources>
     
@@ -38,7 +37,10 @@
             Series="{Binding Collection}" 
             LegendLocation="Bottom" 
             Style="{DynamicResource DashboardSquareDiagram}"
-            DataTooltip="{x:Null}">
+            DataTooltip="{x:Null}"
+            Height="400"
+            Width="Auto"
+            Margin="10">
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Title="{Binding TitleXAxis}" LabelFormatter="{Binding FormatterXAxis}" />
             </lvc:CartesianChart.AxisX>
