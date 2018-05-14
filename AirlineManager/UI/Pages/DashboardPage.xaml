@@ -9,14 +9,6 @@
       Title="Dashboard"
       Background="{StaticResource AmWindowBackground}">
 
-    <Page.Resources>
-        <Style x:Key="TileElement" TargetType="uc:DashboardInfoTileUserControl">
-            <Setter Property="MinWidth" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" />
-            <Setter Property="MinHeight" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" />
-            <Setter Property="Width" Value="125" />
-        </Style>
-    </Page.Resources>
-    
     <StackPanel Orientation="Vertical">
         <Label Content="Dashboard" Foreground="{StaticResource AmDefaultTextColor}" />
         <uc:DashboardGraphUserControl x:Name="FuelCostsUc" />
@@ -34,34 +26,34 @@
             <uc:DashboardInfoTileUserControl 
                 Grid.Column="0" Grid.Row="0"
                 x:Name="AmountMoneyUc" 
-                Style="{StaticResource TileElement}" 
+                Width="125" 
                 Background="AliceBlue" />
             <uc:DashboardInfoTileUserControl 
                 Grid.Column="1" Grid.Row="0"
                 x:Name="ReputationUc" 
-                Style="{StaticResource TileElement}" 
+                Width="125" 
                 Background="Brown" 
                 Foreground="White" />
             <uc:DashboardInfoTileUserControl 
                 Grid.Column="0" Grid.Row="1"
                 x:Name="NumberOfAircraftsUc" 
-                Style="{StaticResource TileElement}" 
+                Width="125" 
                 Background="Green" />
             <uc:DashboardInfoTileUserControl 
                 Grid.Column="1" Grid.Row="1"
                 x:Name="NumberOfRoutesUc" 
-                Style="{StaticResource TileElement}" 
+                Width="125" 
                 Background="Violet" 
                 Foreground="White" />
             <uc:DashboardInfoTileUserControl 
                 Grid.Column="2" Grid.Row="0"
                 x:Name="NumberOfUsedAircraftsUc" 
-                Style="{StaticResource TileElement}" 
+                Width="125" 
                 Background="BlanchedAlmond" />
             <uc:DashboardInfoTileUserControl
                 Grid.Column="2" Grid.Row="1"
                 x:Name="NumberOfScheduledFlightsUc"
-                Style="{StaticResource TileElement}"
+                Width="125" 
                 Background="DodgerBlue" />
         </Grid>
     </StackPanel>

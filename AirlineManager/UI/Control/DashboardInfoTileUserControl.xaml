@@ -20,9 +20,13 @@
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Padding" Value="5" />
         </Style>
+        <Style TargetType="DockPanel" x:Key="DashboardInfoTileUserControl">
+            <Setter Property="MinWidth" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" />
+            <Setter Property="MinHeight" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" />
+        </Style>
     </UserControl.Resources>
 
-    <DockPanel Background="{Binding Background}" >
+    <DockPanel Background="{Binding Background}" Style="{StaticResource DashboardInfoTileUserControl}" >
         <TextBlock Text="{Binding Title}"
                Width="{Binding ActualWidth}" 
                Style="{DynamicResource DashboardInfoTileUserControlTitle}" 
