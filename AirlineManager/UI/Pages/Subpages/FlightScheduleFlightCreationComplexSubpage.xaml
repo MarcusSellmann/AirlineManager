@@ -25,45 +25,31 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
-            <Label HorizontalAlignment="Center" 
-                   Foreground="{StaticResource AmDefaultTextColor}"
-                   Content="Mon" />
+            <Label HorizontalAlignment="Center" Content="Mon" />
             <CheckBox x:Name="cbMonday" HorizontalAlignment="Center"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0">
-            <Label HorizontalAlignment="Center"
-                   Foreground="{StaticResource AmDefaultTextColor}"
-                   Content="Tue" />
+            <Label HorizontalAlignment="Center" Content="Tue" />
             <CheckBox x:Name="cbTuesday" HorizontalAlignment="Center"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="0">
-            <Label HorizontalAlignment="Center"
-                   Foreground="{StaticResource AmDefaultTextColor}"
-                   Content="Wed" />
+            <Label HorizontalAlignment="Center" Content="Wed" />
             <CheckBox x:Name="cbWednesday" HorizontalAlignment="Center"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="3" Grid.Row="0">
-            <Label HorizontalAlignment="Center"
-                   Foreground="{StaticResource AmDefaultTextColor}"
-                   Content="Thu" />
+            <Label HorizontalAlignment="Center" Content="Thu" />
             <CheckBox x:Name="cbThursday" HorizontalAlignment="Center"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="4" Grid.Row="0">
-            <Label HorizontalAlignment="Center"
-                   Foreground="{StaticResource AmDefaultTextColor}"
-                   Content="Fri" />
+            <Label HorizontalAlignment="Center" Content="Fri" />
             <CheckBox x:Name="cbFriday" HorizontalAlignment="Center"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="5" Grid.Row="0">
-            <Label HorizontalAlignment="Center"
-                   Foreground="{StaticResource AmDefaultTextColor}"
-                   Content="Sat" />
+            <Label HorizontalAlignment="Center" Content="Sat" />
             <CheckBox x:Name="cbSaturday" HorizontalAlignment="Center"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="6" Grid.Row="0">
-            <Label HorizontalAlignment="Center"
-                   Foreground="{StaticResource AmDefaultTextColor}"
-                   Content="Sun" />
+            <Label HorizontalAlignment="Center" Content="Sun" />
             <CheckBox x:Name="cbSunday" HorizontalAlignment="Center"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="7" Grid.Row="0">
@@ -84,8 +70,7 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0"
                    HorizontalAlignment="Right"
-                   Content="Departure time" 
-                   Foreground="{StaticResource AmDefaultTextColor}" />
+                   Content="Departure time" />
             <xctk:TimePicker x:Name="tpDepartureTime" 
                              Grid.Column="1"
                              HorizontalAlignment="Left"

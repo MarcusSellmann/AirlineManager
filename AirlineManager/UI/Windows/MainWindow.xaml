@@ -1,8 +1,9 @@
-﻿<Window x:Class="AirlineManager.MainWindow"
+﻿<Metro:MetroWindow x:Class="AirlineManager.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
         Title="Airline Manager" MinHeight="768" MinWidth="1024">
 
@@ -11,8 +12,8 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical" Background="{StaticResource AmWindowBackground}" Grid.Column="0" >
-            <Label x:Name="lblCurrentTime" Content="Label" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource AmDefaultTextColor}" />
+        <StackPanel Orientation="Vertical" Grid.Column="0" >
+            <Label x:Name="lblCurrentTime" Content="Label" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center" />
             <Button x:Name="btnDashboard" Click="btnDashboard_Click" Style="{DynamicResource NoChromeButton}">
                 <Image Source="/AirlineManager;component/res/138198-business-collection/graph-8.png" />
             </Button>
@@ -39,4 +40,4 @@
             <Frame x:Name="_mainFrame" DockPanel.Dock="Top" NavigationUIVisibility="Hidden" />
         </DockPanel>
     </Grid>
-</Window>
+</Metro:MetroWindow>

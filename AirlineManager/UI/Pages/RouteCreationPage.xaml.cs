@@ -55,7 +55,7 @@ namespace AirlineManager.UI.Pages {
         private void btnCreateRoute_Click(object sender, RoutedEventArgs e) {
             RouteType rt = RouteType.Domestic;
 
-            if (tblRouteType.Text.Equals(RouteType.International.ToString())) {
+            if (lblRouteType.Content.Equals(RouteType.International.ToString())) {
                 rt = RouteType.International;
             }
 
@@ -78,11 +78,11 @@ namespace AirlineManager.UI.Pages {
 
         private void UpdateRouteType() {
             if (cbOrigin.SelectedIndex == -1 || cbDestination.SelectedIndex == -1) {
-                tblRouteType.Text = "undefined";
+                lblRouteType.Content.Equals("undefined");
             } else if (m_airports[cbOrigin.SelectedIndex].Country.Equals(m_airports[cbDestination.SelectedIndex].Country)) {
-                tblRouteType.Text = RouteType.Domestic.ToString();
+                lblRouteType.Content.Equals(RouteType.Domestic.ToString());
             } else {
-                tblRouteType.Text = RouteType.International.ToString();
+                lblRouteType.Content.Equals(RouteType.International.ToString());
             }
         }
 

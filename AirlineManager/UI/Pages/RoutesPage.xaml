@@ -9,7 +9,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="Routes">
 
-    <Grid Background="{StaticResource AmWindowBackground}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
             <RowDefinition Height="6*"/>
@@ -18,40 +18,15 @@
         <ListView
             Name="lvRoutes" 
             ItemsSource="{Binding m_routes}"
-            Background="{StaticResource AmWindowBackground}"
             Grid.Row="0"
             SelectionChanged="lvRoutes_SelectionChanged"
             Style="{StaticResource DefaultListViewStyle}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Route">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding RouteNumber}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Origin">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Origin.CodeICAO.Code}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Destination">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Destination.CodeICAO.Code}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Distance">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Distance, StringFormat=\{0:N0\}}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                    <GridViewColumn Header="Route" DisplayMemberBinding="{Binding RouteNumber}" />
+                    <GridViewColumn Header="Origin" DisplayMemberBinding="{Binding Origin.CodeICAO.Code}" />
+                    <GridViewColumn Header="Destination" DisplayMemberBinding="{Binding Destination.CodeICAO.Code}" />
+                    <GridViewColumn Header="Distance" DisplayMemberBinding="{Binding Distance, StringFormat=\{0:N0\} m}" />
                 </GridView>
             </ListView.View>
         </ListView>

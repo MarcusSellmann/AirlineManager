@@ -8,7 +8,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="AirportsPage">
 
-    <Grid Background="{StaticResource AmWindowBackground}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
@@ -16,7 +16,6 @@
         <ListView
             Name="lvAirports"
             ItemsSource="{Binding m_airports}"
-            Background="{StaticResource AmWindowBackground}"
             SelectionChanged="lvAirports_SelectionChanged"
             Style="{StaticResource DefaultListViewStyle}"
             Grid.Row="0">
@@ -30,41 +29,12 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="IATA">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding CodeIATA}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Name">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="City">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding City}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Country">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding CodeICAO.Country}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Max runway length">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding MaximalRunwayLength, StringFormat=\{0:0\} m}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+
+                    <GridViewColumn Header="IATA" DisplayMemberBinding="{Binding CodeIATA}" />
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="City" DisplayMemberBinding="{Binding City}" />
+                    <GridViewColumn Header="Country" DisplayMemberBinding="{Binding CodeICAO.Country}" />
+                    <GridViewColumn Header="Max runway length" DisplayMemberBinding="{Binding MaximalRunwayLength, StringFormat=\{0:N0\} m}" />
                 </GridView>
             </ListView.View>
         </ListView>

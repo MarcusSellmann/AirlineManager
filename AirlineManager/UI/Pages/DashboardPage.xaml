@@ -6,11 +6,10 @@
       xmlns:uc="clr-namespace:AirlineManager.UI.Control"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="Dashboard"
-      Background="{StaticResource AmWindowBackground}">
+      Title="Dashboard">
 
     <StackPanel Orientation="Vertical">
-        <Label Content="Dashboard" Foreground="{StaticResource AmDefaultTextColor}" />
+        <Label Content="Dashboard" />
         <uc:DashboardGraphUserControl x:Name="FuelCostsUc" />
         <Grid HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>

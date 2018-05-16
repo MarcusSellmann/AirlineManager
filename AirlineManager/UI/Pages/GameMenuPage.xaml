@@ -5,8 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="GameMenuPage"
-      Background="{StaticResource AmWindowBackground}">
+      Title="GameMenuPage">
 
     <Page.Resources>
         <Style x:Key="ButtonStyle" TargetType="Button">
@@ -19,15 +18,12 @@
                Orientation="Vertical">
         <Button x:Name="btnSaveGame" 
                 Content="Save game" 
-                Click="btnSaveGame_Click" 
-                Style="{StaticResource ButtonStyle}" />
+                Click="btnSaveGame_Click" />
         <Button x:Name="btnLoadGame" 
                 Content="Load game" 
-                Click="btnLoadGame_Click"
-                Style="{StaticResource ButtonStyle}" />
+                Click="btnLoadGame_Click" />
         <Button x:Name="btnExitGame" 
                 Content="Exit game" 
-                Click="btnExitGame_Click"
-                Style="{StaticResource ButtonStyle}" />
+                Click="btnExitGame_Click" />
     </WrapPanel>
 </Page>

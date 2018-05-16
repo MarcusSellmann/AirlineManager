@@ -5,8 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="RouteCreationPage"
-      Background="{StaticResource AmWindowBackground}">
+      Title="RouteCreationPage">
 
     <Page.Resources>
         <Style x:Name="tblElementMargin" TargetType="TextBlock">
@@ -19,7 +18,7 @@
             <Setter Property="Margin" Value="10 10 10 0" />
         </Style>
     </Page.Resources>
-    <Grid Background="{StaticResource AmWindowBackground}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="6*"/>
@@ -33,7 +32,6 @@
         <Label 
             Grid.Column="0" 
             Grid.Row="0" 
-            Foreground="{StaticResource AmDefaultTextColor}" 
             HorizontalAlignment="Center"
             VerticalAlignment="Center">
             <TextBlock TextDecorations="Underline" FontWeight="Bold" >Routes</TextBlock>
@@ -41,41 +39,21 @@
         <ListView
             Name="lvRoutes" 
             ItemsSource="{Binding m_routes}"
-            Background="{StaticResource AmWindowBackground}"
             Grid.Row="1"
             Grid.Column="0"
             SelectionChanged="lvRoutes_SelectionChanged"
             Style="{StaticResource DefaultListViewStyle}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Route" Width="Auto">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding RouteNumber}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Origin" Width="Auto">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Origin}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Destination" Width="Auto">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Destination}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                    <GridViewColumn Header="Route" DisplayMemberBinding="{Binding RouteNumber}" />
+                    <GridViewColumn Header="Origin" DisplayMemberBinding="{Binding Origin}" />
+                    <GridViewColumn Header="Destination" DisplayMemberBinding="{Binding Destination}" />
                 </GridView>
             </ListView.View>
         </ListView>
         <Label 
             Grid.Column="1" 
             Grid.Row="0" 
-            Foreground="{StaticResource AmDefaultTextColor}"
             HorizontalAlignment="Center"
             VerticalAlignment="Center">
             <TextBlock TextDecorations="Underline" FontWeight="Bold">Aircrafts</TextBlock>
@@ -83,51 +61,32 @@
         <ListView
             Name="lvAircrafts" 
             ItemsSource="{Binding m_aircrafts}"
-            Background="{StaticResource AmWindowBackground}"
             Grid.Row="1"
             Grid.Column="1"
             SelectionChanged="lvAircrafts_SelectionChanged"
             Style="{StaticResource DefaultListViewStyle}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Reg." Width="Auto">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Registration}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Current location" Width="Auto">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding CurrentLocation}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="A/C Type" Width="Auto">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Type}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                    <GridViewColumn Header="Reg." DisplayMemberBinding="{Binding Registration}" />
+                    <GridViewColumn Header="Current location" DisplayMemberBinding="{Binding CurrentLocation}" />
+                    <GridViewColumn Header="A/C Type" DisplayMemberBinding="{Binding Type}" />
                 </GridView>
             </ListView.View>
         </ListView>
         <StackPanel Grid.Column="0" Grid.Row="2" Margin="10 0 10 0">
-            <Label Foreground="{StaticResource AmDefaultTextColor}">
+            <Label>
                 <TextBlock TextDecorations="Underline" FontWeight="Bold">Flight frequency</TextBlock>
             </Label>
             <RadioButton Name="rbFlightFrequencyOnce" 
                          GroupName="rbGroupFlightFrequency" 
                          Checked="rbFlightFrequencyOnce_Checked" 
                          IsChecked="True">
-                <TextBlock Foreground="{StaticResource AmDefaultTextColor}">Once</TextBlock>
+                <TextBlock Text="Once" />
             </RadioButton>
             <RadioButton Name="rbFlightFrequencyComplex" 
                          GroupName="rbGroupFlightFrequency"
                          Checked="rbFlightFrequencyComplex_Checked">
-                <TextBlock Foreground="{StaticResource AmDefaultTextColor}">Complex</TextBlock>
+                <TextBlock Text="Complex" />
             </RadioButton>
         </StackPanel>
         <Frame x:Name="_flightFrequency" 

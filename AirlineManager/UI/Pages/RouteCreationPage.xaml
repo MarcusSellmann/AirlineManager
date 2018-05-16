@@ -5,8 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="RouteCreationPage"
-      Background="{StaticResource AmWindowBackground}">
+      Title="RouteCreationPage">
 
     <Page.Resources>
         <Style x:Name="tblElementMargin" TargetType="TextBlock">
@@ -29,17 +28,17 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Column="0">
-            <TextBlock Height="{Binding ActualHeight, ElementName=tblRouteType}" Foreground="{StaticResource AmListViewColumnItemTextColor}">Type</TextBlock>
-            <TextBlock Height="{Binding ActualHeight, ElementName=cbOrigin}" Foreground="{StaticResource AmListViewColumnItemTextColor}">Source</TextBlock>
-            <TextBlock Height="{Binding ActualHeight, ElementName=cbDestination}" Foreground="{StaticResource AmListViewColumnItemTextColor}">Destination</TextBlock>
-            <TextBlock Height="{Binding ActualHeight, ElementName=tboRouteNumber}" Foreground="{StaticResource AmListViewColumnItemTextColor}">Route #</TextBlock>
+            <Label Height="{Binding ActualHeight, ElementName=lblRouteType}" Content="Type" />
+            <Label Height="{Binding ActualHeight, ElementName=cbOrigin}" Content="Source" />
+            <Label Height="{Binding ActualHeight, ElementName=cbDestination}" Content="Destination" />
+            <Label Height="{Binding ActualHeight, ElementName=tboRouteNumber}" Content="Route #" />
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="1">
-            <TextBlock Name="tblRouteType" Height="{Binding ActualHeight, ElementName=tboRouteNumber}" Foreground="{StaticResource AmListViewColumnItemTextColor}">undefined</TextBlock>
+            <Label Name="lblRouteType" Height="{Binding ActualHeight, ElementName=tboRouteNumber}" Content="undefined" />
             <ComboBox Name="cbOrigin" SelectionChanged="cbOrigin_SelectionChanged">
                 <ComboBox.ItemContainerStyle>
                     <Style TargetType="ComboBoxItem">
-                        <!--<Setter Property="Height" Value="16" />-->
+                        <!--<Setter Property="MaxHeight" Value="16" />-->
                     </Style>
                 </ComboBox.ItemContainerStyle>
             </ComboBox>

@@ -1,12 +1,13 @@
 ﻿using AirlineManager.Business;
 using AirlineManager.UI.Interfaces;
 using System.Windows;
+using MahApps.Metro.Controls;
 
 namespace AirlineManager.UI.Windows {
 	/// <summary>
 	/// Interaction logic for MainMenuWindow.xaml
 	/// </summary>
-	public partial class MainMenuWindow : Window, IPopoverWindowCreatorCallback {
+	public partial class MainMenuWindow : MetroWindow, IPopoverWindowCreatorCallback {
 		public MainMenuWindow() {
 			InitializeComponent();
 
