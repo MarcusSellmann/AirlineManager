@@ -16,7 +16,10 @@
                     <GridViewColumn Header="Manufacturer">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Manufacturer}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Image}" Width="100" Height="50" Margin="0 0 10 0" />
+                                    <TextBlock Text="{Binding Manufacturer}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
+                                </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
