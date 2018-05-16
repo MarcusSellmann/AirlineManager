@@ -6,6 +6,14 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="AircraftInstancePage">
+    <Page.Resources>
+        <Storyboard x:Key="sbShowFilterMenu">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,-300,0" To="0,0,0,0" DecelerationRatio=".9" Duration="0:0:1" />
+        </Storyboard>
+        <Storyboard x:Key="sbHideFilterMenu">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,0,-300,0" AccelerationRatio=".9" Duration="0:0:1" />
+        </Storyboard>
+    </Page.Resources>
 
     <Grid Background="{StaticResource AmWindowBackground}">
         <Grid.RowDefinitions>
@@ -83,5 +91,15 @@
                 Margin="10">
             <TextBlock>Add new instance</TextBlock>
         </Button>
+
+        <StackPanel Panel.ZIndex="2" Name="pnlFilterMenu" Orientation="Horizontal" Height="Auto" HorizontalAlignment="Right" Margin="0,0,-300,0">
+            <Grid>
+                <Button Name="btnFilterMenuHide" Width="45" Height="30" Click="btnFilterMenuHide_Click" Content="Hide" Visibility="Hidden"/>
+                <Button Name="btnFilterMenuShow" Width="45" Height="30" Click="btnFilterMenuShow_Click" Content="Filter" />
+            </Grid>
+            <Border BorderBrush="Black" BorderThickness="1" Width="300" Background="{StaticResource AmSlideInWindowBackground}">
+                <Frame Name="_filterSidebarFrame" />
+            </Border>
+        </StackPanel>
     </Grid>
 </Page>

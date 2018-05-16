@@ -1,0 +1,94 @@
+﻿<Page x:Class="AirlineManager.UI.Pages.Subpages.AircraftInstanceFilterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns:local="clr-namespace:AirlineManager.UI.Pages.Subpages"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="AircraftInstanceFilterPage">
+    
+    <Page.Resources>
+        <Style TargetType="StackPanel" x:Key="AmFilterElementBlock">
+            <Setter Property="Margin" Value="10 0 10 10" />
+        </Style>
+    </Page.Resources>
+    
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical" Style="{StaticResource AmFilterElementBlock}">
+                <Label>
+                    <TextBlock Text="{Binding ElementName=slAvailableRunwayLength, Path=Value, StringFormat={}Available runway length: {0:N0} m}" />
+                </Label>
+                <Slider 
+                    x:Name="slAvailableRunwayLength" 
+                    Minimum="500" 
+                    Maximum="10000"
+                    TickFrequency="100.0"
+                    IsSnapToTickEnabled="True"
+                    Value="4000"
+                    ValueChanged="slAvailableRunwayLength_ValueChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Style="{StaticResource AmFilterElementBlock}">
+                <Label>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Flown distance: {0:N0} - {1:N0} km">
+                                <Binding ElementName="slFlownDistance" Path="LowerValue" />
+                                <Binding ElementName="slFlownDistance" Path="UpperValue" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Label>
+                <Metro:RangeSlider 
+                    x:Name="slFlownDistance" 
+                    Orientation="Horizontal"
+                    Minimum="0" 
+                    Maximum="1000000000"
+                    TickFrequency="2000.0"
+                    IsSnapToTickEnabled="True"
+                    LowerValue="1000"
+                    UpperValue="1000000000"
+                    LowerValueChanged="slFlownDistance_LowerValueChanged"
+                    UpperValueChanged="slFlownDistance_UpperValueChanged"
+                    RangeSelectionChanged="slFlownDistance_RangeSelectionChanged" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Style="{StaticResource AmFilterElementBlock}">
+                <Label>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Age: {0:N1} - {1:N1} years">
+                                <Binding ElementName="slAge" Path="LowerValue" />
+                                <Binding ElementName="slAge" Path="UpperValue" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Label>
+                <Metro:RangeSlider 
+                    x:Name="slAge" 
+                    Minimum="0" 
+                    Maximum="100"
+                    MinRange="0.5"
+                    TickFrequency="0.5"
+                    IsSnapToTickEnabled="True"
+                    LowerValue="0"
+                    UpperValue="100"
+                    LowerValueChanged="slAge_LowerValueChanged"
+                    UpperValueChanged="slAge_UpperValueChanged"
+                    RangeSelectionChanged="slAge_RangeSelectionChanged" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Style="{StaticResource AmFilterElementBlock}">
+                <Label Content="A/C type" />
+                <ComboBox x:Name="cbAircraftType"
+                          SelectionChanged="cbAircraftType_SelectionChanged" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Style="{StaticResource AmFilterElementBlock}">
+                <Button 
+                    Name="btnApplyFilter" 
+                    Content="Apply" 
+                    Click="btnApplyFilter_Click" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
