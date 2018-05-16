@@ -39,7 +39,7 @@ namespace AirlineManager {
 		}
 
 		private void btnMaintainance_Click(object sender, RoutedEventArgs e) {
-
+            _mainFrame.Navigate(new MaintenancePage());
 		}
 
 		private void btnAirports_Click(object sender, RoutedEventArgs e) {

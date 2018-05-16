@@ -163,6 +163,9 @@
     <Compile Include="UI\Pages\AircraftMarketPage.xaml.cs">
       <DependentUpon>AircraftMarketPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Pages\MaintenancePage.xaml.cs">
+      <DependentUpon>MaintenancePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Pages\Subpages\AircraftInstanceFilterPage.xaml.cs">
       <DependentUpon>AircraftInstanceFilterPage.xaml</DependentUpon>
     </Compile>
@@ -228,6 +231,10 @@
     <Page Include="UI\Pages\AircraftMarketPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Pages\MaintenancePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Pages\Subpages\AircraftInstanceFilterPage.xaml">
       <SubType>Designer</SubType>
