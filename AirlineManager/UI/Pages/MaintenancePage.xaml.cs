@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using nGantt;
 
 namespace AirlineManager.UI.Pages {
     /// <summary>
@@ -20,6 +21,8 @@ namespace AirlineManager.UI.Pages {
     public partial class MaintenancePage : Page {
         public MaintenancePage() {
             InitializeComponent();
+
+            
         }
     }
 }
