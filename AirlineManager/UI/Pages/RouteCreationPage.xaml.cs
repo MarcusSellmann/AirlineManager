@@ -59,11 +59,18 @@ namespace AirlineManager.UI.Pages {
                 rt = RouteType.International;
             }
 
+            var prizes = new Dictionary<ClassType, long>() {
+                { ClassType.Economy, long.Parse(tbEconomyTicketPrize.Text)},
+                { ClassType.Business, long.Parse(tbBusinessTicketPrize.Text)},
+                { ClassType.First, long.Parse(tbFirstTicketPrize.Text)},
+                { ClassType.Cargo, long.Parse(tbCargoTicketPrize.Text)}
+            };
+
             MainGameController.Instance.CurrentAirline.AddRoute(new Route(rt,
                                                                           tboRouteNumber.Text,
                                                                           (Airport)cbOrigin.SelectedItem,
                                                                           (Airport)cbDestination.SelectedItem,
-                                                                          new Dictionary<ClassType, long>()));
+                                                                          prizes));
             NavigationService.Navigate(new RoutesPage());
         }
 
@@ -78,11 +85,11 @@ namespace AirlineManager.UI.Pages {
 
         private void UpdateRouteType() {
             if (cbOrigin.SelectedIndex == -1 || cbDestination.SelectedIndex == -1) {
-                lblRouteType.Content.Equals("undefined");
+                lblRouteType.Content = "undefined";
             } else if (m_airports[cbOrigin.SelectedIndex].Country.Equals(m_airports[cbDestination.SelectedIndex].Country)) {
-                lblRouteType.Content.Equals(RouteType.Domestic.ToString());
+                lblRouteType.Content = RouteType.Domestic.ToString();
             } else {
-                lblRouteType.Content.Equals(RouteType.International.ToString());
+                lblRouteType.Content = RouteType.International.ToString();
             }
         }
 
