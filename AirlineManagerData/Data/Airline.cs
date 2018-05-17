@@ -81,9 +81,21 @@ namespace AirlineManager.Data {
                 return ais;
             }
         }
-		#endregion
 
-		public Airline(Player currPlayer, string name, string airlineCode, List<AircraftInstance> ownedAircrafts, List<EmployeeGroup> staff) :
+        public Dictionary<AircraftInstance, List<PlannedService>> AllPlannedServices {
+            get {
+                Dictionary<AircraftInstance, List<PlannedService>> plannedServiceDict = new Dictionary<AircraftInstance, List<PlannedService>>();
+
+                foreach (AircraftInstance ai in OwnedAircrafts) {
+                    plannedServiceDict[ai] = ai.Services;
+                }
+
+                return plannedServiceDict;
+            }
+        }
+        #endregion
+
+        public Airline(Player currPlayer, string name, string airlineCode, List<AircraftInstance> ownedAircrafts, List<EmployeeGroup> staff) :
             this(currPlayer, name, airlineCode, MONEY_AT_GAME_START, REPUTATION_AT_GAME_START, ownedAircrafts, staff, null) {}
 
 		public Airline(Player currPlayer, string name, string airlineCode, long money, int reputation, 

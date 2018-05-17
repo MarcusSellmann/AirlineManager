@@ -9,15 +9,18 @@ namespace AirlineManager.Data {
 
         #region Properties
         [DataMember]
-        public long StartTime { get; private set; }
+        public ServiceLevel Level { get; private set; }
 
         [DataMember]
-        public long Duration { get; private set; }
+        public DateTime StartTime { get; private set; }
+
+        [DataMember]
+        public TimeSpan Duration { get; private set; }
 
         [DataMember]
         public long Costs { get; private set; }
 
-        public long EndTime {
+        public DateTime EndTime {
 			get {
 				return StartTime + Duration;
 			}
@@ -25,18 +28,19 @@ namespace AirlineManager.Data {
 
 		public bool Running {
 			get {
-				return (StartTime < DateTime.Now.Ticks) && !Executed;
+				return (StartTime < DateTime.Now) && !Executed;
 			}
 		}
 
 		public bool Executed {
 			get {
-				return EndTime < DateTime.Now.Ticks;
+				return EndTime < DateTime.Now;
 			}
 		}
 		#endregion
 
-		public PlannedService(long startTime, long duration, long costs) {
+		public PlannedService(ServiceLevel level, DateTime startTime, TimeSpan duration, long costs) {
+            Level = level;
 			StartTime = startTime;
 			Duration = duration;
 			Costs = costs;
@@ -44,7 +48,7 @@ namespace AirlineManager.Data {
 
 		override
 		public string ToString() {
-			return StartTime.ToString();
+			return Level.ToString() + ": " + StartTime.ToString() + " -> " + EndTime.ToString();
 		}
 	}
 }

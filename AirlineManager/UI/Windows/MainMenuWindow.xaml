@@ -6,7 +6,8 @@
         xmlns:Metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:AirlineManager.UI.Windows"
         mc:Ignorable="d"
-        Title="Main menu" MinHeight="768" Height="768" MinWidth="1024" Width="1024">
+        Title="Main menu" MinHeight="768" Height="768" MinWidth="1024" Width="1024"
+        WindowStartupLocation="CenterScreen">
     
     <DockPanel>
         <Grid Height="244" Width="1018" VerticalAlignment="Top" Margin="0, 0, 0, 0" DockPanel.Dock="Top">

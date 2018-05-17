@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
-        Title="Airline Manager" MinHeight="768" MinWidth="1024">
+        Title="Airline Manager" MinHeight="768" MinWidth="1024"
+        WindowStyle="None" WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
     <Grid>
         <Grid.ColumnDefinitions>
