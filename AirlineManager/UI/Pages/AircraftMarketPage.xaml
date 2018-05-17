@@ -19,6 +19,13 @@
                   Style="{StaticResource DefaultListViewStyle}">
             <ListView.View>
                 <GridView>
+                    <GridViewColumn Header="Image">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Aircraft.Type.Image}" Width="Auto" Height="50" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn Header="Registration" DisplayMemberBinding="{Binding Aircraft.Registration}" />
                     <GridViewColumn Header="Distance flown" DisplayMemberBinding="{Binding Aircraft.DistanceFlown,StringFormat=\{0:N0\} km}" />
                     <GridViewColumn Header="Init Op" DisplayMemberBinding="{Binding Aircraft.InitialOperation, StringFormat=dd.MM.yyyy}" />

@@ -13,86 +13,24 @@
                   Style="{StaticResource DefaultListViewStyle}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Manufacturer">
+                    <GridViewColumn Header="Image">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding Image}" Width="100" Height="50" Margin="0 0 10 0" />
-                                    <TextBlock Text="{Binding Manufacturer}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                                </StackPanel>
+                                <Image Source="{Binding Image}" Width="Auto" Height="75" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Name">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Length">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Length, StringFormat=\{0:N2\}}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Width">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Width, StringFormat=\{0:N2\}}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Height">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Height, StringFormat=\{0:N2\}}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Fuel / Min.">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding FuelUsagePerMinute, StringFormat=\{0:N2\}}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Orig. prize">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding OriginalPrize, StringFormat=\{0:N0\}}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Velocity">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding TravelVelocity, StringFormat=\{0:0\} km/h}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Range">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Range, StringFormat=\{0:N0\} km}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Min. RW length">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding MinimalNeededRunwayLength, StringFormat=\{0:N0\} m}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Turnover time">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding TurnoverTime, StringFormat=HH:mm:ss}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                    <GridViewColumn Header="Manufacturer" DisplayMemberBinding="{Binding Manufacturer}" />
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Length" DisplayMemberBinding="{Binding Length, StringFormat=\{0:N2\} m}" />
+                    <GridViewColumn Header="Width" DisplayMemberBinding="{Binding Width, StringFormat=\{0:N2\} m}" />
+                    <GridViewColumn Header="Height" DisplayMemberBinding="{Binding Height, StringFormat=\{0:N2\} m}" />
+                    <GridViewColumn Header="Fuel / Min." DisplayMemberBinding="{Binding FuelUsagePerMinute, StringFormat=\{0:N2\}}" />
+                    <GridViewColumn Header="Orig. prize" DisplayMemberBinding="{Binding OriginalPrize, StringFormat=\{0:N0\} €}" />
+                    <GridViewColumn Header="Velocity" DisplayMemberBinding="{Binding TravelVelocity, StringFormat=\{0:N0\} km/h}" />
+                    <GridViewColumn Header="Range" DisplayMemberBinding="{Binding Range, StringFormat=\{0:N0\} km}" />
+                    <GridViewColumn Header="Min. RW length" DisplayMemberBinding="{Binding MinimalNeededRunwayLength, StringFormat=\{0:N0\} m}" />
+                    <GridViewColumn Header="Turnover time" DisplayMemberBinding="{Binding TurnoverTime, StringFormat=HH:mm:ss}" />
                 </GridView>
             </ListView.View>
         </ListView>
