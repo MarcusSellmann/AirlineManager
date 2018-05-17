@@ -157,6 +157,7 @@
     </Compile>
     <Compile Include="UI\Interfaces\IFilterUpdatedListener.cs" />
     <Compile Include="UI\Interfaces\IPopoverWindowCreatorCallback.cs" />
+    <Compile Include="UI\Utilities\MaintenanceServiceContainer.cs" />
     <Compile Include="UI\Pages\AircraftInstancePage.xaml.cs">
       <DependentUpon>AircraftInstancePage.xaml</DependentUpon>
     </Compile>

@@ -10,6 +10,21 @@
       Title="Maintenance">
 
     <Grid>
-        <nGantt:GanttControl x:Name="ganttControl" TaskSelectionMode="Single" AllowUserSelection="False" AllowDrop="False" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <nGantt:GanttControl 
+            x:Name="ganttUserControl" 
+            TaskSelectionMode="Single" 
+            AllowUserSelection="False" 
+            AllowDrop="False"
+            Grid.Row="0" />
+        <Button 
+            Name="btnAddMaintenanceService" 
+            Click="btnAddMaintenanceService_Click"
+            Grid.Row="1"
+            Margin="10"
+            Content="Add service" />
     </Grid>
 </Page>
