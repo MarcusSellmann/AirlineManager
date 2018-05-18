@@ -59,18 +59,14 @@ namespace AirlineManager.UI.Pages {
                 rt = RouteType.International;
             }
 
-            var prizes = new Dictionary<ClassType, long>() {
-                { ClassType.Economy, long.Parse(tbEconomyTicketPrize.Text)},
-                { ClassType.Business, long.Parse(tbBusinessTicketPrize.Text)},
-                { ClassType.First, long.Parse(tbFirstTicketPrize.Text)},
-                { ClassType.Cargo, long.Parse(tbCargoTicketPrize.Text)}
-            };
-
             MainGameController.Instance.CurrentAirline.AddRoute(new Route(rt,
                                                                           tboRouteNumber.Text,
                                                                           (Airport)cbOrigin.SelectedItem,
                                                                           (Airport)cbDestination.SelectedItem,
-                                                                          prizes));
+                                                                          new TicketPrizes(long.Parse(tbEconomyTicketPrize.Text),
+                                                                                           long.Parse(tbBusinessTicketPrize.Text),
+                                                                                           long.Parse(tbFirstTicketPrize.Text),
+                                                                                           long.Parse(tbCargoTicketPrize.Text))));
             NavigationService.Navigate(new RoutesPage());
         }
 

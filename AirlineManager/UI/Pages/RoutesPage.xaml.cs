@@ -87,16 +87,10 @@ namespace AirlineManager.UI.Pages {
 			AirportDatabase aDb = AirportDatabase.Instance;
 			AircraftInstanceDatabase aiDB = AircraftInstanceDatabase.Instance;
 
-			Dictionary<ClassType, long> tp = new Dictionary<ClassType, long>();
-			tp[ClassType.Economy] = 100;
-			tp[ClassType.Business] = 200;
-			tp[ClassType.First] = 300;
-			tp[ClassType.Cargo] = 10;
-
 			UsedAircraftInstanceContainer[] acs = aiDB.UsedAircrafts.ToArray();
 
-			Route r1 = new Route(RouteType.Domestic, "NA1250", aDb.DB[0], aDb.DB[1], tp);
-			Route r2 = new Route(RouteType.Domestic, "NA5181", aDb.DB[1], aDb.DB[2], tp);
+			Route r1 = new Route(RouteType.Domestic, "NA1250", aDb.DB[0], aDb.DB[1], new TicketPrizes(100, 200, 300, 10));
+			Route r2 = new Route(RouteType.Domestic, "NA5181", aDb.DB[1], aDb.DB[2], new TicketPrizes(120, 210, 500, 20));
 
 			m_routes.Add(r1);
 			m_routes.Add(r2);

@@ -60,13 +60,10 @@ namespace AirlineManager.Data {
 
         public long MaxPossibleIncome {
             get {
-                long totalIncome = 0;
-
-                foreach (KeyValuePair<ClassType, long> ticketPrize in OperatingRoute.TicketPrizePerClass) {
-                    totalIncome += AssignedAircraft.Interior.ClassLayout[ticketPrize.Key] * ticketPrize.Value;
-                }
-
-                return totalIncome;
+                return AssignedAircraft.Interior.ClassLayout[ClassType.Economy] * OperatingRoute.TicketPrizes.Economy +
+                       AssignedAircraft.Interior.ClassLayout[ClassType.Business] * OperatingRoute.TicketPrizes.Business +
+                       AssignedAircraft.Interior.ClassLayout[ClassType.First] * OperatingRoute.TicketPrizes.First +
+                       AssignedAircraft.Interior.ClassLayout[ClassType.Cargo] * OperatingRoute.TicketPrizes.Cargo;
             }
         }
 

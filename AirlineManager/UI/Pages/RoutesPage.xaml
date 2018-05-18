@@ -27,6 +27,7 @@
                     <GridViewColumn Header="Origin" DisplayMemberBinding="{Binding Origin.CodeICAO.Code}" />
                     <GridViewColumn Header="Destination" DisplayMemberBinding="{Binding Destination.CodeICAO.Code}" />
                     <GridViewColumn Header="Distance" DisplayMemberBinding="{Binding Distance, StringFormat=\{0:N0\} m}" />
+                    <GridViewColumn Header="Prizes" DisplayMemberBinding="{Binding TicketPrizes}" />
                 </GridView>
             </ListView.View>
         </ListView>
