@@ -28,7 +28,7 @@ namespace AirlineManager.Business {
 		static RandomCostsCalculator m_instance = null;
 		Timer m_fuelCostRecalcTimer = null;
 		FuelPrize[] m_fuelCosts = new FuelPrize[MAX_FUEL_COST_FORECAST_VALUES];
-		int m_currentFuelCostForecastIndex = 0;
+		int m_currentFuelCostForecastIndex = 10;
 		#endregion
 
 		#region Properties
@@ -54,26 +54,13 @@ namespace AirlineManager.Business {
 		public FuelPrize[] FuelPrizeEvolution {
 			get {
 				FuelPrize[] fp = new FuelPrize[10];
+                var currIndex = 0;
 
-				if (m_currentFuelCostForecastIndex < fp.Length) {
-					var currIndex = 0;
-					var currFuelCostIndex = MAX_FUEL_COST_FORECAST_VALUES - fp.Length;
+                while (currIndex < fp.Length) {
+                    fp[currIndex] = m_fuelCosts[m_currentFuelCostForecastIndex - currIndex];
 
-					do {
-						fp[currIndex] = m_fuelCosts[currFuelCostIndex];
-						
-						currIndex++;
-						currFuelCostIndex++;
-
-						if (currFuelCostIndex == MAX_FUEL_COST_FORECAST_VALUES) {
-							currFuelCostIndex = 0;
-                        }
-					} while (currFuelCostIndex != m_currentFuelCostForecastIndex);
-				} else {
-					for (int i = m_currentFuelCostForecastIndex - 10; i <= m_currentFuelCostForecastIndex; ++i) {
-						fp[i] = m_fuelCosts[i];
-					}
-				}
+                    currIndex++;
+                }
 
                 return fp;
 			}
@@ -128,7 +115,7 @@ namespace AirlineManager.Business {
 			m_currentFuelCostForecastIndex++;
 
 			if (m_currentFuelCostForecastIndex >= MAX_FUEL_COST_FORECAST_VALUES) {
-				m_currentFuelCostForecastIndex = 0;
+				m_currentFuelCostForecastIndex = 10;
 			}
 
 			Console.WriteLine("New fuel prize: {0}", CurrentFuelPrize);
