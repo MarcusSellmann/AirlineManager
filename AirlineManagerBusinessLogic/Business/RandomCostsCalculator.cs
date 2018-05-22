@@ -100,7 +100,7 @@ namespace AirlineManager.Business {
 		}
 
 		private void InitFuelCosts() {
-			float[] fc = Noise.Calc1D(m_fuelCosts.Length, 0.05f);
+			float[] fc = Noise.Calc1D(m_fuelCosts.Length, 1.25f);
 			
 			for (int i = 0; i < m_fuelCosts.Length; ++i) {
                 m_fuelCosts[i] = new FuelPrize(DateTime.Now + TimeSpan.FromMinutes(FUEL_COST_RECALC_INTERVAL_MINUTE * i), fc[i]);
