@@ -92,12 +92,11 @@ namespace AirlineManager.Business {
 		}
 
 		public long CalculateFerryFlightCosts(Airport origin, Airport destination, AircraftInstance aircraft) {
-			int distance = 0;
-			long costs = 0;
+			double distance = origin.Coordinate.GetDistanceTo(destination.Coordinate);
+            long fixCosts = (long)(aircraft.Type.NeededStaff.EmployeeArrangement[Department.Pilot] * 2000.0);
+            long variableCosts = (long)(distance * 0.3);
 
-			// TODO: Make up a nice algo to calculate the ferry flight costs.
-
-			return costs;
+			return fixCosts + variableCosts;
 		}
 
 		private void InitFuelCosts() {
