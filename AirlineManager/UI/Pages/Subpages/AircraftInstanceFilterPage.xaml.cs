@@ -17,8 +17,8 @@ namespace AirlineManager.UI.Pages.Subpages {
 
         #region Properties
         public int AvailableRunwayLength { get; private set; }
-        public int FlownDistanceLowerValue { get; private set; }
-        public int FlownDistanceUpperValue { get; private set; }
+        public int FlownHoursLowerValue { get; private set; }
+        public int FlownHoursUpperValue { get; private set; }
         public int AgeLowerValue { get; private set; }
         public int AgeUpperValue { get; private set; }
         public Aircraft Type { get; private set; }
@@ -46,17 +46,17 @@ namespace AirlineManager.UI.Pages.Subpages {
             AvailableRunwayLength = (int)e.NewValue;
         }
 
-        private void slFlownDistance_LowerValueChanged(object sender, MahApps.Metro.Controls.RangeParameterChangedEventArgs e) {
-            FlownDistanceLowerValue = (int)e.NewValue;
+        private void slFlownHours_LowerValueChanged(object sender, MahApps.Metro.Controls.RangeParameterChangedEventArgs e) {
+            FlownHoursLowerValue = (int)e.NewValue;
         }
 
-        private void slFlownDistance_UpperValueChanged(object sender, MahApps.Metro.Controls.RangeParameterChangedEventArgs e) {
-            FlownDistanceUpperValue = (int)e.NewValue;
+        private void slFlownHours_UpperValueChanged(object sender, MahApps.Metro.Controls.RangeParameterChangedEventArgs e) {
+            FlownHoursUpperValue = (int)e.NewValue;
         }
 
-        private void slFlownDistance_RangeSelectionChanged(object sender, MahApps.Metro.Controls.RangeSelectionChangedEventArgs e) {
-            FlownDistanceLowerValue = (int)e.NewLowerValue;
-            FlownDistanceUpperValue = (int)e.NewUpperValue;
+        private void slFlownHours_RangeSelectionChanged(object sender, MahApps.Metro.Controls.RangeSelectionChangedEventArgs e) {
+            FlownHoursLowerValue = (int)e.NewLowerValue;
+            FlownHoursUpperValue = (int)e.NewUpperValue;
         }
 
         private void slAge_LowerValueChanged(object sender, MahApps.Metro.Controls.RangeParameterChangedEventArgs e) {

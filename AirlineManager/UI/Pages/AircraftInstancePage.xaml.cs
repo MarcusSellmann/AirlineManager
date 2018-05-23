@@ -74,8 +74,8 @@ namespace AirlineManager.UI.Pages
             AircraftInstance ai = item as AircraftInstance;
 
             if (ai.Type.MinimalNeededRunwayLength <= m_aircraftInstanceFilterPage.AvailableRunwayLength &&
-                ai.DistanceFlown >= m_aircraftInstanceFilterPage.FlownDistanceLowerValue &&
-                ai.DistanceFlown <= m_aircraftInstanceFilterPage.FlownDistanceUpperValue &&
+                ai.HoursFlown >= m_aircraftInstanceFilterPage.FlownHoursLowerValue &&
+                ai.HoursFlown <= m_aircraftInstanceFilterPage.FlownHoursUpperValue &&
                 ai.AgeInYears >= m_aircraftInstanceFilterPage.AgeLowerValue &&
                 ai.AgeInYears <= m_aircraftInstanceFilterPage.AgeUpperValue) {
                 if (m_aircraftInstanceFilterPage.Type == null ||

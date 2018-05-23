@@ -33,7 +33,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Registration" DisplayMemberBinding="{Binding Registration}" />
-                    <GridViewColumn Header="Distance flown" DisplayMemberBinding="{Binding DistanceFlown, StringFormat=\{0:0\} km}" />
+                    <GridViewColumn Header="Hours flown" DisplayMemberBinding="{Binding HoursFlown, StringFormat=\{0:N0\}}" />
                     <GridViewColumn Header="Init Op" DisplayMemberBinding="{Binding InitialOperation, StringFormat=dd.MM.yyyy}" />
                     <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" />
                     <GridViewColumn Header="Current location" DisplayMemberBinding="{Binding CurrentLocation}" />
