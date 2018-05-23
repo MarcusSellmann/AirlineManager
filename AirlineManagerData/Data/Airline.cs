@@ -6,7 +6,7 @@ namespace AirlineManager.Data {
 	public class Airline {
         const long MONEY_AT_GAME_START = 50000000L;
         const int REPUTATION_AT_GAME_START = 75;
-        public const long PRIZE_AIRPORT_LICENSE = 5000L;
+        public const long PRIZE_AIRPORT_LICENSE = 10000L;
 
         #region Attributes
         [DataMember]
