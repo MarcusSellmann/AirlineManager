@@ -124,8 +124,11 @@ namespace AirlineManager.Data {
             Services = new List<PlannedService>();
         }
 
-        public void updateCurrentValue() {
-            // TODO: Make up a nice algo to calculate the current value.
+        public void UpdateCurrentValue() {
+            long hoursCosts = (long)(HoursFlown * 35.0);
+            long ageCosts = (long)(AgeInDays * 2500.0);
+
+            CurrentValue = Type.OriginalPrize - hoursCosts - ageCosts;
         }
 
         public bool IsExtraInstalled(AircraftExtras extraType) {

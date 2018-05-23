@@ -38,12 +38,12 @@ namespace AirlineManager.Business.Generators {
 															rnd.Next(GlobalConstants.USED_AIRCRAFT_MARKET_MAXIMUM_DISTANCE_FLOWN),
                                                             regs[rnd.Next(regs.Length)],
 															GenerateRandomCommissioningDate(rnd),
-															GenerateRandomAircraftInstanceValue(rnd, ac),
+															0,
 															GetRandomInstalledExtras(rnd, rnd.Next(4)),
 															Airports.DB[rnd.Next(Airports.DB.Count)],
 															Layouts.CreateInteriorLayout(ac),
 															ac.AvailableEngines[rnd.Next(ac.AvailableEngines.Count)]);
-				
+                aci.UpdateCurrentValue();
 				instances.Add(aci);
 			}
 			
@@ -92,9 +92,5 @@ namespace AirlineManager.Business.Generators {
 
 			return aes;
         }
-
-		long GenerateRandomAircraftInstanceValue(Random rnd, Aircraft ac) {
-			return rnd.Next((int)ac.OriginalPrize);
-		}
 	}
 }
