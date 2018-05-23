@@ -12,7 +12,7 @@ namespace AirlineManager.Data {
 
         #region Properties
         [DataMember]
-        public float DistanceFlown { get; private set; }
+        public float HoursFlown { get; private set; }
 
         [DataMember]
         public string Registration {
@@ -56,7 +56,7 @@ namespace AirlineManager.Data {
 
         public bool IsUsed {
             get {
-                return DistanceFlown > 0;
+                return HoursFlown > 0;
             }
         }
 
@@ -87,25 +87,25 @@ namespace AirlineManager.Data {
             this(type, 0, registration, commissioning, type.OriginalPrize, null, 
                  currentLocation, layout, installendEngine) {}
 
-		/// <summary>
-		/// Used aircraft.
-		/// </summary>
-		/// <param name="type"></param>
-		/// <param name="distanceFlown"></param>
-		/// <param name="registration"></param>
-		/// <param name="commissioning"></param>
-		/// <param name="currentValue"></param>
-		/// <param name="installedExtras"></param>
-		/// <param name="currentLocation"></param>
-		/// <param name="layout"></param>
-        public AircraftInstance(Aircraft type, float distanceFlown, 
+        /// <summary>
+        /// Used aircraft.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="hoursFlown"></param>
+        /// <param name="registration"></param>
+        /// <param name="commissioning"></param>
+        /// <param name="currentValue"></param>
+        /// <param name="installedExtras"></param>
+        /// <param name="currentLocation"></param>
+        /// <param name="layout"></param>
+        public AircraftInstance(Aircraft type, float hoursFlown, 
                                 string registration, DateTime commissioning,
                                 long currentValue, 
 								Dictionary<AircraftExtras,AircraftExtra> installedExtras, 
 								Airport currentLocation, InteriorLayout layout,
                                 Engine installendEngine) {
             Type = type;
-            DistanceFlown = distanceFlown;
+            HoursFlown = hoursFlown;
             m_registration = registration;
             InitialOperation = commissioning;
             CurrentValue = currentValue;
@@ -124,8 +124,11 @@ namespace AirlineManager.Data {
             Services = new List<PlannedService>();
         }
 
-        public void updateCurrentValue() {
-            // TODO: Make up a nice algo to calculate the current value.
+        public void UpdateCurrentValue() {
+            long hoursCosts = (long)(HoursFlown * 35.0);
+            long ageCosts = (long)(AgeInDays * 2500.0);
+
+            CurrentValue = Type.OriginalPrize - hoursCosts - ageCosts;
         }
 
         public bool IsExtraInstalled(AircraftExtras extraType) {

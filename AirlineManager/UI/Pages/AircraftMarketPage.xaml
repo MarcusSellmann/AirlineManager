@@ -27,7 +27,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Registration" DisplayMemberBinding="{Binding Aircraft.Registration}" />
-                    <GridViewColumn Header="Distance flown" DisplayMemberBinding="{Binding Aircraft.DistanceFlown,StringFormat=\{0:N0\} km}" />
+                    <GridViewColumn Header="Hours flown" DisplayMemberBinding="{Binding Aircraft.HoursFlown,StringFormat=\{0:N0\}}" />
                     <GridViewColumn Header="Init Op" DisplayMemberBinding="{Binding Aircraft.InitialOperation, StringFormat=dd.MM.yyyy}" />
                     <GridViewColumn Header="Age" DisplayMemberBinding="{Binding Aircraft.AgeInYears, StringFormat=\{0:F2\}}" />
                     <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Aircraft.Type}" />
