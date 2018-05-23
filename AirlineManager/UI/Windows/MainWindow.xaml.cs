@@ -86,33 +86,35 @@ namespace AirlineManager {
             btnMaintainance.Background = Brushes.Transparent;
             btnGameMenu.Background = Brushes.Transparent;
 
+            Brush highlightedButton = (Brush)Application.Current.TryFindResource("AmButtonHighlightedBackground");
+
             switch (activeTab) {
                 case MainMenuTabs.Dashboard:
-                    btnDashboard.Background = Brushes.Orange;
+                    btnDashboard.Background = highlightedButton;
                     break;
 
                 case MainMenuTabs.Aircrafts:
-                    btnAircrafts.Background = Brushes.Orange;
+                    btnAircrafts.Background = highlightedButton;
                     break;
 
                 case MainMenuTabs.Airports:
-                    btnAirports.Background = Brushes.Orange;
+                    btnAirports.Background = highlightedButton;
                     break;
 
                 case MainMenuTabs.Routes:
-                    btnRoutes.Background = Brushes.Orange;
+                    btnRoutes.Background = highlightedButton;
                     break;
 
                 case MainMenuTabs.Schedule:
-                    btnSchedule.Background = Brushes.Orange;
+                    btnSchedule.Background = highlightedButton;
                     break;
 
                 case MainMenuTabs.Maintenance:
-                    btnMaintainance.Background = Brushes.Orange;
+                    btnMaintainance.Background = highlightedButton;
                     break;
 
                 case MainMenuTabs.GameMenu:
-                    btnGameMenu.Background = Brushes.Orange;
+                    btnGameMenu.Background = highlightedButton;
                     break;
 
                 default:
