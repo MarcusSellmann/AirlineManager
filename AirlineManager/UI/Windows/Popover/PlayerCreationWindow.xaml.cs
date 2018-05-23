@@ -2,13 +2,13 @@
 using AirlineManager.Business;
 using AirlineManager.Business.ExceptionHandling;
 using AirlineManager.UI.Interfaces;
-using AirlineManager.UI.Windows.Popover;
+using MahApps.Metro.Controls;
 
 namespace AirlineManager.UI.Windows {
 	/// <summary>
 	/// Interaction logic for PlayerCreationWindow.xaml
 	/// </summary>
-	public partial class PlayerCreationWindow : Window {
+	public partial class PlayerCreationWindow : MetroWindow {
 		IPopoverWindowCreatorCallback m_callback = null;
 
 		public IPopoverWindowCreatorCallback Callback {
