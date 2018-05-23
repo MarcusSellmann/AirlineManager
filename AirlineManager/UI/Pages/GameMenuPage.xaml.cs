@@ -18,6 +18,7 @@ namespace AirlineManager.UI.Pages
 
         private void btnLoadGame_Click(object sender, RoutedEventArgs e) {
             MainGameController.Instance.LoadGame();
+            NavigationService.Navigate(new DashboardPage());
         }
 
         private void btnExitGame_Click(object sender, RoutedEventArgs e) {
