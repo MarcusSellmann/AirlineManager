@@ -21,7 +21,7 @@ namespace AirlineManager.UI.Pages {
                 m_aircrafts.Add(ac);
             }
 
-            List<Airport> aps = AirportDatabase.Instance.DB;
+            List<Airport> aps = MainGameController.Instance.CurrentAirline.LicensedAirports;
 
             foreach (Airport ap in aps) {
                 m_airports.Add(ap);

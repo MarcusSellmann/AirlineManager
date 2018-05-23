@@ -6,6 +6,7 @@ namespace AirlineManager.Data {
 	public class Airline {
         const long MONEY_AT_GAME_START = 50000000L;
         const int REPUTATION_AT_GAME_START = 75;
+        public const long PRIZE_AIRPORT_LICENSE = 10000L;
 
         #region Attributes
         [DataMember]
@@ -27,6 +28,9 @@ namespace AirlineManager.Data {
 
         [DataMember]
         public List<AircraftInstance> OwnedAircrafts { get; private set; }
+
+        [DataMember]
+        public List<Airport> LicensedAirports { get; private set; }
 
         [DataMember]
         public List<EmployeeGroup> Staff { get; private set; }
@@ -124,6 +128,7 @@ namespace AirlineManager.Data {
                 RouteNetwork.AddRange(routeNetwork);
             }
 
+            LicensedAirports = new List<Airport>();
             FlightSchedule = new FlightSchedule();
             FlightHistory = new FlightHistory();
         }
@@ -150,6 +155,15 @@ namespace AirlineManager.Data {
             OwnedAircrafts.Add(aircraftInstance);
 
             return true;
+        }
+
+        public bool BuyAirportLicense(Airport airport) {
+            if (m_money >= PRIZE_AIRPORT_LICENSE) {
+                LicensedAirports.Add(airport);
+                m_money -= PRIZE_AIRPORT_LICENSE;
+            }
+
+            return false;
         }
         
         override
