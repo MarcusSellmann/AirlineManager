@@ -57,6 +57,22 @@ namespace AirlineManager.Business {
                 return result;
             }
         }
+
+        public List<Airport> UnlicensedAirports {
+            get {
+                List<Airport> ua = new List<Airport>();
+                List<Airport> aDB = AirportDatabase.Instance.DB;
+                List<Airport> la = CurrentAirline.LicensedAirports;
+
+                foreach (Airport a in aDB) {
+                    if (!la.Contains(a)) {
+                        ua.Add(a);
+                    }
+                }
+
+                return ua;
+            }
+        }
         #endregion
 
         MainGameController() {

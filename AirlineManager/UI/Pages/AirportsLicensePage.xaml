@@ -1,36 +1,28 @@
-﻿<Page x:Class="AirlineManager.UI.Pages.AirportsPage"
+﻿<Page x:Class="AirlineManager.UI.Pages.AirportsLicensePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:mui="clr-namespace:Mapsui.UI.Wpf;assembly=Mapsui.UI.Wpf"
+      xmlns:local="clr-namespace:AirlineManager.UI.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="AirportsPage">
+      Title="Airport licenses">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="6*" />
             <RowDefinition Height="4*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <ListView
-            Name="lvAirports"
+            Name="lvUnlicensedAirports"
             ItemsSource="{Binding m_airports}"
-            SelectionChanged="lvAirports_SelectionChanged"
+            SelectionChanged="lvUnlicensedAirports_SelectionChanged"
             Style="{StaticResource DefaultListViewStyle}"
+            SelectionMode="Multiple"
             Grid.Row="0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn>
-                        <GridViewColumnHeader Name="ICAO_Header" Click="ICAO_Header_Click">ICAO</GridViewColumnHeader>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding CodeICAO.Code}" Foreground="{StaticResource AmListViewColumnItemTextColor}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
+                    <GridViewColumn Header="ICAO" DisplayMemberBinding="{Binding CodeICAO.Code}" />
                     <GridViewColumn Header="IATA" DisplayMemberBinding="{Binding CodeIATA}" />
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="City" DisplayMemberBinding="{Binding City}" />
@@ -39,9 +31,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <mui:MapControl 
-            Name="AirportsMapControl"
-            Grid.Row="1" />
-        <Button x:Name="btnBuyAirportLicense" Grid.Row="2" Click="btnBuyAirportLicense_Click" Margin="10">Buy airport license</Button>
+        <Button x:Name="btnBuyLicense" Click="btnBuyLicense_Click" Grid.Row="1" IsEnabled="False" Margin="10">Buy</Button>
     </Grid>
 </Page>

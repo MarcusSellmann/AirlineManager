@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using AirlineManager.Business.Databases;
+using AirlineManager.Business;
 using AirlineManager.Data;
 using Mapsui.Projection;
 using Mapsui.Utilities;
@@ -16,9 +16,8 @@ namespace AirlineManager.UI.Pages {
 
 		public AirportsPage() {
 			InitializeComponent();
-
-			AirportDatabase aDb = AirportDatabase.Instance;
-			List<Airport> airports = aDb.DB;
+            
+			List<Airport> airports = MainGameController.Instance.CurrentAirline.LicensedAirports;
 
 			foreach (Airport ap in airports) {
 				m_airports.Add(ap);
@@ -37,6 +36,10 @@ namespace AirlineManager.UI.Pages {
 			m_map.NavigateTo(sphericalMercatorCoordinate);
 			m_map.NavigateTo(m_map.Resolutions[12]);
 		}
+
+        private void btnBuyAirportLicense_Click(object sender, System.Windows.RoutedEventArgs e) {
+            NavigationService.Navigate(new AirportsLicensePage());
+        }
 
         private void ICAO_Header_Click(object sender, System.Windows.RoutedEventArgs e) {
 
