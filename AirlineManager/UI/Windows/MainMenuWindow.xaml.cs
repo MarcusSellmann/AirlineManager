@@ -1,13 +1,15 @@
-﻿using AirlineManager.Business;
-using AirlineManager.UI.Interfaces;
-using System.Windows;
+﻿using System.Windows;
+
 using MahApps.Metro.Controls;
+
+using AirlineManager.Business;
+using AirlineManager.UI.Interfaces;
 
 namespace AirlineManager.UI.Windows {
 	/// <summary>
 	/// Interaction logic for MainMenuWindow.xaml
 	/// </summary>
-	public partial class MainMenuWindow : MetroWindow, IPopoverWindowCreatorCallback {
+	public partial class MainMenuWindow : MetroWindow, INewGameCreationSuccessListener {
 		public MainMenuWindow() {
 			InitializeComponent();
 
@@ -16,24 +18,8 @@ namespace AirlineManager.UI.Windows {
 			}
 		}
 
-		public void actionSuccessful(object sender) {
-			if (sender is PlayerCreationWindow) {
-				AirlineCreationWindow acWin = new AirlineCreationWindow();
-				acWin.Callback = this;
-				acWin.Show();
-			} else if (sender is AirlineCreationWindow) {
-				new MainWindow().Show();
-				Close();
-			}
-		}
-
-		public void actionAborted(object sender) {
-		}
-
 		private void btnNewGame_Click(object sender, RoutedEventArgs e) {
-			PlayerCreationWindow pcWin = new PlayerCreationWindow();
-			pcWin.Callback = this;
-			pcWin.Show();
+            new NewGameContextWindow(this).Show();
 		}
 
 		private void btnLoadGame_Click(object sender, RoutedEventArgs e) {
@@ -46,5 +32,9 @@ namespace AirlineManager.UI.Windows {
 		private void btnQuit_Click(object sender, RoutedEventArgs e) {
 			Close();
 		}
-	}
+
+        public void NewGameCreationSuccessfull() {
+            Close();
+        }
+    }
 }

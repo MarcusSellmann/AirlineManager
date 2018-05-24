@@ -2,8 +2,10 @@
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
-using AirlineManager.UI.Pages;
+
 using MahApps.Metro.Controls;
+
+using AirlineManager.UI.Pages;
 
 namespace AirlineManager {
 	/// <summary>
