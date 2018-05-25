@@ -138,6 +138,10 @@ namespace AirlineManager.Business {
         public void LoadGame() {
             SavegameHandler.LoadGame();
         }
+
+        public bool DoesSavegameExist() {
+            return SavegameHandler.DoesSavegameExists;
+        }
         #endregion
         #endregion
     }
