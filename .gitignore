@@ -1,0 +1,6 @@
+.vs/
+*.userprefs
+*/obj/
+*/packages/
+*/bin/
+packages/
