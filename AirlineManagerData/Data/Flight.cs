@@ -96,7 +96,14 @@ namespace AirlineManager.Data {
 
 		public TimeSpan CurrentFlightTime {
 			get {
-				return DateTime.Now - DepartureTime;
+                TimeSpan flightTime = DateTime.Now - DepartureTime;
+
+                if (flightTime < TimeSpan.FromSeconds(0) ||
+                    State != FlightState.InFlight) {
+                    return TimeSpan.FromSeconds(0);
+                } else {
+                    return DateTime.Now - DepartureTime;
+                }
 			}
 		}
 
