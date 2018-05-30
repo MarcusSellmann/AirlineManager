@@ -73,6 +73,7 @@
                    Content="Departure time" />
             <xctk:TimePicker x:Name="tpDepartureTime" 
                              Grid.Column="1"
+                             Foreground="White"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top"
                              Margin="5"/>

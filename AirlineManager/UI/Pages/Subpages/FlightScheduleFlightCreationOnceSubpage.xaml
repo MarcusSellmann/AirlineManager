@@ -10,6 +10,6 @@
       Title="FlightScheduleFlightCreationOnceSubpage">
 
     <Grid>
-        <xctk:DateTimePicker Name="dtpDepartureDateTime" VerticalAlignment="Top" />
+        <xctk:DateTimePicker Name="dtpDepartureDateTime" VerticalAlignment="Top" Foreground="White" />
     </Grid>
 </Page>
