@@ -114,13 +114,14 @@ namespace AirlineManager.Data {
         }
 		#endregion
 
-		public Flight(string flightNumber, FlightType flightType, FlightState state) {
+		public Flight(string flightNumber, Route operatingRoute, FlightType flightType, FlightState state) {
             FlightNumber = flightNumber;
+            OperatingRoute = operatingRoute;
 			FlightType = flightType;
 			State = state;
 		}
 
-		public Flight(string flightNumber, FlightType flightType, FlightState state, DateTime departureTime, Demand bookedPassengers = null) : this(flightNumber, flightType, state) {
+		public Flight(string flightNumber, Route operatingRoute, FlightType flightType, FlightState state, DateTime departureTime, Demand bookedPassengers = null) : this(flightNumber, operatingRoute, flightType, state) {
 			m_bookedPassengers = bookedPassengers;
             DepartureTime = departureTime;
         }
