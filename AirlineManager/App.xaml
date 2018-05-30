@@ -146,12 +146,32 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <Border>
+                                <Border.Background>
+                                    <SolidColorBrush x:Name="bgColor" Color="Transparent" />
+                                </Border.Background>
                                 <Border.Style>
                                     <Style TargetType="{x:Type Border}">
                                         <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="{StaticResource AmButtonHighlightedBackground}"/>
-                                            </Trigger>
+                                            <EventTrigger RoutedEvent="MouseEnter">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation To="{StaticResource AmButtonHighlightedBackgroundColor}" 
+                                                                        Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" 
+                                                                        FillBehavior="HoldEnd" 
+                                                                        Duration="0:0:0.75"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                            <EventTrigger RoutedEvent="MouseLeave">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation To="Transparent" 
+                                                                        Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" 
+                                                                        FillBehavior="HoldEnd" 
+                                                                        Duration="0:0:0.75"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </Border.Style>
