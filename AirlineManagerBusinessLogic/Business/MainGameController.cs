@@ -33,6 +33,8 @@ namespace AirlineManager.Business {
             }
         }
 
+        public GameClock GameClock { get; private set; }
+
         public Player CurrentPlayer { get; set; }
 
         public Airline CurrentAirline { get; set; }
@@ -76,6 +78,7 @@ namespace AirlineManager.Business {
         #endregion
 
         MainGameController() {
+            GameClock = new GameClock();
         }
 
         #region UI method calls
