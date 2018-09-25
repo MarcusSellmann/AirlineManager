@@ -44,6 +44,7 @@
     <Compile Include="Business\Databases\AirportDatabase.cs" />
     <Compile Include="Business\ExceptionHandling\IncorrectInputUIException.cs" />
     <Compile Include="Business\FlightScheduler.cs" />
+    <Compile Include="Business\GameClock.cs" />
     <Compile Include="Business\Generators\AircraftInstanceGenerator.cs" />
     <!--<Compile Include="Business\Generators\FlightDemandGenerator.cs" />-->
     <Compile Include="Business\Generators\InteriorLayoutGenerator.cs" />
