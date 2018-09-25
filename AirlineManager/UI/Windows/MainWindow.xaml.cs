@@ -5,6 +5,7 @@ using System.Windows.Threading;
 
 using MahApps.Metro.Controls;
 
+using AirlineManager.Business;
 using AirlineManager.UI.Pages;
 
 namespace AirlineManager {
@@ -40,7 +41,10 @@ namespace AirlineManager {
         }
 
 		private void MainGameTick(object sender, EventArgs e) {
-			lblCurrentTime.Content = DateTime.Now.ToString();
+            DateTime currTime = MainGameController.Instance.GameClock.CurrentTimeGameTime;
+
+            lblCurrentDate.Content = currTime.ToString("ddd dd.MM.yyyy");
+            lblCurrentTime.Content = currTime.ToString("HH:mm:ss");
         }
 
 		private void btnDashboard_Click(object sender, RoutedEventArgs e) {
