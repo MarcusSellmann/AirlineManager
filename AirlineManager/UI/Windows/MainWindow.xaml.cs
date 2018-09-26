@@ -41,13 +41,16 @@ namespace AirlineManager {
         }
 
 		private void MainGameTick(object sender, EventArgs e) {
-            DateTime currTime = MainGameController.Instance.GameClock.CurrentTimeGameTime;
+            GameClock gameClock = MainGameController.Instance.GameClock;
+            DateTime currTime = gameClock.CurrentTimeGameTime;
 
             lblCurrentDate.Content = currTime.ToString("ddd dd.MM.yyyy");
             lblCurrentTime.Content = currTime.ToString("HH:mm:ss");
+            lblTimeFactor.Content = string.Concat(gameClock.TimeScaleFactor, "x");
         }
 
-		private void btnDashboard_Click(object sender, RoutedEventArgs e) {
+        #region Button clicks
+        private void btnDashboard_Click(object sender, RoutedEventArgs e) {
 			_mainFrame.Navigate(new DashboardPage());
             UpdateActiveTabBackground(MainMenuTabs.Dashboard);
         }
@@ -80,6 +83,15 @@ namespace AirlineManager {
             _mainFrame.Navigate(new FlightSchedulePage());
             UpdateActiveTabBackground(MainMenuTabs.Schedule);
         }
+
+        private void btnDecreaseScaleFactor_Click(object sender, RoutedEventArgs e) {
+            MainGameController.Instance.GameClock.DecreaseTimeScaleFactor();
+        }
+
+        private void btnIncreaseScaleFactor_Click(object sender, RoutedEventArgs e) {
+            MainGameController.Instance.GameClock.IncreaseTimeScaleFactor();
+        }
+        #endregion
 
         private void UpdateActiveTabBackground(MainMenuTabs activeTab) {
             m_lastActiveTab = activeTab;

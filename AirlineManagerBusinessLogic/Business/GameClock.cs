@@ -38,6 +38,14 @@ namespace AirlineManager.Business {
             m_timer.Start();
         }
 
+        public void IncreaseTimeScaleFactor(float by = 0.5f) {
+            TimeScaleFactor += by;
+        }
+
+        public void DecreaseTimeScaleFactor(float by = 0.5f) {
+            TimeScaleFactor -= by;
+        }
+
         private void Timer_Elapsed(object sender, ElapsedEventArgs e) {
             TimePlayedGameTime += TimeSpan.FromSeconds(TimeScaleFactor);
         }
