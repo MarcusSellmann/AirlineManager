@@ -4,16 +4,17 @@ using MahApps.Metro.Controls;
 
 using AirlineManager.Business;
 using AirlineManager.UI.Interfaces;
+using AirlineManager.UI.Windows.Popover;
 
 namespace AirlineManager.UI.Windows {
 	/// <summary>
 	/// Interaction logic for MainMenuWindow.xaml
 	/// </summary>
-	public partial class MainMenuWindow : MetroWindow, INewGameCreationSuccessListener {
+	public partial class MainMenuWindow : MetroWindow, INewGameCreationSuccessListener, ISavegameChosenListener {
 		public MainMenuWindow() {
 			InitializeComponent();
 
-			if (!SavegameHandler.DoesSavegameExists) {
+			if (!SavegameHandler.DoesAnySavegameExist()) {
 				btnLoadGame.IsEnabled = false;
 			}
 		}
@@ -23,10 +24,7 @@ namespace AirlineManager.UI.Windows {
 		}
 
 		private void btnLoadGame_Click(object sender, RoutedEventArgs e) {
-            MainGameController.Instance.LoadGame();
-
-            new MainWindow().Show();
-            Close();
+            new ChooseSavegameWindow(this, ChooseSavegameWindow.SavegameProcess.Load).Show();
 		}
 
 		private void btnQuit_Click(object sender, RoutedEventArgs e) {
@@ -35,6 +33,15 @@ namespace AirlineManager.UI.Windows {
 
         public void NewGameCreationSuccessfull() {
             Close();
+        }
+
+        public void SavegameChosenSuccessful(ChooseSavegameWindow.SavegameProcess process, string savegameName) {
+            SavegameHandler.LoadGame(savegameName);
+            new MainWindow().Show();
+            Close();
+        }
+
+        public void SavegameChooseAborted() {
         }
     }
 }
