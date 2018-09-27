@@ -45,7 +45,10 @@
             </Button>
         </StackPanel>
         <DockPanel Grid.Column="1">
-            <Frame x:Name="_mainFrame" DockPanel.Dock="Top" NavigationUIVisibility="Hidden" />
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+                <Label x:Name="lblStatusBar" Height="30" Content="Status bar" Background="Black" />
+                <Frame x:Name="_mainFrame"  NavigationUIVisibility="Hidden" />
+            </StackPanel>
         </DockPanel>
     </Grid>
 </Metro:MetroWindow>
