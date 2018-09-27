@@ -12,6 +12,13 @@
             <Setter Property="Width" Value="50" />
             <Setter Property="Height" Value="Auto" />
         </Style>
+
+        <Storyboard x:Key="sbShowStatusBar">
+            <DoubleAnimation Storyboard.TargetName="lblStatusBar" Storyboard.TargetProperty="Opacity" From="0.0" To="1.0" Duration="0:0:1" />
+        </Storyboard>
+        <Storyboard x:Key="sbHideStatusBar">
+            <DoubleAnimation Storyboard.TargetName="lblStatusBar" Storyboard.TargetProperty="Opacity" From="1.0" To="0.0" Duration="0:0:1" />
+        </Storyboard>
     </Metro:MetroWindow.Resources>
     
     <Grid>
@@ -46,7 +53,7 @@
         </StackPanel>
         <DockPanel Grid.Column="1">
             <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
-                <Label x:Name="lblStatusBar" Height="30" Content="Status bar" Background="Black" />
+                <Label x:Name="lblStatusBar" Height="30" Content="Status bar" Background="Black" Opacity="0.0" />
                 <Frame x:Name="_mainFrame"  NavigationUIVisibility="Hidden" />
             </StackPanel>
         </DockPanel>

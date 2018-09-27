@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
 using MahApps.Metro.Controls;
@@ -126,6 +127,16 @@ namespace AirlineManager {
                 default:
                     break;
             }
+        }
+
+        private void ShowStatusBar() {
+            Storyboard sb = Resources["sbShowStatusBar"] as Storyboard;
+            sb.Begin(lblStatusBar);
+        }
+
+        private void HideStatusBar() {
+            Storyboard sb = Resources["sbHideStatusBar"] as Storyboard;
+            sb.Begin(lblStatusBar);
         }
     }
 }
