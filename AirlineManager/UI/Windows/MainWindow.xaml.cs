@@ -129,6 +129,24 @@ namespace AirlineManager {
             }
         }
 
+        public void DisplayStatusMessage(string message, Color fontColor, Color backgroundColor) {
+            lblStatusBar.Content = message;
+            lblStatusBar.Foreground = new SolidColorBrush(fontColor);
+            lblStatusBar.Background = new SolidColorBrush(backgroundColor);
+
+            DispatcherTimer dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(TimerTick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 5);
+
+            ShowStatusBar();
+            dispatcherTimer.Start();
+        }
+
+        private void TimerTick(object sender, EventArgs e) {
+            HideStatusBar();
+            (sender as DispatcherTimer).Stop();
+        }
+
         private void ShowStatusBar() {
             Storyboard sb = Resources["sbShowStatusBar"] as Storyboard;
             sb.Begin(lblStatusBar);
