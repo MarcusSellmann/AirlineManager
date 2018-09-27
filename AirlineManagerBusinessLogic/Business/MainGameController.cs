@@ -132,20 +132,6 @@ namespace AirlineManager.Business {
 
             return false;
         }
-
-        #region Savegame handler
-        public void SaveGame() {
-            SavegameHandler.SaveGame(this);
-        }
-
-        public void LoadGame() {
-            SavegameHandler.LoadGame();
-        }
-
-        public bool DoesSavegameExist() {
-            return SavegameHandler.DoesSavegameExists;
-        }
-        #endregion
         #endregion
     }
 }

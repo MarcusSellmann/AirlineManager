@@ -149,6 +149,7 @@
     <Compile Include="UI\Interfaces\IFilterUpdatedListener.cs" />
     <Compile Include="UI\Interfaces\INewGameCreationSuccessListener.cs" />
     <Compile Include="UI\Interfaces\IPlayerInformationEnteredListener.cs" />
+    <Compile Include="UI\Interfaces\ISavegameChosenListener.cs" />
     <Compile Include="UI\Interfaces\ISavegameOverrideInteractionListener.cs" />
     <Compile Include="UI\Pages\AircraftInstancePage.xaml.cs">
       <DependentUpon>AircraftInstancePage.xaml</DependentUpon>
@@ -200,6 +201,9 @@
     </Compile>
     <Compile Include="UI\Windows\MainMenuWindow.xaml.cs">
       <DependentUpon>MainMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Windows\Popover\ChooseSavegameWindow.xaml.cs">
+      <DependentUpon>ChooseSavegameWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Windows\Popover\NewGameContextWindow.xaml.cs">
       <DependentUpon>NewGameContextWindow.xaml</DependentUpon>
@@ -287,6 +291,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Windows\MainMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Windows\Popover\ChooseSavegameWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
