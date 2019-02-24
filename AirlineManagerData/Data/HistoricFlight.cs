@@ -14,9 +14,7 @@ namespace AirlineManager.Data {
         }
 
         public new TimeSpan CurrentFlightTime {
-            get {
-                return ArrivalTime - DepartureTime;
-            }
+            get => ArrivalTime - DepartureTime;
         }
     }
 }

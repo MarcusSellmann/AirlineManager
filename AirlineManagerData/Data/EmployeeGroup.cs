@@ -16,9 +16,7 @@ namespace AirlineManager.Data {
         public int NumberOfEmployees { get; private set; }
 
 		public long LoanPerEmployee {
-			get {
-				return m_loanPerEmployee;
-			}
+			get => m_loanPerEmployee;
 
 			set {
 				if (value > 0) {
@@ -28,9 +26,7 @@ namespace AirlineManager.Data {
 		}
 
 		public long TotalLoan {
-			get {
-				return NumberOfEmployees * m_loanPerEmployee;
-			}
+			get => NumberOfEmployees * m_loanPerEmployee;
 		}
 		#endregion
 
@@ -41,9 +37,7 @@ namespace AirlineManager.Data {
 		}
 
 		override
-		public string ToString() {
-			return GroupDepartment.ToString();
-		}
+		public string ToString() => GroupDepartment.ToString();
 
 		private void updateMotivation() {
 			// TODO: Implement motivation

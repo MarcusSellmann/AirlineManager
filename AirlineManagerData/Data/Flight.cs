@@ -68,24 +68,18 @@ namespace AirlineManager.Data {
         }
 
         public bool IsAircraftAssigned {
-            get {
-                return AssignedAircraft != null;
-            }
+            get => AssignedAircraft != null;
         }
 
         /// <summary>
         /// Returns the flight time in hours.
         /// </summary>
         public double TotalFlightTime {
-            get {
-                return AssignedAircraft.Type.TravelVelocity / OperatingRoute.Distance;
-            }
+            get => AssignedAircraft.Type.TravelVelocity / OperatingRoute.Distance;
         }
 
         public Demand BookedPassengers {
-			get {
-				return m_bookedPassengers;
-			}
+			get => m_bookedPassengers;
 
 			set {
 				if (value != null) {
@@ -101,16 +95,14 @@ namespace AirlineManager.Data {
                 if (flightTime < TimeSpan.FromSeconds(0) ||
                     State != FlightState.InFlight) {
                     return TimeSpan.FromSeconds(0);
-                } else {
-                    return DateTime.Now - DepartureTime;
                 }
+
+                return DateTime.Now - DepartureTime;
 			}
 		}
 
         public DateTime EstimatedArrivalTime {
-            get {
-                return DepartureTime + TimeSpan.FromHours(TotalFlightTime);
-            }
+            get => DepartureTime + TimeSpan.FromHours(TotalFlightTime);
         }
 		#endregion
 
@@ -130,13 +122,9 @@ namespace AirlineManager.Data {
 			DepartureTime = DateTime.Now;
 		}
 
-		public DateTime CalcEstimatedArrival(double totalFlightTime) {
-			return DateTime.Now + CalcFlightTimeLeft(totalFlightTime);
-		}
+		public DateTime CalcEstimatedArrival(double totalFlightTime) => DateTime.Now + CalcFlightTimeLeft(totalFlightTime);
 
-		public TimeSpan CalcFlightTimeLeft(double totalFlightTime) {
-			return TimeSpan.FromHours(totalFlightTime) - CurrentFlightTime;
-        }
+		public TimeSpan CalcFlightTimeLeft(double totalFlightTime) => TimeSpan.FromHours(totalFlightTime) - CurrentFlightTime;
 
         public void AssignAircraft(AircraftInstance aircraftInstance) {
             AssignedAircraft = aircraftInstance;

@@ -23,9 +23,7 @@ namespace AirlineManager.Data {
         public TicketPrizes TicketPrizes { get; set; }
 
         public string RouteNumber {
-            get {
-                return m_routeNumber;
-            }
+            get => m_routeNumber;
 
             set {
                 if (value.Length > 0) {
@@ -35,9 +33,7 @@ namespace AirlineManager.Data {
         }
 
         public double Distance {
-			get {
-				return Origin.Coordinate.GetDistanceTo(Destination.Coordinate);
-			}
+			get => Origin.Coordinate.GetDistanceTo(Destination.Coordinate);
 		}
 		#endregion
 
@@ -51,8 +47,6 @@ namespace AirlineManager.Data {
         }
 
 		override
-		public string ToString() {
-			return RouteNumber;
-		}
+		public string ToString() => RouteNumber;
 	}
 }

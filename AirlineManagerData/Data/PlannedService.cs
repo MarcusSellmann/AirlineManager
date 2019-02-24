@@ -21,21 +21,15 @@ namespace AirlineManager.Data {
         public long Costs { get; private set; }
 
         public DateTime EndTime {
-			get {
-				return StartTime + Duration;
-			}
+			get => StartTime + Duration;
 		}
 
 		public bool Running {
-			get {
-				return (StartTime < DateTime.Now) && !Executed;
-			}
+			get => (StartTime < DateTime.Now) && !Executed;
 		}
 
 		public bool Executed {
-			get {
-				return EndTime < DateTime.Now;
-			}
+			get => EndTime < DateTime.Now;
 		}
 		#endregion
 
@@ -47,8 +41,6 @@ namespace AirlineManager.Data {
 		}
 
 		override
-		public string ToString() {
-			return Level.ToString() + ": " + StartTime.ToString() + " -> " + EndTime.ToString();
-		}
+		public string ToString() => Level.ToString() + ": " + StartTime.ToString() + " -> " + EndTime.ToString();
 	}
 }

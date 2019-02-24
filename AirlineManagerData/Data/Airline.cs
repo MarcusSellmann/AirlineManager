@@ -45,9 +45,7 @@ namespace AirlineManager.Data {
         public FlightHistory FlightHistory { get; private set; }
 
         public long Money {
-            get {
-                return m_money;
-            }
+            get => m_money;
 
             private set {
                 if (value >= 0) {
@@ -57,9 +55,7 @@ namespace AirlineManager.Data {
         }
 
         public int Reputation {
-            get {
-                return m_reputation;
-            }
+            get => m_reputation;
 
             private set {
                 if (value >= 0) {
@@ -68,16 +64,12 @@ namespace AirlineManager.Data {
             }
         }
 
-        public List<AircraftInstance> UnassignedAircrafts
-        {
-            get
-            {
+        public List<AircraftInstance> UnassignedAircrafts {
+            get {
                 List<AircraftInstance> ais = new List<AircraftInstance>();
 
-                foreach (AircraftInstance ai in OwnedAircrafts)
-                {
-                    if (ai.AssignedFlight == null)
-                    {
+                foreach (AircraftInstance ai in OwnedAircrafts) {
+                    if (ai.AssignedFlight == null) {
                         ais.Add(ai);
                     }
                 }
