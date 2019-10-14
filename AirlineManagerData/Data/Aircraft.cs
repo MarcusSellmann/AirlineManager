@@ -59,9 +59,7 @@ namespace AirlineManager.Data {
         public int MaxNumberOfEconomySeats { get; private set; }
 
         public BitmapImage Image {
-            get {
-                return new BitmapImage(new Uri(@"pack://application:,,,/AirlineManager;component/res/ac/" + ImageName));
-            }
+            get => new BitmapImage(new Uri(@"pack://application:,,,/AirlineManager;component/res/ac/" + ImageName));
         }
         #endregion
 

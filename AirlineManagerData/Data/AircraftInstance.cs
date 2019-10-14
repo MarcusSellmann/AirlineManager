@@ -55,21 +55,15 @@ namespace AirlineManager.Data {
         public Engine InstalledEngine { get; private set; }
 
         public bool IsUsed {
-            get {
-                return HoursFlown > 0;
-            }
+            get => HoursFlown > 0;
         }
 
         public double AgeInDays {
-            get {
-                return (DateTime.Now - InitialOperation).Duration().TotalDays;
-            }
+            get => (DateTime.Now - InitialOperation).Duration().TotalDays;
         }
 
         public double AgeInYears {
-            get {
-                return AgeInDays / 365.0;
-            }
+            get => AgeInDays / 365.0;
         }
         #endregion
 
@@ -159,7 +153,7 @@ namespace AirlineManager.Data {
 
 		override
 		public string ToString() {
-			return Type.ToString() + " (" + Registration + ")";
+			return Type + " (" + Registration + ")";
 		}
 	}
 }

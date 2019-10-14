@@ -59,13 +59,9 @@ namespace AirlineManager.Data {
 			AddEmployees(department, 1);
 		}
 
-		public bool DecrementEmployee(Department department) {
-			return RemoveEmployees(department, 1);
-		}
+		public bool DecrementEmployee(Department department) => RemoveEmployees(department, 1);
 
 		override
-		public string ToString() {
-			return EmployeeArrangement[Department.Pilot] + " | " + EmployeeArrangement[Department.FlightCrew] + " | " + EmployeeArrangement[Department.GroundCrew] + " | " + EmployeeArrangement[Department.CheckinCrew] + " | " + EmployeeArrangement[Department.CleaningCrew] + " | " + EmployeeArrangement[Department.Technicians];
-		}
+		public string ToString() => EmployeeArrangement[Department.Pilot] + " | " + EmployeeArrangement[Department.FlightCrew] + " | " + EmployeeArrangement[Department.GroundCrew] + " | " + EmployeeArrangement[Department.CheckinCrew] + " | " + EmployeeArrangement[Department.CleaningCrew] + " | " + EmployeeArrangement[Department.Technicians];
 	}
 }

@@ -25,8 +25,6 @@ namespace AirlineManager.Data {
         }
 
         override
-        public string ToString() {
-            return Manufacturer + " " + Name;
-        }
+        public string ToString() => Manufacturer + " " + Name;
     }
 }

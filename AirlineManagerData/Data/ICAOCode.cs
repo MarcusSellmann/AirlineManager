@@ -10,9 +10,7 @@ namespace AirlineManager.Data {
 
         #region Properties
         public string Code {
-            get {
-                return new string(m_code);
-            }
+            get => new string(m_code);
 
             private set {
                 if (value.Length == 4) {
@@ -850,8 +848,6 @@ namespace AirlineManager.Data {
         }
 
 		override
-		public string ToString() {
-			return Code;
-		}
+		public string ToString() => Code;
     }
 }

@@ -27,9 +27,7 @@ namespace AirlineManager.Data {
 
         [DataMember]
         GeoCoordinateSerializable CoordinateS {
-            get {
-                return new GeoCoordinateSerializable(Coordinate);
-            }
+            get => new GeoCoordinateSerializable(Coordinate);
 
             set {
                 Coordinate = value.GetGeoCoordinate();
@@ -37,9 +35,7 @@ namespace AirlineManager.Data {
         }
 
         public string Country {
-			get {
-				return CodeICAO.Country;
-			}
+			get => CodeICAO.Country;
 		}
 		#endregion
 

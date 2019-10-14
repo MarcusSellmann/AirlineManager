@@ -9,9 +9,7 @@ namespace AirlineManager.Data {
         #region Properties
         [DataMember]
         public double Course {
-            get {
-                return m_geoCoordinate.Course;
-            }
+            get => m_geoCoordinate.Course;
 
             set {
                 m_geoCoordinate.Course = value;
@@ -24,9 +22,7 @@ namespace AirlineManager.Data {
 
         [DataMember]
         public double Speed {
-            get {
-                return m_geoCoordinate.Speed;
-            }
+            get => m_geoCoordinate.Speed;
 
             set {
                 m_geoCoordinate.Speed = value;
@@ -39,9 +35,7 @@ namespace AirlineManager.Data {
 
         [DataMember]
         public double VerticalAccuracy {
-            get {
-                return m_geoCoordinate.VerticalAccuracy;
-            }
+            get => m_geoCoordinate.VerticalAccuracy;
 
             set {
                 m_geoCoordinate.VerticalAccuracy = value;
@@ -54,9 +48,7 @@ namespace AirlineManager.Data {
 
         [DataMember]
         public double HorizontalAccuracy {
-            get {
-                return m_geoCoordinate.HorizontalAccuracy;
-            }
+            get => m_geoCoordinate.HorizontalAccuracy;
 
             set {
                 m_geoCoordinate.HorizontalAccuracy = value;
@@ -69,9 +61,7 @@ namespace AirlineManager.Data {
 
         [DataMember]
         public double Longitude {
-            get {
-                return m_geoCoordinate.Longitude;
-            }
+            get => m_geoCoordinate.Longitude;
 
             set {
                 m_geoCoordinate.Longitude = value;
@@ -84,9 +74,7 @@ namespace AirlineManager.Data {
 
         [DataMember]
         public double Latitude {
-            get {
-                return m_geoCoordinate.Latitude;
-            }
+            get => m_geoCoordinate.Latitude;
 
             set {
                 if (m_geoCoordinate == null) {
@@ -99,9 +87,7 @@ namespace AirlineManager.Data {
 
         [DataMember]
         public double Altitude {
-            get {
-                return m_geoCoordinate.Altitude;
-            }
+            get => m_geoCoordinate.Altitude;
 
             set {
                 if (m_geoCoordinate == null) {
@@ -121,8 +107,6 @@ namespace AirlineManager.Data {
             m_geoCoordinate = gC;
         }
 
-        public GeoCoordinate GetGeoCoordinate() {
-            return m_geoCoordinate;
-        }
+        public GeoCoordinate GetGeoCoordinate() => m_geoCoordinate;
     }
 }

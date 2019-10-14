@@ -25,8 +25,6 @@ namespace AirlineManager.Data {
         }
 
         override
-        public string ToString() {
-            return Economy + " | " + Business + " | " + First + " | " + Cargo;
-        }
+        public string ToString() => Economy + " | " + Business + " | " + First + " | " + Cargo;
     }
 }
