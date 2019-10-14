@@ -16,15 +16,11 @@ namespace AirlineManager.Business {
         public TimeSpan TimePlayedGameTime { get; private set; }
 
         public TimeSpan TimePlayedRealTime {
-            get {
-                return DateTime.Now - InitialStartTime;
-            }
+            get => DateTime.Now - InitialStartTime;
         }
 
         public DateTime CurrentTimeGameTime {
-            get {
-                return InitialStartTime + TimePlayedGameTime;
-            }
+            get => InitialStartTime + TimePlayedGameTime;
         }
         #endregion
 

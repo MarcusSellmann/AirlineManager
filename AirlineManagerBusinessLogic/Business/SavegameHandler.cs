@@ -12,23 +12,11 @@ namespace AirlineManager.Business {
         #endregion
 
         #region Properties
-        public static string FullSavegameFolderPath {
-            get {
-                return String.Concat(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), SAVEGAME_SUBPATH);
-            }
-        }
+        public static string FullSavegameFolderPath { get => string.Concat(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), SAVEGAME_SUBPATH); }
 
-        public static string FullSavegamePath {
-			get {
-				return String.Concat(FullSavegameFolderPath, SAVEGAME_FILENAME, SAVEGAME_FILE_EXTENSION);
-			}
-		}
+        public static string FullSavegamePath { get => string.Concat(FullSavegameFolderPath, SAVEGAME_FILENAME, SAVEGAME_FILE_EXTENSION); }
 
-		public static bool DoesSavegameExists {
-			get {
-				return File.Exists(FullSavegamePath);
-			}
-		}
+		public static bool DoesSavegameExists { get => File.Exists(FullSavegamePath); }
 		#endregion
 
 		public static void SaveGame(MainGameController mgc) {
