@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace AirlineManager.Business {
 	public class SavegameHandler {
@@ -12,11 +11,7 @@ namespace AirlineManager.Business {
         #endregion
 
         #region Properties
-        public static string FullSavegameFolderPath {
-            get {
-                return string.Concat(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), SAVEGAME_SUBPATH);
-            }
-        }
+        public static string FullSavegameFolderPath { get => string.Concat(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), SAVEGAME_SUBPATH); }
 		#endregion
 
 		public static void SaveGame(MainGameController mgc, string savegameName) {
@@ -41,13 +36,9 @@ namespace AirlineManager.Business {
 			return false;
 		}
 
-        public static bool DoesSavegameExist(string savegameName) {
-            return File.Exists(CreateFullSavegamePath(savegameName));
-        }
+        public static bool DoesSavegameExist(string savegameName) => File.Exists(CreateFullSavegamePath(savegameName));
 
-        public static bool DoesAnySavegameExist() {
-            return GetAvailableSavegames().Count > 0;
-        }
+        public static bool DoesAnySavegameExist() => GetAvailableSavegames().Count > 0;
 
         public static List<string> GetAvailableSavegames() {
             List<string> sg = new List<string>();
@@ -57,8 +48,6 @@ namespace AirlineManager.Business {
             return sg;
         }
 
-        private static string CreateFullSavegamePath(string savegameName) {
-            return string.Concat(FullSavegameFolderPath, savegameName, SAVEGAME_FILE_EXTENSION);
-        }
+        private static string CreateFullSavegamePath(string savegameName) => string.Concat(FullSavegameFolderPath, savegameName, SAVEGAME_FILE_EXTENSION);
     }
 }
