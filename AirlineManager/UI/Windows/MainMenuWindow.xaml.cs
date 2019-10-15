@@ -32,11 +32,14 @@ namespace AirlineManager.UI.Windows {
 		}
 
         public void NewGameCreationSuccessfull() {
+            MainGameController.Instance.GameClock.InitGameClock();
+            MainGameController.Instance.GameClock.StartGameTick();
             Close();
         }
 
         public void SavegameChosenSuccessful(ChooseSavegameWindow.SavegameProcess process, string savegameName) {
             SavegameHandler.LoadGame(savegameName);
+            MainGameController.Instance.GameClock.StartGameTick();
             new MainWindow().Show();
             Close();
         }

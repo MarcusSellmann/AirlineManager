@@ -42,7 +42,7 @@ namespace AirlineManager {
 
 		private void MainGameTick(object sender, EventArgs e) {
             GameClock gameClock = MainGameController.Instance.GameClock;
-            DateTime currTime = gameClock.CurrentTimeGameTime;
+            DateTime currTime = gameClock.CurrentGameTime;
 
             lblCurrentDate.Content = currTime.ToString("ddd dd.MM.yyyy");
             lblCurrentTime.Content = currTime.ToString("HH:mm:ss");

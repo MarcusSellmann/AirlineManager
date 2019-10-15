@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AirlineManager.Business.ExceptionHandling;
 using AirlineManager.Data;
 using AirlineManager.Business.Databases;
+using AirlineManager.Business.Interfaces;
 
 namespace AirlineManager.Business {
     public static class GlobalConstants {
@@ -13,7 +14,7 @@ namespace AirlineManager.Business {
     }
 
     [Serializable()]
-    public class MainGameController {
+    public class MainGameController : IGameClockTickReceiver {
         #region Attributes
         static MainGameController m_instance = null;
         #endregion
@@ -77,8 +78,12 @@ namespace AirlineManager.Business {
         }
         #endregion
 
+        public void GameTickReceived() {
+        }
+
         MainGameController() {
             GameClock = new GameClock();
+            GameClock.AddTickReceiver(this);
         }
 
         #region UI method calls

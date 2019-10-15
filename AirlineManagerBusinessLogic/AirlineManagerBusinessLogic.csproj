@@ -48,6 +48,7 @@
     <Compile Include="Business\Generators\AircraftInstanceGenerator.cs" />
     <!--<Compile Include="Business\Generators\FlightDemandGenerator.cs" />-->
     <Compile Include="Business\Generators\InteriorLayoutGenerator.cs" />
+    <Compile Include="Business\Interfaces\IGameClockTickReceiver.cs" />
     <Compile Include="Business\MainGameController.cs" />
     <Compile Include="Business\RandomCostsCalculator.cs" />
     <Compile Include="Business\SavegameHandler.cs" />
