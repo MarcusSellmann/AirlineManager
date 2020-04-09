@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+
 using AirlineManager.Business.Databases;
 using AirlineManager.Data;
 using AirlineManager.UI.Interfaces;
@@ -38,43 +39,58 @@ namespace AirlineManager.UI.Pages.Subpages {
         }
 
         #region UI actions
-        private void btnApplyFilter_Click(object sender, System.Windows.RoutedEventArgs e) {
-            UpdatedListener.FilterUpdated();
+        #region Button clicks
+        private void BtnApplyFilter_Click(object sender, System.Windows.RoutedEventArgs e) {
+            UpdatedListener?.FilterUpdated();
         }
 
-        private void slAvailableRunwayLength_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e) {
+        private void BtnResetFilter_Click(object sender, System.Windows.RoutedEventArgs e) {
+            slAvailableRunwayLength.Value = 4000;
+            slFlownHours.UpperValue = 500000;
+            slFlownHours.LowerValue = 1000;
+            slAge.UpperValue = 100;
+            slAge.LowerValue = 0;
+            cbAircraftType.SelectedValue = null;
+
+            UpdatedListener?.FilterUpdated();
+        }
+        #endregion
+
+        #region Value change events
+        private void SlAvailableRunwayLength_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e) {
             AvailableRunwayLength = (int)e.NewValue;
         }
 
-        private void slFlownHours_LowerValueChanged(object sender, MahApps.Metro.Controls.RangeParameterChangedEventArgs e) {
+        private void SlFlownHours_LowerValueChanged(object sender, MahApps.Metro.Controls.RangeParameterChangedEventArgs e) {
             FlownHoursLowerValue = (int)e.NewValue;
         }
 
-        private void slFlownHours_UpperValueChanged(object sender, MahApps.Metro.Controls.RangeParameterChangedEventArgs e) {
+        private void SlFlownHours_UpperValueChanged(object sender, MahApps.Metro.Controls.RangeParameterChangedEventArgs e) {
             FlownHoursUpperValue = (int)e.NewValue;
         }
 
-        private void slFlownHours_RangeSelectionChanged(object sender, MahApps.Metro.Controls.RangeSelectionChangedEventArgs e) {
+        private void SlFlownHours_RangeSelectionChanged(object sender, MahApps.Metro.Controls.RangeSelectionChangedEventArgs e) {
             FlownHoursLowerValue = (int)e.NewLowerValue;
             FlownHoursUpperValue = (int)e.NewUpperValue;
         }
 
-        private void slAge_LowerValueChanged(object sender, MahApps.Metro.Controls.RangeParameterChangedEventArgs e) {
+        private void SlAge_LowerValueChanged(object sender, MahApps.Metro.Controls.RangeParameterChangedEventArgs e) {
             AgeLowerValue = (int)e.NewValue;
         }
 
-        private void slAge_UpperValueChanged(object sender, MahApps.Metro.Controls.RangeParameterChangedEventArgs e) {
+        private void SlAge_UpperValueChanged(object sender, MahApps.Metro.Controls.RangeParameterChangedEventArgs e) {
             AgeUpperValue = (int)e.NewValue;
         }
 
-        private void slAge_RangeSelectionChanged(object sender, MahApps.Metro.Controls.RangeSelectionChangedEventArgs e) {
+        private void SlAge_RangeSelectionChanged(object sender, MahApps.Metro.Controls.RangeSelectionChangedEventArgs e) {
             AgeLowerValue = (int)e.NewLowerValue;
             AgeUpperValue = (int)e.NewUpperValue;
         }
 
-        private void cbAircraftType_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+        private void CbAircraftType_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             Type = e.AddedItems as Aircraft;
         }
+        #endregion
         #endregion
     }
 }

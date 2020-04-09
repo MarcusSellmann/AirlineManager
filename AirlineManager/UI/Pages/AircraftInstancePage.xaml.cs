@@ -27,12 +27,12 @@ namespace AirlineManager.UI.Pages
             {
                 m_aircraftInstances.Add(ai);
             }
-
+            
             InitializeComponent();
-            _filterSidebarFrame.Navigate(new AircraftInstanceFilterPage(this));
-
+            
             lvAircraftInstances.ItemsSource = m_aircraftInstances;
             m_aircraftInstanceFilterPage = new AircraftInstanceFilterPage(this);
+            _filterSidebarFrame.Navigate(m_aircraftInstanceFilterPage);
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvAircraftInstances.ItemsSource);
             view.Filter = AircraftInstanceFilter;
