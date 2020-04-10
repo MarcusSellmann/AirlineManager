@@ -53,15 +53,22 @@
     <Compile Include="Business\RandomCostsCalculator.cs" />
     <Compile Include="Business\SavegameHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Business\Utilities\FlightTimeHelper.cs" />
+    <Compile Include="Business\Utilities\FlightCostHelper.cs" />
+    <Compile Include="Business\Utilities\AircraftAgeHelper.cs" />
+    <Compile Include="Business\Utilities\AircraftValueHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AirlineManagerData\AirlineManagerData.csproj">
-      <Project>{5ecc610b-52ef-467d-8aa5-ef2016380188}</Project>
+      <Project>{5ECC610B-52EF-467D-8AA5-EF2016380188}</Project>
       <Name>AirlineManagerData</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Business\Utilities\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

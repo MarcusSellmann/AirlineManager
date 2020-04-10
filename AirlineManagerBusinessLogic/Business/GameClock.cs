@@ -5,12 +5,12 @@ using System.Timers;
 using AirlineManager.Business.Interfaces;
 
 namespace AirlineManager.Business {
-    [Serializable()]
+    [Serializable]
     public class GameClock {
         #region Attributes
-        private Timer m_timer = new Timer(1000);
+        private readonly Timer m_timer = new Timer(1000);
         [NonSerialized]
-        private List<IGameClockTickReceiver> m_gameClockTickReceivers;
+        private readonly List<IGameClockTickReceiver> m_gameClockTickReceivers;
         #endregion
 
         #region Property

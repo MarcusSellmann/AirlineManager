@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace AirlineManager.Data {
@@ -27,7 +26,7 @@ namespace AirlineManager.Data {
         public AircraftInstance AssignedAircraft { get; private set; }
 
         [DataMember]
-        public DateTime DepartureTime { get; private set; }
+        public DateTime DepartureTime { get; set; }
 
         public bool AtOrigin {
             get {
@@ -51,13 +50,6 @@ namespace AirlineManager.Data {
             }
         }
 
-        public long FuelCosts {
-            get {
-                //TODO: Create an algo for the fuel costs.
-                return 0;
-            }
-        }
-
         public long MaxPossibleIncome {
             get {
                 return AssignedAircraft.Interior.ClassLayout[ClassType.Economy] * OperatingRoute.TicketPrizes.Economy +
@@ -71,13 +63,6 @@ namespace AirlineManager.Data {
             get => AssignedAircraft != null;
         }
 
-        /// <summary>
-        /// Returns the flight time in hours.
-        /// </summary>
-        public double TotalFlightTime {
-            get => AssignedAircraft.Type.TravelVelocity / OperatingRoute.Distance;
-        }
-
         public Demand BookedPassengers {
 			get => m_bookedPassengers;
 
@@ -87,23 +72,6 @@ namespace AirlineManager.Data {
                 }
 			}
 		}
-
-		public TimeSpan CurrentFlightTime {
-			get {
-                TimeSpan flightTime = DateTime.Now - DepartureTime;
-
-                if (flightTime < TimeSpan.FromSeconds(0) ||
-                    State != FlightState.InFlight) {
-                    return TimeSpan.FromSeconds(0);
-                }
-
-                return DateTime.Now - DepartureTime;
-			}
-		}
-
-        public DateTime EstimatedArrivalTime {
-            get => DepartureTime + TimeSpan.FromHours(TotalFlightTime);
-        }
 		#endregion
 
 		public Flight(string flightNumber, Route operatingRoute, FlightType flightType, FlightState state) {
@@ -117,14 +85,6 @@ namespace AirlineManager.Data {
 			m_bookedPassengers = bookedPassengers;
             DepartureTime = departureTime;
         }
-
-		public void Depart() {
-			DepartureTime = DateTime.Now;
-		}
-
-		public DateTime CalcEstimatedArrival(double totalFlightTime) => DateTime.Now + CalcFlightTimeLeft(totalFlightTime);
-
-		public TimeSpan CalcFlightTimeLeft(double totalFlightTime) => TimeSpan.FromHours(totalFlightTime) - CurrentFlightTime;
 
         public void AssignAircraft(AircraftInstance aircraftInstance) {
             AssignedAircraft = aircraftInstance;

@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+
 using AirlineManager.Business.Databases;
 using AirlineManager.Data;
 
 namespace AirlineManager.Business.Generators {
 	public class AircraftInstanceGenerator {
 		#region Attributes
-		static AircraftInstanceGenerator m_instance = null;
+		static AircraftInstanceGenerator m_instance;
 		#endregion
 
 		#region Properties
@@ -22,12 +23,12 @@ namespace AirlineManager.Business.Generators {
 		}
 		#endregion
 
-		public List<AircraftInstance> CreateAircraftInstances(int amount) {
+		public List<AircraftInstance> CreateAircraftInstances(int amount, DateTime currentTimeStamp) {
 			AircraftDatabase Aircrafts = AircraftDatabase.Instance;
 			AirportDatabase Airports = AirportDatabase.Instance;
 			InteriorLayoutGenerator Layouts = InteriorLayoutGenerator.Instance;
-			
-			Random rnd = new Random((int)DateTime.Now.Ticks);
+
+            Random rnd = new Random((int)currentTimeStamp.Ticks);
 			List<AircraftInstance> instances = new List<AircraftInstance>();
 
 			for (int i = 0; i < amount; ++i) {
@@ -37,7 +38,7 @@ namespace AirlineManager.Business.Generators {
                 AircraftInstance aci = new AircraftInstance(ac,
 															rnd.Next(GlobalConstants.USED_AIRCRAFT_MARKET_MAXIMUM_DISTANCE_FLOWN),
                                                             regs[rnd.Next(regs.Length)],
-															GenerateRandomCommissioningDate(rnd),
+															GenerateRandomCommissioningDate(rnd, currentTimeStamp),
 															0,
 															GetRandomInstalledExtras(rnd, rnd.Next(4)),
 															Airports.DB[rnd.Next(Airports.DB.Count)],
@@ -54,8 +55,8 @@ namespace AirlineManager.Business.Generators {
 			
 		}
 
-		DateTime GenerateRandomCommissioningDate(Random rnd) {
-            int year = rnd.Next(GlobalConstants.USED_AIRCRAFT_MARKET_START_YEAR_FOR_INITIAL_OPERATION, DateTime.Now.Year);
+		DateTime GenerateRandomCommissioningDate(Random rnd, DateTime currentTimeStamp) {
+            int year = rnd.Next(GlobalConstants.USED_AIRCRAFT_MARKET_START_YEAR_FOR_INITIAL_OPERATION, currentTimeStamp.Year);
 			int month = rnd.Next(1, 12);
 			int day = rnd.Next(1, 28);
 

@@ -31,9 +31,6 @@ namespace AirlineManager.Data {
         public DateTime InitialOperation { get; private set; }
 
         [DataMember]
-        public long CurrentValue { get; private set; }
-
-        [DataMember]
         public Aircraft Type { get; private set; }
 
         [DataMember]
@@ -56,14 +53,6 @@ namespace AirlineManager.Data {
 
         public bool IsUsed {
             get => HoursFlown > 0;
-        }
-
-        public double AgeInDays {
-            get => (DateTime.Now - InitialOperation).Duration().TotalDays;
-        }
-
-        public double AgeInYears {
-            get => AgeInDays / 365.0;
         }
         #endregion
 
@@ -118,13 +107,6 @@ namespace AirlineManager.Data {
             Services = new List<PlannedService>();
         }
 
-        public void UpdateCurrentValue() {
-            long hoursCosts = (long)(HoursFlown * 35.0);
-            long ageCosts = (long)(AgeInDays * 2500.0);
-
-            CurrentValue = Type.OriginalPrize - hoursCosts - ageCosts;
-        }
-
         public bool IsExtraInstalled(AircraftExtras extraType) {
             return InstalledExtras[extraType] != null;
         }
@@ -142,8 +124,8 @@ namespace AirlineManager.Data {
 			Services.Add(service);
 		}
 
-		public bool AbortService(PlannedService service) {
-			if (Services.Contains(service) && !service.Running) {
+		public bool AbortService(PlannedService service, DateTime currentTimestamp) {
+			if (Services.Contains(service) && !service.IsRunning(currentTimestamp)) {
 				Services.Remove(service);
 				return true;
 			}

@@ -13,10 +13,10 @@ namespace AirlineManager.Business {
         public const int USED_AIRCRAFT_MARKET_MAXIMUM_DISTANCE_FLOWN = 200000;
     }
 
-    [Serializable()]
+    [Serializable]
     public class MainGameController : IGameClockTickReceiver {
         #region Attributes
-        static MainGameController m_instance = null;
+        static MainGameController m_instance;
         #endregion
 
         #region Properties
@@ -130,7 +130,7 @@ namespace AirlineManager.Business {
         }
 
         public bool BuyAircraft(UsedAircraftInstanceContainer ai) {
-            if (ai.AvailableTill > DateTime.Now && CurrentAirline.BuyAircraft(ai.Aircraft)) {
+            if (ai.AvailableTill > GameClock.CurrentGameTime && CurrentAirline.BuyAircraft(ai.Aircraft)) {
                 AircraftInstanceDatabase.Instance.UsedAircrafts.Remove(ai);
                 return true;
             }
