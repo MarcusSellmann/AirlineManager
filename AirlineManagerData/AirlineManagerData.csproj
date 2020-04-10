@@ -40,7 +40,6 @@
     <Compile Include="Data\EmployeeGroup.cs" />
     <Compile Include="Data\Flight.cs" />
     <Compile Include="Data\FlightHistory.cs" />
-    <Compile Include="Data\FlightSchedule.cs" />
     <Compile Include="Data\GeoCoordinateSerializable.cs" />
     <Compile Include="Data\HistoricFlight.cs" />
     <Compile Include="Data\InteriorLayout.cs" />
