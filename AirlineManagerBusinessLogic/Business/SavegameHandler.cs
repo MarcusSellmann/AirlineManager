@@ -43,6 +43,10 @@ namespace AirlineManager.Business {
         public static List<string> GetAvailableSavegames() {
             List<string> sg = new List<string>();
 
+            if (!Directory.Exists(FullSavegameFolderPath)) {
+                Directory.CreateDirectory(FullSavegameFolderPath);
+            }
+
             sg.AddRange(Directory.GetFiles(FullSavegameFolderPath));
 
             return sg;
