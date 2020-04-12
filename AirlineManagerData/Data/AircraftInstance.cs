@@ -67,7 +67,7 @@ namespace AirlineManager.Data {
         public AircraftInstance(Aircraft type, string registration, 
 								DateTime commissioning, Airport currentLocation, 
                                 InteriorLayout layout, Engine installendEngine) : 
-            this(type, 0, registration, commissioning, type.OriginalPrize, null, 
+            this(type, 0, registration, commissioning, null, 
                  currentLocation, layout, installendEngine) {}
 
         /// <summary>
@@ -83,7 +83,6 @@ namespace AirlineManager.Data {
         /// <param name="layout"></param>
         public AircraftInstance(Aircraft type, float hoursFlown, 
                                 string registration, DateTime commissioning,
-                                long currentValue, 
 								Dictionary<AircraftExtras,AircraftExtra> installedExtras, 
 								Airport currentLocation, InteriorLayout layout,
                                 Engine installendEngine) {
@@ -91,7 +90,6 @@ namespace AirlineManager.Data {
             HoursFlown = hoursFlown;
             m_registration = registration;
             InitialOperation = commissioning;
-            CurrentValue = currentValue;
 			CurrentLocation = currentLocation;
 			Interior = layout;
             InstalledEngine = installendEngine;

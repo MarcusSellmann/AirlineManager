@@ -40,10 +40,14 @@ namespace AirlineManager.Business.Databases {
 				return m_usedAircraftList.Count;
 			}
 		}
+
+        private DateTime CurrentTimestamp {
+            get => MainGameController.Instance.GameClock.CurrentGameTime;
+        }
 		#endregion
 
-		AircraftInstanceDatabase(DateTime currentTimestamp) {
-			CreateNewUsedAirplanes(GlobalConstants.USED_AIRCRAFT_MARKET_INITIAL_INSTANCE_AMOUNT, currentTimestamp);
+		AircraftInstanceDatabase() {
+			CreateNewUsedAirplanes(GlobalConstants.USED_AIRCRAFT_MARKET_INITIAL_INSTANCE_AMOUNT);
 
 			m_dbUpdateTimer = new Timer();
 			m_dbUpdateTimer.Interval = TimeSpan.FromMinutes(GlobalConstants.USED_AIRCRAFT_MARKET_UPDATE_INTERVAL_MINUTES).Ticks;
@@ -53,20 +57,18 @@ namespace AirlineManager.Business.Databases {
         }
 
 		private void UpdateDatabase(object sender, ElapsedEventArgs e) {
-			DateTime cTime = MainGameController.Instance.GameClock.CurrentGameTime;
-			CreateNewUsedAirplanes(RemoveExpiredAircraftOffersFromDatabase(cTime), cTime);
+			CreateNewUsedAirplanes(RemoveExpiredAircraftOffersFromDatabase());
 		}
 
 		/// <summary>
-		/// Removes offers of aircrafts which are expired according to the <code>currentTimestamp</code>.
+		/// Removes offers of aircrafts which are expired according to the currentTimestamp.
 		/// </summary>
-		/// <param name="currentTimestamp">The current timestamp of the game.</param>
 		/// <returns>The number of aircraft offers, which has been removed.</returns>
-		private int RemoveExpiredAircraftOffersFromDatabase(DateTime currentTimestamp) {
+		private int RemoveExpiredAircraftOffersFromDatabase() {
 			int airplanesRemoved = 0;
 
 			foreach (UsedAircraftInstanceContainer ac in m_usedAircraftList) {
-                if (ac.AvailableTill <= currentTimestamp) {
+                if (ac.AvailableTill <= CurrentTimestamp) {
 					m_usedAircraftList.Remove(ac);
 					++airplanesRemoved;
 				}
@@ -79,9 +81,9 @@ namespace AirlineManager.Business.Databases {
 		/// Creates a certain <code>amount</code> of used aircrafts.
 		/// </summary>
 		/// <param name="amount">The amount of aircrafts to create.</param>
-		/// <param name="currentTimestamp">The current timestamp of the game.</param>
-		private void CreateNewUsedAirplanes(int amount, DateTime currentTimestamp) {
-			List<AircraftInstance> aircrafts = AircraftInstanceGenerator.Instance.CreateAircraftInstances(amount, currentTimestamp);
+		private void CreateNewUsedAirplanes(int amount) {
+            DateTime currentTimestamp = CurrentTimestamp;
+            List<AircraftInstance> aircrafts = AircraftInstanceGenerator.Instance.CreateAircraftInstances(amount, currentTimestamp);
 
 			Random rnd;
 

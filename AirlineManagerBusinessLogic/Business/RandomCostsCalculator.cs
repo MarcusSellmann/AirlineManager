@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Timers;
 using AirlineManager.Data;
-using SimplexNoise;
+using Simplex;
 
 namespace AirlineManager.Business {
     public class FuelPrize {
@@ -20,19 +20,19 @@ namespace AirlineManager.Business {
 	}
 
 	public class RandomCostsCalculator {
-		#region Constants
+#region Constants
 		private const int FUEL_COST_RECALC_INTERVAL_MINUTE = 5;
 		private const int MAX_FUEL_COST_FORECAST_VALUES = 2000;
-		#endregion
+#endregion
 
-		#region Attributes
+#region Attributes
 		static RandomCostsCalculator m_instance = null;
 		Timer m_fuelCostRecalcTimer = null;
 		FuelPrize[] m_fuelCosts = new FuelPrize[MAX_FUEL_COST_FORECAST_VALUES];
 		int m_currentFuelCostForecastIndex = 10;
-		#endregion
+#endregion
 
-		#region Properties
+#region Properties
 		public static RandomCostsCalculator Instance {
 			get {
 				if (m_instance == null) {
@@ -81,7 +81,7 @@ namespace AirlineManager.Business {
 				return m_fuelCosts;
 			}
 		}
-		#endregion
+#endregion
 
 		RandomCostsCalculator() {
 			InitFuelCosts();
@@ -108,7 +108,7 @@ namespace AirlineManager.Business {
             }
 		}
 		
-		#region Timer methods
+#region Timer methods
 		private void OnFuelUpdateEvent(object source, ElapsedEventArgs e) {
 			Console.WriteLine("Fuel cost recalculation initiated.");
 			
@@ -120,6 +120,6 @@ namespace AirlineManager.Business {
 
 			Console.WriteLine("New fuel prize: {0}", CurrentFuelPrize);
 		}
-		#endregion
+#endregion
 	}
 }

@@ -1,30 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using AirlineManager.Business;
+using AirlineManager.Business.Utilities;
+using AirlineManager.Data;
+using AirlineManager.UI.Interfaces;
+using AirlineManager.UI.Pages.Subpages;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media.Animation;
-using AirlineManager.Business;
-using AirlineManager.Data;
-using AirlineManager.UI.Pages.Subpages;
-using AirlineManager.UI.Interfaces;
 
-namespace AirlineManager.UI.Pages
-{
+namespace AirlineManager.UI.Pages {
     /// <summary>
     /// Interaction logic for AircraftInstancePage.xaml
     /// </summary>
-    public partial class AircraftInstancePage : Page, IFilterUpdatedListener
-    {
+    public partial class AircraftInstancePage : Page, IFilterUpdatedListener {
         private ObservableCollection<AircraftInstance> m_aircraftInstances = new ObservableCollection<AircraftInstance>();
         private AircraftInstanceFilterPage m_aircraftInstanceFilterPage = null;
 
-        public AircraftInstancePage()
-        {
+        public AircraftInstancePage() {
             MainGameController mGc = MainGameController.Instance;
             List<AircraftInstance> aircraftInstances = mGc.CurrentAirline.OwnedAircrafts;
 
-            foreach (AircraftInstance ai in aircraftInstances)
-            {
+            foreach (AircraftInstance ai in aircraftInstances) {
                 m_aircraftInstances.Add(ai);
             }
 
@@ -42,8 +39,7 @@ namespace AirlineManager.UI.Pages
             CollectionViewSource.GetDefaultView(lvAircraftInstances.ItemsSource).Refresh();
         }
 
-        private void btnAddNewAircraftInstance_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
+        private void btnAddNewAircraftInstance_Click(object sender, System.Windows.RoutedEventArgs e) {
             NavigationService.Navigate(new AircraftMarketPage());
         }
 
@@ -72,12 +68,13 @@ namespace AirlineManager.UI.Pages
 
         private bool AircraftInstanceFilter(object item) {
             AircraftInstance ai = item as AircraftInstance;
+            double aiAge = AircraftAgeHelper.AircraftAgeInYears(ai.InitialOperation, MainGameController.Instance.GameClock.CurrentGameTime);
 
             if (ai.Type.MinimalNeededRunwayLength <= m_aircraftInstanceFilterPage.AvailableRunwayLength &&
                 ai.HoursFlown >= m_aircraftInstanceFilterPage.FlownHoursLowerValue &&
                 ai.HoursFlown <= m_aircraftInstanceFilterPage.FlownHoursUpperValue &&
-                ai.AgeInYears >= m_aircraftInstanceFilterPage.AgeLowerValue &&
-                ai.AgeInYears <= m_aircraftInstanceFilterPage.AgeUpperValue) {
+                aiAge >= m_aircraftInstanceFilterPage.AgeLowerValue &&
+                aiAge <= m_aircraftInstanceFilterPage.AgeUpperValue) {
                 if (m_aircraftInstanceFilterPage.Type == null ||
                     ai.Type == m_aircraftInstanceFilterPage.Type) {
                     return true;
