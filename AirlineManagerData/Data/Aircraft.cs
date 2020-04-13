@@ -5,7 +5,7 @@ using System.Windows.Media.Imaging;
 
 namespace AirlineManager.Data {
 	[DataContract]
-	public class Aircraft {
+	public class Aircraft : IComparable {
 		#region Attributes
         #endregion
 
@@ -95,5 +95,9 @@ namespace AirlineManager.Data {
 		public string ToString() {
 			return Manufacturer.ToString() + " " + Name;
 		}
+
+        public int CompareTo(object obj) {
+            return ToString().CompareTo(obj.ToString());
+        }
     }
 }

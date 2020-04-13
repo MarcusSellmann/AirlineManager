@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace AirlineManager.Data {
 	[DataContract]
 	public class Airline {
-        const long MONEY_AT_GAME_START = 50000000L;
+        const long MONEY_AT_GAME_START = 5000000000L;
         const int REPUTATION_AT_GAME_START = 75;
         public const long PRIZE_AIRPORT_LICENSE = 10000L;
 
