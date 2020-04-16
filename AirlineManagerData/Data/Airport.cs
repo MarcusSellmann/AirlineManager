@@ -1,9 +1,10 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using GeoCoordinatePortable;
 
 namespace AirlineManager.Data {
 	[DataContract]
-	public class Airport {
+	public class Airport : IComparable {
 		#region Attributes
         #endregion
 
@@ -54,5 +55,9 @@ namespace AirlineManager.Data {
 		public string ToString() {
 			return Name;
 		}
-	}
+
+        public int CompareTo(object obj) {
+            return ToString().CompareTo(obj.ToString());
+        }
+    }
 }

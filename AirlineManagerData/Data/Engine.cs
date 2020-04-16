@@ -1,9 +1,10 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using AirlineManager.Data.Enumerations;
 
 namespace AirlineManager.Data {
 	[DataContract]
-	public class Engine {
+	public class Engine : IComparable {
         #region Attributes
         #endregion
 
@@ -26,5 +27,9 @@ namespace AirlineManager.Data {
 
         override
         public string ToString() => Manufacturer + " " + Name;
+
+        public int CompareTo(object obj) {
+            return ToString().CompareTo(obj.ToString());
+        }
     }
 }

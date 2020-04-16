@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace AirlineManager.Data {
 	[DataContract]
-	public class InteriorLayout : IAircraftInteriorLayout {
+	public class InteriorLayout : IAircraftInteriorLayout, IComparable {
         #region Attributes
         #endregion
 
@@ -52,5 +53,32 @@ namespace AirlineManager.Data {
 
 		override
 		public string ToString() => ClassLayout[ClassType.Economy] + " | " + ClassLayout[ClassType.Business] + " | " + ClassLayout[ClassType.First] + " | " + ClassLayout[ClassType.Cargo];
-	}
+
+        public int CompareTo(object obj) {
+            int[] results = new int[4];
+
+            if (obj is InteriorLayout) {
+                results[0] = ClassLayout[ClassType.Economy].CompareTo((obj as InteriorLayout).ClassLayout[ClassType.Economy]);
+                results[1] = ClassLayout[ClassType.Business].CompareTo((obj as InteriorLayout).ClassLayout[ClassType.Business]);
+                results[2] = ClassLayout[ClassType.First].CompareTo((obj as InteriorLayout).ClassLayout[ClassType.First]);
+                results[3] = ClassLayout[ClassType.Cargo].CompareTo((obj as InteriorLayout).ClassLayout[ClassType.Cargo]);
+
+                if (results[0] != 0) {
+                    return results[0];
+                } else {
+                    if (results[1] != 0) {
+                        return results[1];
+                    } else {
+                        if (results[2] != 0) {
+                            return results[2];
+                        } else {
+                            return results[3];
+                        }
+                    }
+                }
+            }
+
+            return -1;
+        }
+    }
 }

@@ -1,25 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows.Controls;
-using AirlineManager.Business;
+﻿using AirlineManager.Business;
 using AirlineManager.Business.Databases;
 using AirlineManager.Data;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Controls;
 
 namespace AirlineManager.UI.Pages {
-	/// <summary>
-	/// Interaction logic for AircraftsPage.xaml
-	/// </summary>
-	public partial class AircraftMarketPage : Page {
-		private ObservableCollection<UsedAircraftInstanceContainer> m_aircraftInstances = new ObservableCollection<UsedAircraftInstanceContainer>();
+    /// <summary>
+    /// Interaction logic for AircraftsPage.xaml
+    /// </summary>
+    public partial class AircraftMarketPage : Page {
+        private ObservableCollection<UsedAircraftInstanceContainer> m_aircraftInstances = new ObservableCollection<UsedAircraftInstanceContainer>();
+        private GridViewColumnHeader m_lastHeaderClicked = null;
+        private ListSortDirection m_lastDirection = ListSortDirection.Ascending;
 
-		public AircraftMarketPage() {
+        public AircraftMarketPage() {
             RefreshUsedAircraftDatabase();
-			InitializeComponent();
+            InitializeComponent();
 
             lvMarketAircraftInstances.ItemsSource = m_aircraftInstances;
             btnBuyAircraftInstance.IsEnabled = false;
-		}
+        }
 
         private void RefreshUsedAircraftDatabase() {
             AircraftInstanceDatabase aiDb = AircraftInstanceDatabase.Instance;

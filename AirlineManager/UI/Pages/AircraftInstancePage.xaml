@@ -13,6 +13,19 @@
         <Storyboard x:Key="sbHideFilterMenu">
             <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,0,-300,0" AccelerationRatio=".9" Duration="0:0:1" />
         </Storyboard>
+
+        <DataTemplate x:Key="HeaderTemplateArrowUp">
+            <DockPanel LastChildFill="True" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type GridViewColumnHeader}}}">
+                <Path x:Name="arrowUp" StrokeThickness="1" Fill="Gray" Data="M 5,10 L 15,10 L 10,5 L 5,10" DockPanel.Dock="Right" Width="20" HorizontalAlignment="Right" Margin="5,0,5,0" SnapsToDevicePixels="True"/>
+                <TextBlock Text="{Binding }" />
+            </DockPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="HeaderTemplateArrowDown">
+            <DockPanel LastChildFill="True" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type GridViewColumnHeader}}}">
+                <Path x:Name="arrowDown" StrokeThickness="1" Fill="Gray"  Data="M 5,5 L 10,10 L 15,5 L 5,5" DockPanel.Dock="Right" Width="20" HorizontalAlignment="Right" Margin="5,0,5,0" SnapsToDevicePixels="True"/>
+                <TextBlock Text="{Binding }" />
+            </DockPanel>
+        </DataTemplate>
     </Page.Resources>
 
     <Grid>
@@ -32,14 +45,46 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Registration" DisplayMemberBinding="{Binding Registration}" />
-                    <GridViewColumn Header="Hours flown" DisplayMemberBinding="{Binding HoursFlown, StringFormat=\{0:N0\}}" />
-                    <GridViewColumn Header="Init Op" DisplayMemberBinding="{Binding InitialOperation, StringFormat=dd.MM.yyyy}" />
-                    <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" />
-                    <GridViewColumn Header="Current location" DisplayMemberBinding="{Binding CurrentLocation}" />
-                    <GridViewColumn Header="Interior" DisplayMemberBinding="{Binding Interior}" />
-                    <GridViewColumn Header="Is used" DisplayMemberBinding="{Binding IsUsed}" />
-                    <GridViewColumn Header="Installed engine" DisplayMemberBinding="{Binding InstalledEngine}" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Registration}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Registration" Padding="5,0,0,0" HorizontalContentAlignment="Left" MinWidth="150" Name="Registration" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding HoursFlown, StringFormat=\{0:N0\}}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Hours flown" Padding="5,0,0,0" HorizontalContentAlignment="Left" MinWidth="150" Name="HoursFlown" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding InitialOperation, StringFormat=dd.MM.yyyy}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Init Op" Padding="5,0,0,0" HorizontalContentAlignment="Left" MinWidth="150" Name="InitOp" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Type}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Type" Padding="5,0,0,0" HorizontalContentAlignment="Left" MinWidth="150" Name="Type" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding CurrentLocation}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Current location" Padding="5,0,0,0" HorizontalContentAlignment="Left" MinWidth="150" Name="CurrentLocation" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Interior}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Interior" Padding="5,0,0,0" HorizontalContentAlignment="Left" MinWidth="150" Name="Interior" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding IsUsed}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Is used" Padding="5,0,0,0" HorizontalContentAlignment="Left" MinWidth="150" Name="IsUsed" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding InstalledEngine}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Installed engine" Padding="5,0,0,0" HorizontalContentAlignment="Left" MinWidth="150" Name="InstalledEngine" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
