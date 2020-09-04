@@ -6,6 +6,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Controls;
+using AirlineManager.Business;
+using AirlineManager.Business.Databases;
+using AirlineManager.Business.Utilities;
+using AirlineManager.Data;
 
 namespace AirlineManager.UI.Pages {
     /// <summary>
@@ -51,8 +55,11 @@ namespace AirlineManager.UI.Pages {
             if (lvMarketAircraftInstances.SelectedItem != null) {
                 UsedAircraftInstanceContainer usedAc = (lvMarketAircraftInstances.SelectedItem as UsedAircraftInstanceContainer);
                 long alBudget = MainGameController.Instance.CurrentAirline.Money;
+                DateTime currentTimestamp = MainGameController.Instance.GameClock.CurrentGameTime;
+                double aiAge = AircraftAgeHelper.AircraftAgeInDays(usedAc.Aircraft.InitialOperation, currentTimestamp);
+                long aiValue = AircraftValueHelper.GetCurrentAircraftValue(usedAc.Aircraft.Type.OriginalPrize, usedAc.Aircraft.HoursFlown, aiAge);
 
-                if (usedAc.Aircraft.CurrentValue < alBudget && usedAc.AvailableTill >= DateTime.Now) {
+                if (aiValue < alBudget && usedAc.AvailableTill >= currentTimestamp) {
                     btnBuyAircraftInstance.IsEnabled = true;
                 } else {
                     btnBuyAircraftInstance.IsEnabled = false;

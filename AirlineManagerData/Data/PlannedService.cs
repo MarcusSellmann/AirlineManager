@@ -23,14 +23,6 @@ namespace AirlineManager.Data {
         public DateTime EndTime {
 			get => StartTime + Duration;
 		}
-
-		public bool Running {
-			get => (StartTime < DateTime.Now) && !Executed;
-		}
-
-		public bool Executed {
-			get => EndTime < DateTime.Now;
-		}
 		#endregion
 
 		public PlannedService(ServiceLevel level, DateTime startTime, TimeSpan duration, long costs) {
@@ -40,7 +32,15 @@ namespace AirlineManager.Data {
 			Costs = costs;
 		}
 
-		override
+        public bool IsRunning(DateTime currentTimeStamp) {
+            return (StartTime < currentTimeStamp) && !IsExecuted(currentTimeStamp);
+        }
+
+        public bool IsExecuted(DateTime currentTimeStamp) {
+            return EndTime < currentTimeStamp;
+        }
+
+        override
 		public string ToString() => Level.ToString() + ": " + StartTime.ToString() + " -> " + EndTime.ToString();
 	}
 }

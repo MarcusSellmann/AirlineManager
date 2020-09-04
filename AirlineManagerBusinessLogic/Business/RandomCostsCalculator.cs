@@ -4,7 +4,7 @@ using AirlineManager.Data;
 using Simplex;
 
 namespace AirlineManager.Business {
-	public class FuelPrize {
+    public class FuelPrize {
 		public DateTime Calculated { get; set; }
 		public double Prize { get; set; }
 
@@ -18,20 +18,21 @@ namespace AirlineManager.Business {
 			return Calculated.ToString() + ": " + Prize;
 		}
 	}
+
 	public class RandomCostsCalculator {
-		#region Constants
+#region Constants
 		private const int FUEL_COST_RECALC_INTERVAL_MINUTE = 5;
 		private const int MAX_FUEL_COST_FORECAST_VALUES = 2000;
-		#endregion
+#endregion
 
-		#region Attributes
+#region Attributes
 		static RandomCostsCalculator m_instance = null;
 		Timer m_fuelCostRecalcTimer = null;
 		FuelPrize[] m_fuelCosts = new FuelPrize[MAX_FUEL_COST_FORECAST_VALUES];
 		int m_currentFuelCostForecastIndex = 10;
-		#endregion
+#endregion
 
-		#region Properties
+#region Properties
 		public static RandomCostsCalculator Instance {
 			get {
 				if (m_instance == null) {
@@ -74,13 +75,13 @@ namespace AirlineManager.Business {
 				FuelPrize[] prizes = new FuelPrize[m_fuelCosts.Length];
 
 				for(int i = 0; i < m_fuelCosts.Length; ++i) {
-					m_fuelCosts[i].Calculated = DateTime.Now + TimeSpan.FromMinutes(i * FUEL_COST_RECALC_INTERVAL_MINUTE);
+                    m_fuelCosts[i].Calculated = MainGameController.Instance.GameClock.CurrentGameTime + TimeSpan.FromMinutes(i * FUEL_COST_RECALC_INTERVAL_MINUTE);
 				}
 
 				return m_fuelCosts;
 			}
 		}
-		#endregion
+#endregion
 
 		RandomCostsCalculator() {
 			InitFuelCosts();
@@ -103,11 +104,11 @@ namespace AirlineManager.Business {
 			float[] fc = Noise.Calc1D(m_fuelCosts.Length, 1.25f);
 			
 			for (int i = 0; i < m_fuelCosts.Length; ++i) {
-                m_fuelCosts[i] = new FuelPrize(DateTime.Now + TimeSpan.FromMinutes(FUEL_COST_RECALC_INTERVAL_MINUTE * i), fc[i]);
+                m_fuelCosts[i] = new FuelPrize(MainGameController.Instance.GameClock.CurrentGameTime + TimeSpan.FromMinutes(FUEL_COST_RECALC_INTERVAL_MINUTE * i), fc[i]);
             }
 		}
 		
-		#region Timer methods
+#region Timer methods
 		private void OnFuelUpdateEvent(object source, ElapsedEventArgs e) {
 			Console.WriteLine("Fuel cost recalculation initiated.");
 			
@@ -119,6 +120,6 @@ namespace AirlineManager.Business {
 
 			Console.WriteLine("New fuel prize: {0}", CurrentFuelPrize);
 		}
-		#endregion
+#endregion
 	}
 }

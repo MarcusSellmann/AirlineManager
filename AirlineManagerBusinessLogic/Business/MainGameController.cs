@@ -4,6 +4,7 @@ using AirlineManager.Business.ExceptionHandling;
 using AirlineManager.Data;
 using AirlineManager.Business.Databases;
 using AirlineManager.Business.Interfaces;
+using AirlineManager.Business.Utilities;
 
 namespace AirlineManager.Business {
     public static class GlobalConstants {
@@ -13,10 +14,10 @@ namespace AirlineManager.Business {
         public const int USED_AIRCRAFT_MARKET_MAXIMUM_DISTANCE_FLOWN = 200000;
     }
 
-    [Serializable()]
+    [Serializable]
     public class MainGameController : IGameClockTickReceiver {
         #region Attributes
-        static MainGameController m_instance = null;
+        static MainGameController m_instance;
         #endregion
 
         #region Properties
@@ -130,7 +131,11 @@ namespace AirlineManager.Business {
         }
 
         public bool BuyAircraft(UsedAircraftInstanceContainer ai) {
-            if (ai.AvailableTill > DateTime.Now && CurrentAirline.BuyAircraft(ai.Aircraft)) {
+            double aiAge = AircraftAgeHelper.AircraftAgeInDays(ai.Aircraft, GameClock);
+            long aiValue = AircraftValueHelper.GetCurrentAircraftValue(ai.Aircraft.Type.OriginalPrize, ai.Aircraft.HoursFlown, aiAge);
+
+            if (ai.AvailableTill > GameClock.CurrentGameTime && aiValue <= CurrentAirline.Money) {
+                CurrentAirline.BuyAircraft(ai.Aircraft, aiValue);
                 AircraftInstanceDatabase.Instance.UsedAircrafts.Remove(ai);
                 return true;
             }

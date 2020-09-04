@@ -138,15 +138,9 @@ namespace AirlineManager.Data {
 			return false;
 		}
 
-        public bool BuyAircraft(AircraftInstance aircraftInstance) {
-            if (aircraftInstance.CurrentValue > m_money) {
-                return false;
-            }
-
-            m_money -= aircraftInstance.CurrentValue;
+        public void BuyAircraft(AircraftInstance aircraftInstance, long prize) {
+            m_money -= prize;
             OwnedAircrafts.Add(aircraftInstance);
-
-            return true;
         }
 
         public bool BuyAirportLicense(Airport airport) {
