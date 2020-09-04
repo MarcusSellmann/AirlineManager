@@ -2,22 +2,22 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+
 using AirlineManager.Business;
 using AirlineManager.Business.Databases;
 using AirlineManager.Data;
 
-namespace AirlineManager.UI.Pages
-{
+namespace AirlineManager.UI.Pages {
     /// <summary>
     /// Interaction logic for FlightScheduleFlightCreationPage.xaml
     /// </summary>
-    public partial class FlightScheduleFlightCreationPage : Page
-    {
+    public partial class FlightScheduleFlightCreationPage : Page {
+        #region Attributes
         private ObservableCollection<Route> m_routes = new ObservableCollection<Route>();
         private ObservableCollection<AircraftInstance> m_aircrafts = new ObservableCollection<AircraftInstance>();
+        #endregion
 
-        public FlightScheduleFlightCreationPage()
-        {
+        public FlightScheduleFlightCreationPage() {
             List<Route> rs = MainGameController.Instance.UnoperatedRoutes;
 
             foreach (Route r in rs) {
@@ -26,8 +26,7 @@ namespace AirlineManager.UI.Pages
 
             List<AircraftInstance> acs = MainGameController.Instance.CurrentAirline.UnassignedAircrafts;
 
-            foreach (AircraftInstance ac in acs)
-            {
+            foreach (AircraftInstance ac in acs) {
                 m_aircrafts.Add(ac);
             }
 
@@ -51,15 +50,12 @@ namespace AirlineManager.UI.Pages
             NavigationService.Navigate(new FlightSchedulePage());
         }
 
-        private void UpdateCreateButtonStatus()
-        {
+        private void UpdateCreateButtonStatus() {
             if (lvRoutes.SelectedIndex != -1 &&
                 lvAircrafts.SelectedIndex != -1)
             {
                 btnCreateFlight.IsEnabled = true;
-            }
-            else
-            {
+            } else {
                 btnCreateFlight.IsEnabled = false;
             }
         }

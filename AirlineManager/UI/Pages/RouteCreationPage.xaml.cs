@@ -21,7 +21,7 @@ namespace AirlineManager.UI.Pages {
                 m_aircrafts.Add(ac);
             }
 
-            List<Airport> aps = AirportDatabase.Instance.DB;
+            List<Airport> aps = MainGameController.Instance.CurrentAirline.LicensedAirports;
 
             foreach (Airport ap in aps) {
                 m_airports.Add(ap);
@@ -63,7 +63,10 @@ namespace AirlineManager.UI.Pages {
                                                                           tboRouteNumber.Text,
                                                                           (Airport)cbOrigin.SelectedItem,
                                                                           (Airport)cbDestination.SelectedItem,
-                                                                          new Dictionary<ClassType, long>()));
+                                                                          new TicketPrizes(long.Parse(tbEconomyTicketPrize.Text),
+                                                                                           long.Parse(tbBusinessTicketPrize.Text),
+                                                                                           long.Parse(tbFirstTicketPrize.Text),
+                                                                                           long.Parse(tbCargoTicketPrize.Text))));
             NavigationService.Navigate(new RoutesPage());
         }
 
@@ -78,11 +81,11 @@ namespace AirlineManager.UI.Pages {
 
         private void UpdateRouteType() {
             if (cbOrigin.SelectedIndex == -1 || cbDestination.SelectedIndex == -1) {
-                lblRouteType.Content.Equals("undefined");
+                lblRouteType.Content = "undefined";
             } else if (m_airports[cbOrigin.SelectedIndex].Country.Equals(m_airports[cbDestination.SelectedIndex].Country)) {
-                lblRouteType.Content.Equals(RouteType.Domestic.ToString());
+                lblRouteType.Content = RouteType.Domestic.ToString();
             } else {
-                lblRouteType.Content.Equals(RouteType.International.ToString());
+                lblRouteType.Content = RouteType.International.ToString();
             }
         }
 

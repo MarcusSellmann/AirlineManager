@@ -9,14 +9,12 @@ namespace AirlineManager.Data {
         public DateTime ArrivalTime { get; private set; }
         #endregion
 
-        public HistoricFlight(Flight flight, DateTime arrivalTime) : base(flight.FlightNumber, flight.FlightType, flight.State, flight.DepartureTime, flight.BookedPassengers) {
+        public HistoricFlight(Flight flight, DateTime arrivalTime) : base(flight.FlightNumber, flight.OperatingRoute, flight.FlightType, flight.State, flight.DepartureTime, flight.BookedPassengers) {
             ArrivalTime = arrivalTime;
         }
 
         public new TimeSpan CurrentFlightTime {
-            get {
-                return ArrivalTime - DepartureTime;
-            }
+            get => ArrivalTime - DepartureTime;
         }
     }
 }

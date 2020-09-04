@@ -1,9 +1,10 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using GeoCoordinatePortable;
 
 namespace AirlineManager.Data {
 	[DataContract]
-	public class Airport {
+	public class Airport : IComparable {
 		#region Attributes
         #endregion
 
@@ -27,9 +28,7 @@ namespace AirlineManager.Data {
 
         [DataMember]
         GeoCoordinateSerializable CoordinateS {
-            get {
-                return new GeoCoordinateSerializable(Coordinate);
-            }
+            get => new GeoCoordinateSerializable(Coordinate);
 
             set {
                 Coordinate = value.GetGeoCoordinate();
@@ -37,9 +36,7 @@ namespace AirlineManager.Data {
         }
 
         public string Country {
-			get {
-				return CodeICAO.Country;
-			}
+			get => CodeICAO.Country;
 		}
 		#endregion
 
@@ -58,5 +55,9 @@ namespace AirlineManager.Data {
 		public string ToString() {
 			return Name;
 		}
-	}
+
+        public int CompareTo(object obj) {
+            return ToString().CompareTo(obj.ToString());
+        }
+    }
 }

@@ -15,16 +15,15 @@ namespace AirlineManager.Data {
         public Demand() : this(0,0,0,0) {}
 
 		public Demand(int economy, int business, int first, int cargo) {
-            DemandPerClass = new Dictionary<ClassType, int>();
-			DemandPerClass[ClassType.Economy] = economy;
-			DemandPerClass[ClassType.Business] = business;
-			DemandPerClass[ClassType.First] = first;
-			DemandPerClass[ClassType.Cargo] = cargo;
-		}
+            DemandPerClass = new Dictionary<ClassType, int> {
+                [ClassType.Economy] = economy,
+                [ClassType.Business] = business,
+                [ClassType.First] = first,
+                [ClassType.Cargo] = cargo
+            };
+        }
 
-		public int PaxInClass(ClassType classType) {
-			return DemandPerClass[classType];
-		}
+        public int PaxInClass(ClassType classType) => DemandPerClass[classType];
 
 		public int SumTotalPax() {
 			int total = 0;
@@ -42,9 +41,7 @@ namespace AirlineManager.Data {
 				   DemandPerClass[ClassType.First] > 0;
 		}
 
-		public bool HasCargo() {
-			return DemandPerClass[ClassType.Cargo] > 0;
-		}
+		public bool HasCargo() => DemandPerClass[ClassType.Cargo] > 0;
 
 		public bool IsCargoOnly() {
 			return DemandPerClass[ClassType.Economy] == 0 &&
@@ -54,8 +51,6 @@ namespace AirlineManager.Data {
 		}
 
 		override
-		public string ToString() {
-            return DemandPerClass[ClassType.Economy] + " | " + DemandPerClass[ClassType.Business] + " | " + DemandPerClass[ClassType.First] + " | " + DemandPerClass[ClassType.Cargo];
-		}
+		public string ToString() => DemandPerClass[ClassType.Economy] + " | " + DemandPerClass[ClassType.Business] + " | " + DemandPerClass[ClassType.First] + " | " + DemandPerClass[ClassType.Cargo];
 	}
 }

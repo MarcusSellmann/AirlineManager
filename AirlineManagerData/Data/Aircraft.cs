@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Windows.Media.Imaging;
 
 namespace AirlineManager.Data {
 	[DataContract]
-	public class Aircraft {
+	public class Aircraft : IComparable {
 		#region Attributes
         #endregion
 
@@ -27,7 +29,7 @@ namespace AirlineManager.Data {
         public float FuelUsagePerMinute { get; private set; }
 
         [DataMember]
-        public string Image { get; private set; }
+        public string ImageName { get; private set; }
 
         [DataMember]
         public long OriginalPrize { get; private set; }
@@ -55,6 +57,10 @@ namespace AirlineManager.Data {
 
         [DataMember]
         public int MaxNumberOfEconomySeats { get; private set; }
+
+        public BitmapImage Image {
+            get => new BitmapImage(new Uri(@"pack://application:,,,/AirlineManager;component/res/ac/" + ImageName));
+        }
         #endregion
 
         public Aircraft(AircraftManufacturer manufacturer, string name, float length, float width, 
@@ -68,7 +74,7 @@ namespace AirlineManager.Data {
             Width = width;
             Height = height;
             FuelUsagePerMinute = fuelUsagePerMinute;
-            Image = image;
+            ImageName = image;
             OriginalPrize = originalPrize;
             TravelVelocity = travelVelocity;
             Range = range;
@@ -89,5 +95,9 @@ namespace AirlineManager.Data {
 		public string ToString() {
 			return Manufacturer.ToString() + " " + Name;
 		}
+
+        public int CompareTo(object obj) {
+            return ToString().CompareTo(obj.ToString());
+        }
     }
 }

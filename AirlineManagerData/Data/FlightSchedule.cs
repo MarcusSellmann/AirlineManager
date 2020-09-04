@@ -13,9 +13,7 @@ namespace AirlineManager.Data {
             ScheduledFlights = new Dictionary<string, Flight>();
         }
 
-        public bool IsFlightAlreadyScheduled(string flightNumber) {
-            return ScheduledFlights.ContainsKey(flightNumber);
-        }
+        public bool IsFlightAlreadyScheduled(string flightNumber) => ScheduledFlights.ContainsKey(flightNumber);
 
         public bool AddFlight(Flight flight) {
             if (!IsFlightAlreadyScheduled(flight.FlightNumber)) {

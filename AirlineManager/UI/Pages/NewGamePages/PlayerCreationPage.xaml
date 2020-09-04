@@ -1,0 +1,39 @@
+﻿<Page x:Class="AirlineManager.UI.Pages.NewGamePages.PlayerCreationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AirlineManager.UI.Pages.NewGamePages"
+      mc:Ignorable="d" 
+      d:DesignHeight="200" d:DesignWidth="300"
+      Title="PlayerCreationPage">
+
+    <Grid>
+        <StackPanel Orientation="Vertical" FocusManager.FocusedElement="{Binding ElementName=tbName}">
+            <Label x:Name="tblDescription" 
+                   Margin="10,10,10,0"
+                   Content="Choose a name:"/>
+            <TextBox x:Name="tbName" 
+                     HorizontalAlignment="Stretch"
+                     Margin="10,10,10,0"
+                     TextWrapping="Wrap"
+                     Width="Auto"
+                     Height="Auto"
+                     Text=""
+                     TextChanged="tbName_TextChanged"
+                     VerticalAlignment="Center" />
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Center">
+                <Button x:Name="btnAbort" 
+                        Width="100" 
+                        Margin="0,0,10,0" 
+                        Click="btnAbort_Click" 
+                        Content="Abort" />
+                <Button x:Name="btnNext" 
+                        Width="100" 
+                        Click="btnNext_Click" 
+                        IsDefault="True"
+                        Content="Next" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

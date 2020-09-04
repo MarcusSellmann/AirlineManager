@@ -8,14 +8,11 @@
       Title="RouteCreationPage">
 
     <Page.Resources>
-        <Style x:Name="tblElementMargin" TargetType="TextBlock">
-            <Setter Property="Margin" Value="10 10 10 0" />
-        </Style>
         <Style x:Name="tboElementMargin" TargetType="TextBox">
-            <Setter Property="Margin" Value="10 10 10 0" />
+            <Setter Property="Margin" Value="5" />
         </Style>
         <Style x:Name="cbElementMargin" TargetType="ComboBox">
-            <Setter Property="Margin" Value="10 10 10 0" />
+            <Setter Property="Margin" Value="5" />
         </Style>
     </Page.Resources>
     <Grid>
@@ -24,27 +21,55 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="8*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Grid.Column="0">
-            <Label Height="{Binding ActualHeight, ElementName=lblRouteType}" Content="Type" />
-            <Label Height="{Binding ActualHeight, ElementName=cbOrigin}" Content="Source" />
-            <Label Height="{Binding ActualHeight, ElementName=cbDestination}" Content="Destination" />
-            <Label Height="{Binding ActualHeight, ElementName=tboRouteNumber}" Content="Route #" />
-        </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Column="1">
-            <Label Name="lblRouteType" Height="{Binding ActualHeight, ElementName=tboRouteNumber}" Content="undefined" />
-            <ComboBox Name="cbOrigin" SelectionChanged="cbOrigin_SelectionChanged">
-                <ComboBox.ItemContainerStyle>
-                    <Style TargetType="ComboBoxItem">
-                        <!--<Setter Property="MaxHeight" Value="16" />-->
-                    </Style>
-                </ComboBox.ItemContainerStyle>
-            </ComboBox>
-            <ComboBox Name="cbDestination" SelectionChanged="cbDestination_SelectionChanged" MaxHeight="22,5" />
-            <TextBox Name="tboRouteNumber" TextChanged="tboRouteNumber_TextChanged" />
-        </StackPanel>
-        <Button x:Name="btnCreateRoute" Grid.ColumnSpan="2" Grid.Row="1" Click="btnCreateRoute_Click" Margin="10">Create</Button>
+        <!-- Left column -->
+        <Label Grid.Column="0" Grid.Row="0" Content="Type" VerticalAlignment="Center" />
+        <Label Grid.Column="0" Grid.Row="1" Content="Source" VerticalAlignment="Center" />
+        <Label Grid.Column="0" Grid.Row="2" Content="Destination" VerticalAlignment="Center" />
+        <Label Grid.Column="0" Grid.Row="3" Content="Route #" VerticalAlignment="Center" />
+        <Label Grid.Column="0" Grid.Row="4" Content="Ticket prizes" VerticalAlignment="Center" />
+        <!-- Right column -->
+        <Label Grid.Column="1" Grid.Row="0" Name="lblRouteType" Content="undefined" VerticalAlignment="Center" />
+        <ComboBox Grid.Column="1" Grid.Row="1" Name="cbOrigin" SelectionChanged="cbOrigin_SelectionChanged" Height="25" />
+        <ComboBox Grid.Column="1" Grid.Row="2" Name="cbDestination" SelectionChanged="cbDestination_SelectionChanged" Height="25" />
+        <TextBox Grid.Column="1" Grid.Row="3" Name="tboRouteNumber" TextChanged="tboRouteNumber_TextChanged" Height="25" />
+        <Grid Grid.Column="1" Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <!-- Left column-->
+            <Label Grid.Column="0" Grid.Row="0" Content="Economy" VerticalAlignment="Center" />
+            <Label Grid.Column="0" Grid.Row="1" Content="Business" VerticalAlignment="Center" />
+            <Label Grid.Column="0" Grid.Row="2" Content="First" VerticalAlignment="Center" />
+            <Label Grid.Column="0" Grid.Row="3" Content="Cargo" VerticalAlignment="Center" />
+
+            <!-- Midlle column-->
+            <TextBox x:Name="tbEconomyTicketPrize" Grid.Column="1" Grid.Row="0" Text="0" TextAlignment="Right" Height="25" />
+            <TextBox x:Name="tbBusinessTicketPrize" Grid.Column="1" Grid.Row="1" Text="0" TextAlignment="Right" Height="25" />
+            <TextBox x:Name="tbFirstTicketPrize" Grid.Column="1" Grid.Row="2" Text="0" TextAlignment="Right" Height="25" />
+            <TextBox x:Name="tbCargoTicketPrize" Grid.Column="1" Grid.Row="3" Text="0" TextAlignment="Right" Height="25" />
+            
+            <!-- Right column-->
+            <Label Grid.Column="2" Grid.Row="0" Content="€" VerticalAlignment="Center" />
+            <Label Grid.Column="2" Grid.Row="1" Content="€" VerticalAlignment="Center" />
+            <Label Grid.Column="2" Grid.Row="2" Content="€" VerticalAlignment="Center" />
+            <Label Grid.Column="2" Grid.Row="3" Content="€" VerticalAlignment="Center" />
+        </Grid>
+        
+        <Button x:Name="btnCreateRoute" Grid.ColumnSpan="2" Grid.Row="5" Click="btnCreateRoute_Click" Margin="10">Create</Button>
     </Grid>
 </Page>

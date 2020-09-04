@@ -4,7 +4,7 @@ using AirlineManager.Data;
 using Simplex;
 
 namespace AirlineManager.Business {
-	public class FuelPrize {
+    public class FuelPrize {
 		public DateTime Calculated { get; set; }
 		public double Prize { get; set; }
 
@@ -18,20 +18,21 @@ namespace AirlineManager.Business {
 			return Calculated.ToString() + ": " + Prize;
 		}
 	}
+
 	public class RandomCostsCalculator {
-		#region Constants
+#region Constants
 		private const int FUEL_COST_RECALC_INTERVAL_MINUTE = 5;
 		private const int MAX_FUEL_COST_FORECAST_VALUES = 2000;
-		#endregion
+#endregion
 
-		#region Attributes
+#region Attributes
 		static RandomCostsCalculator m_instance = null;
 		Timer m_fuelCostRecalcTimer = null;
 		FuelPrize[] m_fuelCosts = new FuelPrize[MAX_FUEL_COST_FORECAST_VALUES];
-		int m_currentFuelCostForecastIndex = 0;
-		#endregion
+		int m_currentFuelCostForecastIndex = 10;
+#endregion
 
-		#region Properties
+#region Properties
 		public static RandomCostsCalculator Instance {
 			get {
 				if (m_instance == null) {
@@ -54,26 +55,13 @@ namespace AirlineManager.Business {
 		public FuelPrize[] FuelPrizeEvolution {
 			get {
 				FuelPrize[] fp = new FuelPrize[10];
+                var currIndex = 0;
 
-				if (m_currentFuelCostForecastIndex < fp.Length) {
-					var currIndex = 0;
-					var currFuelCostIndex = MAX_FUEL_COST_FORECAST_VALUES - fp.Length;
+                while (currIndex < fp.Length) {
+                    fp[currIndex] = m_fuelCosts[m_currentFuelCostForecastIndex - currIndex];
 
-					do {
-						fp[currIndex] = m_fuelCosts[currFuelCostIndex];
-						
-						currIndex++;
-						currFuelCostIndex++;
-
-						if (currFuelCostIndex == MAX_FUEL_COST_FORECAST_VALUES) {
-							currFuelCostIndex = 0;
-                        }
-					} while (currFuelCostIndex != m_currentFuelCostForecastIndex);
-				} else {
-					for (int i = m_currentFuelCostForecastIndex - 10; i <= m_currentFuelCostForecastIndex; ++i) {
-						fp[i] = m_fuelCosts[i];
-					}
-				}
+                    currIndex++;
+                }
 
                 return fp;
 			}
@@ -87,13 +75,13 @@ namespace AirlineManager.Business {
 				FuelPrize[] prizes = new FuelPrize[m_fuelCosts.Length];
 
 				for(int i = 0; i < m_fuelCosts.Length; ++i) {
-					m_fuelCosts[i].Calculated = DateTime.Now + TimeSpan.FromMinutes(i * FUEL_COST_RECALC_INTERVAL_MINUTE);
+                    m_fuelCosts[i].Calculated = MainGameController.Instance.GameClock.CurrentGameTime + TimeSpan.FromMinutes(i * FUEL_COST_RECALC_INTERVAL_MINUTE);
 				}
 
 				return m_fuelCosts;
 			}
 		}
-		#endregion
+#endregion
 
 		RandomCostsCalculator() {
 			InitFuelCosts();
@@ -105,34 +93,33 @@ namespace AirlineManager.Business {
 		}
 
 		public long CalculateFerryFlightCosts(Airport origin, Airport destination, AircraftInstance aircraft) {
-			int distance = 0;
-			long costs = 0;
+			double distance = origin.Coordinate.GetDistanceTo(destination.Coordinate);
+            long fixCosts = (long)(aircraft.Type.NeededStaff.EmployeeArrangement[Department.Pilot] * 2000.0);
+            long variableCosts = (long)(distance * 0.3);
 
-			// TODO: Make up a nice algo to calculate the ferry flight costs.
-
-			return costs;
+			return fixCosts + variableCosts;
 		}
 
 		private void InitFuelCosts() {
-			float[] fc = Noise.Calc1D(m_fuelCosts.Length, 0.05f);
+			float[] fc = Noise.Calc1D(m_fuelCosts.Length, 1.25f);
 			
 			for (int i = 0; i < m_fuelCosts.Length; ++i) {
-                m_fuelCosts[i] = new FuelPrize(DateTime.Now + TimeSpan.FromMinutes(FUEL_COST_RECALC_INTERVAL_MINUTE * i), fc[i]);
+                m_fuelCosts[i] = new FuelPrize(MainGameController.Instance.GameClock.CurrentGameTime + TimeSpan.FromMinutes(FUEL_COST_RECALC_INTERVAL_MINUTE * i), fc[i]);
             }
 		}
 		
-		#region Timer methods
+#region Timer methods
 		private void OnFuelUpdateEvent(object source, ElapsedEventArgs e) {
 			Console.WriteLine("Fuel cost recalculation initiated.");
 			
 			m_currentFuelCostForecastIndex++;
 
 			if (m_currentFuelCostForecastIndex >= MAX_FUEL_COST_FORECAST_VALUES) {
-				m_currentFuelCostForecastIndex = 0;
+				m_currentFuelCostForecastIndex = 10;
 			}
 
 			Console.WriteLine("New fuel prize: {0}", CurrentFuelPrize);
 		}
-		#endregion
+#endregion
 	}
 }

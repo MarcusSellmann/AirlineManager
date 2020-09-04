@@ -40,6 +40,10 @@ namespace AirlineManager.Business.Databases {
 				return m_usedAircraftList.Count;
 			}
 		}
+
+        private DateTime CurrentTimestamp {
+            get => MainGameController.Instance.GameClock.CurrentGameTime;
+        }
 		#endregion
 
 		AircraftInstanceDatabase() {
@@ -50,18 +54,21 @@ namespace AirlineManager.Business.Databases {
 
             m_dbUpdateTimer.Elapsed += UpdateDatabase;
             m_dbUpdateTimer.Start();
-
         }
 
 		private void UpdateDatabase(object sender, ElapsedEventArgs e) {
-			CreateNewUsedAirplanes(CleanupDatabaseIfNeeded());
+			CreateNewUsedAirplanes(RemoveExpiredAircraftOffersFromDatabase());
 		}
 
-		private int CleanupDatabaseIfNeeded() {
+		/// <summary>
+		/// Removes offers of aircrafts which are expired according to the currentTimestamp.
+		/// </summary>
+		/// <returns>The number of aircraft offers, which has been removed.</returns>
+		private int RemoveExpiredAircraftOffersFromDatabase() {
 			int airplanesRemoved = 0;
 
 			foreach (UsedAircraftInstanceContainer ac in m_usedAircraftList) {
-				if (ac.AvailableTill <= DateTime.Now) {
+                if (ac.AvailableTill <= CurrentTimestamp) {
 					m_usedAircraftList.Remove(ac);
 					++airplanesRemoved;
 				}
@@ -70,15 +77,20 @@ namespace AirlineManager.Business.Databases {
 			return airplanesRemoved;
 		}
 
+		/// <summary>
+		/// Creates a certain <code>amount</code> of used aircrafts.
+		/// </summary>
+		/// <param name="amount">The amount of aircrafts to create.</param>
 		private void CreateNewUsedAirplanes(int amount) {
-			List<AircraftInstance> aircrafts = AircraftInstanceGenerator.Instance.CreateAircraftInstances(amount);
+            DateTime currentTimestamp = CurrentTimestamp;
+            List<AircraftInstance> aircrafts = AircraftInstanceGenerator.Instance.CreateAircraftInstances(amount, currentTimestamp);
 
 			Random rnd;
 
 			foreach (AircraftInstance aci in aircrafts) {
                 rnd = new Random((int)DateTime.Now.Ticks);
                 bool succ = false;
-                DateTime dateDiff = DateTime.Now;
+                DateTime dateDiff = currentTimestamp;
 
                 do {
                     try {
@@ -88,8 +100,8 @@ namespace AirlineManager.Business.Databases {
                         succ = false;
                     }
                 } while (!succ);
-                
-                m_usedAircraftList.Add(new UsedAircraftInstanceContainer(aci, DateTime.Now.AddTicks(dateDiff.Ticks)));
+
+                m_usedAircraftList.Add(new UsedAircraftInstanceContainer(aci, currentTimestamp.AddTicks(dateDiff.Ticks)));
 			}
 		}
 	}

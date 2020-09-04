@@ -18,12 +18,14 @@
             <!-- Colors -->
             <Color x:Key="AmWindowBackgroundColor">#2d2d30</Color>
             <Color x:Key="AmSlideInWindowBackgroundColor">#424247</Color>
+            <Color x:Key="AmButtonHighlightedBackgroundColor">#424247</Color>
             
             <!-- Colors brushes -->
             <SolidColorBrush x:Key="AmWindowBackground" Color="{StaticResource AmWindowBackgroundColor}" />
             <SolidColorBrush x:Key="AmSlideInWindowBackground" Color="{StaticResource AmSlideInWindowBackgroundColor}" />
             <SolidColorBrush x:Key="AmDefaultTextColor" Color="White" />
             <SolidColorBrush x:Key="AmListViewColumnItemTextColor" Color="White" />
+            <SolidColorBrush x:Key="AmButtonHighlightedBackground" Color="{StaticResource AmButtonHighlightedBackgroundColor}" />
 
             <!-- Layout -->
             <!-- https://wpf.codeplex.com/wikipage?title=WPF%20Themes&referringTitle=Home -->
@@ -138,13 +140,45 @@
                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
                 <Setter Property="VerticalContentAlignment" Value="Center"/>
                 <Setter Property="Padding" Value="1"/>
-                <Setter Property="Margin" Value="10,10,10,10"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Height" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=ActualWidth}" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Grid x:Name="Chrome" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            </Grid>
+                            <Border>
+                                <Border.Background>
+                                    <SolidColorBrush x:Name="bgColor" Color="Transparent" />
+                                </Border.Background>
+                                <Border.Style>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Style.Triggers>
+                                            <EventTrigger RoutedEvent="MouseEnter">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation To="{StaticResource AmButtonHighlightedBackgroundColor}" 
+                                                                        Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" 
+                                                                        FillBehavior="HoldEnd" 
+                                                                        Duration="0:0:0.75"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                            <EventTrigger RoutedEvent="MouseLeave">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation To="Transparent" 
+                                                                        Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" 
+                                                                        FillBehavior="HoldEnd" 
+                                                                        Duration="0:0:0.75"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <Grid x:Name="Chrome" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Grid>
+                            </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsEnabled" Value="false">
                                     <Setter Property="Foreground" Value="#ADADAD"/>

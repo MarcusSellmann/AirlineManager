@@ -28,31 +28,31 @@
                     TickFrequency="100.0"
                     IsSnapToTickEnabled="True"
                     Value="4000"
-                    ValueChanged="slAvailableRunwayLength_ValueChanged"/>
+                    ValueChanged="SlAvailableRunwayLength_ValueChanged"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Style="{StaticResource AmFilterElementBlock}">
                 <Label>
                     <TextBlock>
                         <TextBlock.Text>
-                            <MultiBinding StringFormat="{}Flown distance: {0:N0} - {1:N0} km">
-                                <Binding ElementName="slFlownDistance" Path="LowerValue" />
-                                <Binding ElementName="slFlownDistance" Path="UpperValue" />
+                            <MultiBinding StringFormat="{}Flown hours: {0:N0} - {1:N0}">
+                                <Binding ElementName="slFlownHours" Path="LowerValue" />
+                                <Binding ElementName="slFlownHours" Path="UpperValue" />
                             </MultiBinding>
                         </TextBlock.Text>
                     </TextBlock>
                 </Label>
                 <Metro:RangeSlider 
-                    x:Name="slFlownDistance" 
+                    x:Name="slFlownHours" 
                     Orientation="Horizontal"
                     Minimum="0" 
-                    Maximum="1000000000"
-                    TickFrequency="2000.0"
+                    Maximum="500000"
+                    TickFrequency="1000.0"
                     IsSnapToTickEnabled="True"
                     LowerValue="1000"
-                    UpperValue="1000000000"
-                    LowerValueChanged="slFlownDistance_LowerValueChanged"
-                    UpperValueChanged="slFlownDistance_UpperValueChanged"
-                    RangeSelectionChanged="slFlownDistance_RangeSelectionChanged" />
+                    UpperValue="500000"
+                    LowerValueChanged="SlFlownHours_LowerValueChanged"
+                    UpperValueChanged="SlFlownHours_UpperValueChanged"
+                    RangeSelectionChanged="SlFlownHours_RangeSelectionChanged" />
             </StackPanel>
             <StackPanel Orientation="Vertical" Style="{StaticResource AmFilterElementBlock}">
                 <Label>
@@ -74,20 +74,25 @@
                     IsSnapToTickEnabled="True"
                     LowerValue="0"
                     UpperValue="100"
-                    LowerValueChanged="slAge_LowerValueChanged"
-                    UpperValueChanged="slAge_UpperValueChanged"
-                    RangeSelectionChanged="slAge_RangeSelectionChanged" />
+                    LowerValueChanged="SlAge_LowerValueChanged"
+                    UpperValueChanged="SlAge_UpperValueChanged"
+                    RangeSelectionChanged="SlAge_RangeSelectionChanged" />
             </StackPanel>
             <StackPanel Orientation="Vertical" Style="{StaticResource AmFilterElementBlock}">
                 <Label Content="A/C type" />
                 <ComboBox x:Name="cbAircraftType"
-                          SelectionChanged="cbAircraftType_SelectionChanged" />
+                          SelectionChanged="CbAircraftType_SelectionChanged" />
             </StackPanel>
             <StackPanel Orientation="Vertical" Style="{StaticResource AmFilterElementBlock}">
                 <Button 
                     Name="btnApplyFilter" 
                     Content="Apply" 
-                    Click="btnApplyFilter_Click" />
+                    Click="BtnApplyFilter_Click" />
+                <Button
+                    Name="btnResetFilter"
+                    Content="Reset"
+                    Click="BtnResetFilter_Click"
+                    Margin="0 10 0 0"/>
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -10,7 +10,8 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="4*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <ListView
@@ -41,5 +42,6 @@
         <mui:MapControl 
             Name="AirportsMapControl"
             Grid.Row="1" />
+        <Button x:Name="btnBuyAirportLicense" Grid.Row="2" Click="btnBuyAirportLicense_Click" Margin="10">Buy airport license</Button>
     </Grid>
 </Page>

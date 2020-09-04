@@ -1,0 +1,24 @@
+﻿<Metro:MetroWindow x:Class="AirlineManager.UI.Windows.Popover.SavegameAlreadyExistsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:AirlineManager.UI.Windows.Popover"
+        mc:Ignorable="d"
+        Title="Savegame already exists" Height="150" Width="320" 
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Margin="5">
+                There is a savegame already existing on your computer! <LineBreak /><LineBreak /> Do you really want to override it?
+        </TextBlock>
+        <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="1" HorizontalAlignment="Center">
+            <Button Name="btnAbort" Click="btnAbort_Click" Content="Abort" Width="{Binding Path=ActualWidth, ElementName=btnConfirm}" />
+            <Button Name="btnConfirm" Click="btnConfirm_Click" Content="Confirm" Margin="5 0 0 0" />
+        </StackPanel>
+    </Grid>
+</Metro:MetroWindow>

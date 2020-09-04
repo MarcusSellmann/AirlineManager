@@ -20,12 +20,10 @@ namespace AirlineManager.Data {
         public Airport Destination { get; private set; }
 
         [DataMember]
-        public Dictionary<ClassType, long> TicketPrizePerClass { get; set; }
+        public TicketPrizes TicketPrizes { get; set; }
 
         public string RouteNumber {
-            get {
-                return m_routeNumber;
-            }
+            get => m_routeNumber;
 
             set {
                 if (value.Length > 0) {
@@ -35,31 +33,20 @@ namespace AirlineManager.Data {
         }
 
         public double Distance {
-			get {
-				return Origin.Coordinate.GetDistanceTo(Destination.Coordinate);
-			}
+			get => Origin.Coordinate.GetDistanceTo(Destination.Coordinate);
 		}
 		#endregion
 
 		public Route(RouteType routeType, string routeNumber, Airport origin, Airport destination, 
-					 Dictionary<ClassType, long> ticketPrizePerClass) {
+					 TicketPrizes ticketPrizes) {
 			RouteType = routeType;
 			m_routeNumber = routeNumber;
 			Origin = origin;
 			Destination = destination;
-			
-            TicketPrizePerClass = new Dictionary<ClassType, long>();
-
-            if (ticketPrizePerClass != null) {
-                foreach (KeyValuePair<ClassType, long> tp in ticketPrizePerClass) {
-                    TicketPrizePerClass[tp.Key] = tp.Value;
-                }
-            }
+            TicketPrizes = ticketPrizes;
         }
 
 		override
-		public string ToString() {
-			return RouteNumber;
-		}
+		public string ToString() => RouteNumber;
 	}
 }

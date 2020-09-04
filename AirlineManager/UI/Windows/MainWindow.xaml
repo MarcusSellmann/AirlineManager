@@ -5,35 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
-        Title="Airline Manager" MinHeight="768" MinWidth="1024">
-
+        Title="Airline Manager" MinHeight="768" MinWidth="1024"
+        WindowStyle="None" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Metro:MetroWindow.Resources>
+        <Style x:Key="ButtonImage" TargetType="Image">
+            <Setter Property="Width" Value="50" />
+            <Setter Property="Height" Value="Auto" />
+        </Style>
+        <Style x:Key="TimingLabel" TargetType="Label">
+            <Setter Property="DockPanel.Dock" Value="Top" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+    </Metro:MetroWindow.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition x:Name="MenuButtonColumn" Width="100" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical" Grid.Column="0" >
-            <Label x:Name="lblCurrentTime" Content="Label" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center" />
+            <Label x:Name="lblCurrentDate" Content="Date" Style="{StaticResource TimingLabel}" />
+            <Label x:Name="lblCurrentTime" Content="Time" Style="{StaticResource TimingLabel}" />
+            <Label x:Name="lblTimeFactor" Content="TimeFactor" Style="{StaticResource TimingLabel}" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnDecreaseScaleFactor" Click="btnDecreaseScaleFactor_Click" Content="-" Width="25" />
+                <Button x:Name="btnIncreaseScaleFactor" Click="btnIncreaseScaleFactor_Click" Content="+" Width="25" />
+            </StackPanel>
             <Button x:Name="btnDashboard" Click="btnDashboard_Click" Style="{DynamicResource NoChromeButton}">
-                <Image Source="/AirlineManager;component/res/138198-business-collection/graph-8.png" />
+                <Image Source="/AirlineManager;component/res/138198-business-collection/graph-8.png" Style="{StaticResource ButtonImage}" />
             </Button>
             <Button x:Name="btnAircrafts" Click="btnAircrafts_Click" Style="{DynamicResource NoChromeButton}">
-                <Image Source="/AirlineManager;component/res/148705-essential-collection/paper-plane-1.png" />
+                <Image Source="/AirlineManager;component/res/148705-essential-collection/paper-plane-1.png" Style="{StaticResource ButtonImage}" />
             </Button>
             <Button x:Name="btnAirports" Click="btnAirports_Click" Style="{DynamicResource NoChromeButton}">
-                <Image Source="/AirlineManager;component/res/my-icons-collection/png/001-travel.png" Width="50" />
+                <Image Source="/AirlineManager;component/res/my-icons-collection/png/001-travel.png" Style="{StaticResource ButtonImage}" />
             </Button>
             <Button x:Name="btnRoutes" Click="btnRoutes_Click" Style="{DynamicResource NoChromeButton}">
-                <Image Source="/AirlineManager;component/res/148705-essential-collection/network.png" />
+                <Image Source="/AirlineManager;component/res/148705-essential-collection/network.png" Style="{StaticResource ButtonImage}" />
             </Button>
             <Button x:Name="btnSchedule" Click="btnSchedule_Click" Style="{DynamicResource NoChromeButton}">
-                <Image Source="/AirlineManager;component/res/148705-essential-collection/calendar-5.png" />
+                <Image Source="/AirlineManager;component/res/148705-essential-collection/calendar-5.png" Style="{StaticResource ButtonImage}" />
             </Button>
             <Button x:Name="btnMaintainance" Click="btnMaintainance_Click" Style="{DynamicResource NoChromeButton}">
-                <Image Source="/AirlineManager;component/res/148705-essential-collection/settings-4.png" />
+                <Image Source="/AirlineManager;component/res/148705-essential-collection/settings-4.png" Style="{StaticResource ButtonImage}" />
             </Button>
             <Button x:Name="btnGameMenu" Click="btnGameMenu_Click" Style="{DynamicResource NoChromeButton}">
-                <Image Source="/AirlineManager;component/res/148705-essential-collection/cloud-computing-1.png" />
+                <Image Source="/AirlineManager;component/res/148705-essential-collection/cloud-computing-1.png" Style="{StaticResource ButtonImage}" />
             </Button>
         </StackPanel>
         <DockPanel Grid.Column="1">

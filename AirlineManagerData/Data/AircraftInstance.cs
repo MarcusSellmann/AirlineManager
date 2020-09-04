@@ -12,7 +12,7 @@ namespace AirlineManager.Data {
 
         #region Properties
         [DataMember]
-        public float DistanceFlown { get; private set; }
+        public float HoursFlown { get; private set; }
 
         [DataMember]
         public string Registration {
@@ -29,9 +29,6 @@ namespace AirlineManager.Data {
 
         [DataMember]
         public DateTime InitialOperation { get; private set; }
-
-        [DataMember]
-        public long CurrentValue { get; private set; }
 
         [DataMember]
         public Aircraft Type { get; private set; }
@@ -55,21 +52,7 @@ namespace AirlineManager.Data {
         public Engine InstalledEngine { get; private set; }
 
         public bool IsUsed {
-            get {
-                return DistanceFlown > 0;
-            }
-        }
-
-        public double AgeInDays {
-            get {
-                return (DateTime.Now - InitialOperation).Duration().TotalDays;
-            }
-        }
-
-        public double AgeInYears {
-            get {
-                return AgeInDays / 365.0;
-            }
+            get => HoursFlown > 0;
         }
         #endregion
 
@@ -84,31 +67,29 @@ namespace AirlineManager.Data {
         public AircraftInstance(Aircraft type, string registration, 
 								DateTime commissioning, Airport currentLocation, 
                                 InteriorLayout layout, Engine installendEngine) : 
-            this(type, 0, registration, commissioning, type.OriginalPrize, null, 
+            this(type, 0, registration, commissioning, null, 
                  currentLocation, layout, installendEngine) {}
 
-		/// <summary>
-		/// Used aircraft.
-		/// </summary>
-		/// <param name="type"></param>
-		/// <param name="distanceFlown"></param>
-		/// <param name="registration"></param>
-		/// <param name="commissioning"></param>
-		/// <param name="currentValue"></param>
-		/// <param name="installedExtras"></param>
-		/// <param name="currentLocation"></param>
-		/// <param name="layout"></param>
-        public AircraftInstance(Aircraft type, float distanceFlown, 
+        /// <summary>
+        /// Used aircraft.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="hoursFlown"></param>
+        /// <param name="registration"></param>
+        /// <param name="commissioning"></param>
+        /// <param name="currentValue"></param>
+        /// <param name="installedExtras"></param>
+        /// <param name="currentLocation"></param>
+        /// <param name="layout"></param>
+        public AircraftInstance(Aircraft type, float hoursFlown, 
                                 string registration, DateTime commissioning,
-                                long currentValue, 
 								Dictionary<AircraftExtras,AircraftExtra> installedExtras, 
 								Airport currentLocation, InteriorLayout layout,
                                 Engine installendEngine) {
             Type = type;
-            DistanceFlown = distanceFlown;
+            HoursFlown = hoursFlown;
             m_registration = registration;
             InitialOperation = commissioning;
-            CurrentValue = currentValue;
 			CurrentLocation = currentLocation;
 			Interior = layout;
             InstalledEngine = installendEngine;
@@ -122,10 +103,6 @@ namespace AirlineManager.Data {
             }
 
             Services = new List<PlannedService>();
-        }
-
-        public void updateCurrentValue() {
-            // TODO: Make up a nice algo to calculate the current value.
         }
 
         public bool IsExtraInstalled(AircraftExtras extraType) {
@@ -145,8 +122,8 @@ namespace AirlineManager.Data {
 			Services.Add(service);
 		}
 
-		public bool AbortService(PlannedService service) {
-			if (Services.Contains(service) && !service.Running) {
+		public bool AbortService(PlannedService service, DateTime currentTimestamp) {
+			if (Services.Contains(service) && !service.IsRunning(currentTimestamp)) {
 				Services.Remove(service);
 				return true;
 			}
@@ -156,7 +133,7 @@ namespace AirlineManager.Data {
 
 		override
 		public string ToString() {
-			return Type.ToString() + " (" + Registration + ")";
+			return Type + " (" + Registration + ")";
 		}
 	}
 }

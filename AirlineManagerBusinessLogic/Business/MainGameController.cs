@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using AirlineManager.Business.ExceptionHandling;
 using AirlineManager.Data;
 using AirlineManager.Business.Databases;
+using AirlineManager.Business.Interfaces;
+using AirlineManager.Business.Utilities;
 
 namespace AirlineManager.Business {
     public static class GlobalConstants {
@@ -12,10 +14,10 @@ namespace AirlineManager.Business {
         public const int USED_AIRCRAFT_MARKET_MAXIMUM_DISTANCE_FLOWN = 200000;
     }
 
-    [Serializable()]
-    public class MainGameController {
+    [Serializable]
+    public class MainGameController : IGameClockTickReceiver {
         #region Attributes
-        static MainGameController m_instance = null;
+        static MainGameController m_instance;
         #endregion
 
         #region Properties
@@ -32,6 +34,8 @@ namespace AirlineManager.Business {
                 m_instance = value;
             }
         }
+
+        public GameClock GameClock { get; private set; }
 
         public Player CurrentPlayer { get; set; }
 
@@ -57,9 +61,30 @@ namespace AirlineManager.Business {
                 return result;
             }
         }
+
+        public List<Airport> UnlicensedAirports {
+            get {
+                List<Airport> ua = new List<Airport>();
+                List<Airport> aDB = AirportDatabase.Instance.DB;
+                List<Airport> la = CurrentAirline.LicensedAirports;
+
+                foreach (Airport a in aDB) {
+                    if (!la.Contains(a)) {
+                        ua.Add(a);
+                    }
+                }
+
+                return ua;
+            }
+        }
         #endregion
 
+        public void GameTickReceived() {
+        }
+
         MainGameController() {
+            GameClock = new GameClock();
+            GameClock.AddTickReceiver(this);
         }
 
         #region UI method calls
@@ -106,23 +131,17 @@ namespace AirlineManager.Business {
         }
 
         public bool BuyAircraft(UsedAircraftInstanceContainer ai) {
-            if (ai.AvailableTill > DateTime.Now && CurrentAirline.BuyAircraft(ai.Aircraft)) {
+            double aiAge = AircraftAgeHelper.AircraftAgeInDays(ai.Aircraft, GameClock);
+            long aiValue = AircraftValueHelper.GetCurrentAircraftValue(ai.Aircraft.Type.OriginalPrize, ai.Aircraft.HoursFlown, aiAge);
+
+            if (ai.AvailableTill > GameClock.CurrentGameTime && aiValue <= CurrentAirline.Money) {
+                CurrentAirline.BuyAircraft(ai.Aircraft, aiValue);
                 AircraftInstanceDatabase.Instance.UsedAircrafts.Remove(ai);
                 return true;
             }
 
             return false;
         }
-
-        #region Savegame handler
-        public void SaveGame() {
-            SavegameHandler.SaveGame(this);
-        }
-
-        public void LoadGame() {
-            SavegameHandler.LoadGame();
-        }
-        #endregion
         #endregion
     }
 }

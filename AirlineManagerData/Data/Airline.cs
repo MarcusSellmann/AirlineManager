@@ -4,8 +4,9 @@ using System.Runtime.Serialization;
 namespace AirlineManager.Data {
 	[DataContract]
 	public class Airline {
-        const long MONEY_AT_GAME_START = 10000000L;
+        const long MONEY_AT_GAME_START = 5000000000L;
         const int REPUTATION_AT_GAME_START = 75;
+        public const long PRIZE_AIRPORT_LICENSE = 10000L;
 
         #region Attributes
         [DataMember]
@@ -29,6 +30,9 @@ namespace AirlineManager.Data {
         public List<AircraftInstance> OwnedAircrafts { get; private set; }
 
         [DataMember]
+        public List<Airport> LicensedAirports { get; private set; }
+
+        [DataMember]
         public List<EmployeeGroup> Staff { get; private set; }
 
         [DataMember]
@@ -41,9 +45,7 @@ namespace AirlineManager.Data {
         public FlightHistory FlightHistory { get; private set; }
 
         public long Money {
-            get {
-                return m_money;
-            }
+            get => m_money;
 
             private set {
                 if (value >= 0) {
@@ -53,9 +55,7 @@ namespace AirlineManager.Data {
         }
 
         public int Reputation {
-            get {
-                return m_reputation;
-            }
+            get => m_reputation;
 
             private set {
                 if (value >= 0) {
@@ -64,16 +64,12 @@ namespace AirlineManager.Data {
             }
         }
 
-        public List<AircraftInstance> UnassignedAircrafts
-        {
-            get
-            {
+        public List<AircraftInstance> UnassignedAircrafts {
+            get {
                 List<AircraftInstance> ais = new List<AircraftInstance>();
 
-                foreach (AircraftInstance ai in OwnedAircrafts)
-                {
-                    if (ai.AssignedFlight == null)
-                    {
+                foreach (AircraftInstance ai in OwnedAircrafts) {
+                    if (ai.AssignedFlight == null) {
                         ais.Add(ai);
                     }
                 }
@@ -81,9 +77,21 @@ namespace AirlineManager.Data {
                 return ais;
             }
         }
-		#endregion
 
-		public Airline(Player currPlayer, string name, string airlineCode, List<AircraftInstance> ownedAircrafts, List<EmployeeGroup> staff) :
+        public Dictionary<AircraftInstance, List<PlannedService>> AllPlannedServices {
+            get {
+                Dictionary<AircraftInstance, List<PlannedService>> plannedServiceDict = new Dictionary<AircraftInstance, List<PlannedService>>();
+
+                foreach (AircraftInstance ai in OwnedAircrafts) {
+                    plannedServiceDict[ai] = ai.Services;
+                }
+
+                return plannedServiceDict;
+            }
+        }
+        #endregion
+
+        public Airline(Player currPlayer, string name, string airlineCode, List<AircraftInstance> ownedAircrafts, List<EmployeeGroup> staff) :
             this(currPlayer, name, airlineCode, MONEY_AT_GAME_START, REPUTATION_AT_GAME_START, ownedAircrafts, staff, null) {}
 
 		public Airline(Player currPlayer, string name, string airlineCode, long money, int reputation, 
@@ -112,6 +120,7 @@ namespace AirlineManager.Data {
                 RouteNetwork.AddRange(routeNetwork);
             }
 
+            LicensedAirports = new List<Airport>();
             FlightSchedule = new FlightSchedule();
             FlightHistory = new FlightHistory();
         }
@@ -129,15 +138,18 @@ namespace AirlineManager.Data {
 			return false;
 		}
 
-        public bool BuyAircraft(AircraftInstance aircraftInstance) {
-            if (aircraftInstance.CurrentValue > m_money) {
-                return false;
+        public void BuyAircraft(AircraftInstance aircraftInstance, long prize) {
+            m_money -= prize;
+            OwnedAircrafts.Add(aircraftInstance);
+        }
+
+        public bool BuyAirportLicense(Airport airport) {
+            if (m_money >= PRIZE_AIRPORT_LICENSE) {
+                LicensedAirports.Add(airport);
+                m_money -= PRIZE_AIRPORT_LICENSE;
             }
 
-            m_money -= aircraftInstance.CurrentValue;
-            OwnedAircrafts.Add(aircraftInstance);
-
-            return true;
+            return false;
         }
         
         override

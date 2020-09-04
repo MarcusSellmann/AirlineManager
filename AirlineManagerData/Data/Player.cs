@@ -22,9 +22,7 @@ namespace AirlineManager.Data {
         public string Name { get; private set; }
 
         public uint CarriedPax {
-            get {
-                return m_carriedPax;
-            }
+            get => m_carriedPax;
 
             private set {
                 if (value >= 0) {
@@ -34,9 +32,7 @@ namespace AirlineManager.Data {
         }
 
         public uint CarriedCargo {
-            get {
-                return m_carriedCargo;
-            }
+            get => m_carriedCargo;
 
             private set {
                 if (value >= 0) {
@@ -46,9 +42,7 @@ namespace AirlineManager.Data {
         }
 
         public uint OperatedFlights {
-            get {
-                return m_operatedFlights;
-            }
+            get => m_operatedFlights;
 
             private set {
                 if (value >= 0) {
@@ -58,9 +52,7 @@ namespace AirlineManager.Data {
         }
 
         public uint TotalDistanceFlown {
-            get {
-                return m_totalDistanceFlown;
-            }
+            get => m_totalDistanceFlown;
 
             private set {
                 if (value >= 0) {
@@ -79,8 +71,6 @@ namespace AirlineManager.Data {
         }
 
 		override
-		public string ToString() {
-			return Name;
-		}
+		public string ToString() => Name;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace AirlineManager.Data {
@@ -27,7 +26,7 @@ namespace AirlineManager.Data {
         public AircraftInstance AssignedAircraft { get; private set; }
 
         [DataMember]
-        public DateTime DepartureTime { get; private set; }
+        public DateTime DepartureTime { get; set; }
 
         public bool AtOrigin {
             get {
@@ -51,44 +50,21 @@ namespace AirlineManager.Data {
             }
         }
 
-        public long FuelCosts {
-            get {
-                //TODO: Create an algo for the fuel costs.
-                return 0;
-            }
-        }
-
         public long MaxPossibleIncome {
             get {
-                long totalIncome = 0;
-
-                foreach (KeyValuePair<ClassType, long> ticketPrize in OperatingRoute.TicketPrizePerClass) {
-                    totalIncome += AssignedAircraft.Interior.ClassLayout[ticketPrize.Key] * ticketPrize.Value;
-                }
-
-                return totalIncome;
+                return AssignedAircraft.Interior.ClassLayout[ClassType.Economy] * OperatingRoute.TicketPrizes.Economy +
+                       AssignedAircraft.Interior.ClassLayout[ClassType.Business] * OperatingRoute.TicketPrizes.Business +
+                       AssignedAircraft.Interior.ClassLayout[ClassType.First] * OperatingRoute.TicketPrizes.First +
+                       AssignedAircraft.Interior.ClassLayout[ClassType.Cargo] * OperatingRoute.TicketPrizes.Cargo;
             }
         }
 
         public bool IsAircraftAssigned {
-            get {
-                return AssignedAircraft != null;
-            }
-        }
-
-        /// <summary>
-        /// Returns the flight time in hours.
-        /// </summary>
-        public double TotalFlightTime {
-            get {
-                return AssignedAircraft.Type.TravelVelocity / OperatingRoute.Distance;
-            }
+            get => AssignedAircraft != null;
         }
 
         public Demand BookedPassengers {
-			get {
-				return m_bookedPassengers;
-			}
+			get => m_bookedPassengers;
 
 			set {
 				if (value != null) {
@@ -96,41 +72,18 @@ namespace AirlineManager.Data {
                 }
 			}
 		}
-
-		public TimeSpan CurrentFlightTime {
-			get {
-				return DateTime.Now - DepartureTime;
-			}
-		}
-
-        public DateTime EstimatedArrivalTime {
-            get {
-                return DepartureTime + TimeSpan.FromHours(TotalFlightTime);
-            }
-        }
 		#endregion
 
-		public Flight(string flightNumber, FlightType flightType, FlightState state) {
+		public Flight(string flightNumber, Route operatingRoute, FlightType flightType, FlightState state) {
             FlightNumber = flightNumber;
+            OperatingRoute = operatingRoute;
 			FlightType = flightType;
 			State = state;
 		}
 
-		public Flight(string flightNumber, FlightType flightType, FlightState state, DateTime departureTime, Demand bookedPassengers = null) : this(flightNumber, flightType, state) {
+		public Flight(string flightNumber, Route operatingRoute, FlightType flightType, FlightState state, DateTime departureTime, Demand bookedPassengers = null) : this(flightNumber, operatingRoute, flightType, state) {
 			m_bookedPassengers = bookedPassengers;
             DepartureTime = departureTime;
-        }
-
-		public void Depart() {
-			DepartureTime = DateTime.Now;
-		}
-
-		public DateTime CalcEstimatedArrival(double totalFlightTime) {
-			return DateTime.Now + CalcFlightTimeLeft(totalFlightTime);
-		}
-
-		public TimeSpan CalcFlightTimeLeft(double totalFlightTime) {
-			return TimeSpan.FromHours(totalFlightTime) - CurrentFlightTime;
         }
 
         public void AssignAircraft(AircraftInstance aircraftInstance) {
