@@ -11,10 +11,23 @@ namespace AirlineManager.Business {
         private readonly Timer m_timer = new Timer(1000);
         [NonSerialized]
         private readonly List<IGameClockTickReceiver> m_gameClockTickReceivers;
+        private DateTime m_gameCreatedOn;
         #endregion
 
         #region Property
-        public DateTime GameCreationTime { get; private set; }
+        public DateTime GameCreationTime {
+            get {
+                if (m_gameCreatedOn.Ticks == 0) {
+                    InitGameClock();
+                }
+
+                return m_gameCreatedOn;
+            }
+
+            private set {
+                m_gameCreatedOn = value;
+            }
+        }
 
         public float TimeScaleFactor { get; set; }
 
